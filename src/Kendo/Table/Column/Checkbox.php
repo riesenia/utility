@@ -1,0 +1,43 @@
+<?php
+namespace Riesenia\Utility\Kendo\Table\Column;
+
+/**
+ * Checkbox column
+ *
+ * @author Tomas Saghy <segy@riesenia.com>
+ */
+class Checkbox extends Base
+{
+    /**
+     * Type used for model type property
+     *
+     * @var string
+     */
+    protected $_type = 'boolean';
+
+    /**
+     * Column template with %field% placeholder
+     *
+     * @var string
+     */
+    protected $_template = '<td class="tableColumn tableCheckbox"><input type="checkbox" data-row-uid="#: uid #" name="%field%Checkbox" # if (%field%) { # checked="checked" # } # /></td>';
+
+    /**
+     * Return rendered javascript
+     *
+     * @return string
+     */
+    public function script()
+    {
+        return parent::script() . '$("body").on("change", "[name=' . $this->_options['field'] . 'Checkbox]", function (e) {
+            var dataSource = $(this).closest("[data-role=grid]").data("kendoGrid").dataSource;
+
+            // only for datasource that can be updated
+            if (typeof dataSource.transport.options.update !== "undefined") {
+                var item = dataSource.getByUid($(this).data("row-uid"));
+                item.set("' . $this->_options['field'] . '", !item.' . $this->_options['field'] . ');
+                dataSource.sync();
+            }
+        });';
+    }
+}
