@@ -46,7 +46,7 @@ class Base
      */
     public function getModelOptions()
     {
-        return array('type' => $this->_type);
+        return ['type' => $this->_type];
     }
 
     /**
@@ -56,7 +56,7 @@ class Base
      */
     public function getColumnOptions()
     {
-        return array('title' => $this->_options['title'], 'field' => $this->_options['field']);
+        return ['title' => $this->_options['title'], 'field' => $this->_options['field']];
     }
 
     /**

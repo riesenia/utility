@@ -38,17 +38,17 @@ class Table extends KendoHelper
             ->setId('id');
 
         $this->dataSource = Kendo::createDataSource()
-            ->setSchema(array('model' => $this->model, 'data' => 'results', 'total' => 'count'))
+            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count'])
             ->setServerFiltering(true)
             ->setServerSorting(true)
             ->setServerPaging(true);
 
         $this->_widget = Kendo::createGrid('#' . $this->_id)
             ->setDataSource($this->dataSource)
-            ->setSortable(array('allowUnsort' => false));
+            ->setSortable(['allowUnsort' => false]);
 
         $this->_rowTemplate = '<tr data-uid="#: uid #">';
-        $this->_columns = array();
+        $this->_columns = [];
     }
 
     /**
@@ -60,7 +60,7 @@ class Table extends KendoHelper
      * @param array options
      * @return Riesenia\Utility\Kendo\Table
      */
-    public function addColumn($field, $title = '&nbsp;', $type = null, $options = array())
+    public function addColumn($field, $title = '&nbsp;', $type = null, $options = [])
     {
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Column\\Base')) {

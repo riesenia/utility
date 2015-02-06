@@ -1,6 +1,6 @@
 {
     "name": "riesenia/utility",
-    "description": "Helpers simplifying work with Kendo UI widgets",
+    "description": "Riesenia Utility Classes",
     "license": "MIT",
     "authors": [
         {

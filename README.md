@@ -31,7 +31,7 @@ use Riesenia\Utility\Kendo\Table;
 
 $table = Table::create('my_table_id');
 
-// data source can be accessed directly
+// datasource can be accessed directly
 $table->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
 $table->dataSource->addTransport('update', ['dataType' => 'json', 'url' => 'URL']);
 
