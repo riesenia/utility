@@ -52,6 +52,20 @@ class Table extends KendoHelper
     }
 
     /**
+     * Add transport (passed to datasource)
+     *
+     * @param string type
+     * @param array options
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function addTransport($type, $options = [])
+    {
+        $this->dataSource->addTransport($type, $options);
+
+        return $this;
+    }
+
+    /**
      * Add table column
      *
      * @param string field name

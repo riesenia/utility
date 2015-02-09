@@ -33,7 +33,9 @@ $table = Table::create('my_table_id');
 
 // datasource can be accessed directly
 $table->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
-$table->dataSource->addTransport('update', ['dataType' => 'json', 'url' => 'URL']);
+
+// ... but addTransport can be called directly on the table object
+$table->addTransport('update', ['dataType' => 'json', 'url' => 'URL']);
 
 // columns can have various types
 $table->addColumn('name', 'Product name')
