@@ -20,5 +20,12 @@ class Number extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="tableColumn tableNumber">#: %field% #</td>';
+    protected $_template = '<td class="%class%">#: %field% #</td>';
+
+    /**
+     * Predefined class
+     *
+     * @var string
+     */
+    protected $_class = 'tableColumn tableNumber';
 }

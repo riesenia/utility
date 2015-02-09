@@ -20,7 +20,14 @@ class Checkbox extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="tableColumn tableCheckbox"><input type="checkbox" data-row-uid="#: uid #" name="%field%Checkbox" # if (%field%) { # checked="checked" # } # /></td>';
+    protected $_template = '<td class="%class%"><input type="checkbox" data-row-uid="#: uid #" name="%field%Checkbox" # if (%field%) { # checked="checked" # } # /></td>';
+
+    /**
+     * Predefined class
+     *
+     * @var string
+     */
+    protected $_class = 'tableColumn tableCheckbox';
 
     /**
      * Return rendered javascript

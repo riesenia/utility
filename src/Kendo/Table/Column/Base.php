@@ -20,7 +20,14 @@ class Base
      *
      * @var string
      */
-    protected $_template = '<td class="tableColumn">#: %field% #</td>';
+    protected $_template = '<td class="%class%">#: %field% #</td>';
+
+    /**
+     * Predefined class
+     *
+     * @var string
+     */
+    protected $_class = 'tableColumn';
 
     /**
      * Options
@@ -37,6 +44,9 @@ class Base
     public function __construct(array $options)
     {
         $this->_options = $options;
+
+        // class
+        $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
     }
 
     /**
@@ -56,7 +66,7 @@ class Base
      */
     public function getColumnOptions()
     {
-        return ['title' => $this->_options['title'], 'field' => $this->_options['field']];
+        return ['title' => $this->_options['title'], 'field' => $this->_options['field'], 'headerAttributes' => ['class' => $this->_options['class']]];
     }
 
     /**
@@ -66,7 +76,7 @@ class Base
      */
     public function __toString()
     {
-        return str_replace('%field%', $this->_options['field'], $this->_template);
+        return str_replace(['%field%', '%class%'], [$this->_options['field'], $this->_options['class']], $this->_template);
     }
 
     /**

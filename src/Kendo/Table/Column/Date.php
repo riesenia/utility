@@ -20,5 +20,12 @@ class Date extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="tableColumn tableDate">kendo.toString(%field%, "d")</td>';
+    protected $_template = '<td class="%class%">kendo.toString(%field%, "d")</td>';
+
+    /**
+     * Predefined class
+     *
+     * @var string
+     */
+    protected $_class = 'tableColumn tableDate';
 }

@@ -13,5 +13,12 @@ class DateTime extends Date
      *
      * @var string
      */
-    protected $_template = '<td class="tableColumn tableDate tableDateTime">kendo.toString(%field%, "g")</td>';
+    protected $_template = '<td class="%class%">kendo.toString(%field%, "g")</td>';
+
+    /**
+     * Predefined class
+     *
+     * @var string
+     */
+    protected $_class = 'tableColumn tableDate tableDateTime';
 }

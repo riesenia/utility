@@ -13,5 +13,12 @@ class Price extends Number
      *
      * @var string
      */
-    protected $_template = '<td class="tableColumn tableNumber tablePrice">#: kendo.toString(%field%, "c2") #</td>';
+    protected $_template = '<td class="%class%">#: kendo.toString(%field%, "c2") #</td>';
+
+    /**
+     * Predefined class
+     *
+     * @var string
+     */
+    protected $_class = 'tableColumn tableNumber tablePrice';
 }
