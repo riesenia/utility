@@ -161,8 +161,20 @@ class Table extends KendoHelper
      */
     public function script()
     {
+        $row = $this->_rowTemplate;
+
+        // add columns
+        $row .= implode('', $this->_columns);
+
+        // add actions
+        if ($this->_actions) {
+            $row .= '<td class="tableActions">' . implode('', $this->_actions) . '</td>';
+        }
+
         // complete row template
-        $this->_widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
+        $row .= '</tr>';
+
+        $this->_widget->setRowTemplate($row);
 
         $script = $this->_widget->__toString();
 
