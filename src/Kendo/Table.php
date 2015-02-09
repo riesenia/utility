@@ -26,6 +26,13 @@ class Table extends KendoHelper
     protected $_columns;
 
     /**
+     * Actions
+     *
+     * @var array
+     */
+    protected $_actions;
+
+    /**
      * Construct the table
      *
      * @param string id
@@ -49,6 +56,7 @@ class Table extends KendoHelper
 
         $this->_rowTemplate = '<tr data-uid="#: uid #">';
         $this->_columns = [];
+        $this->_actions = [];
     }
 
     /**
@@ -106,6 +114,37 @@ class Table extends KendoHelper
     }
 
     /**
+     * Add table action
+     *
+     * @param string type
+     * @param array options
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function addAction($type = null, $options = [])
+    {
+        // type can be a name of user defined class
+        if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Action\\Base')) {
+            // default class
+            if (is_null($type)) {
+                $type = 'base';
+            }
+
+            $type = __NAMESPACE__ . '\\Table\\Action\\' . ucfirst($type);
+
+            if (!class_exists($type)) {
+                throw new \BadMethodCallException("Invalid action class: " . $type);
+            }
+        }
+
+        // create action class instance
+        $action = new $type($options);
+
+        $this->_actions[] = $action;
+
+        return $this;
+    }
+
+    /**
      * Return HTML
      *
      * @return string
@@ -130,6 +169,11 @@ class Table extends KendoHelper
         // add column scripts
         foreach ($this->_columns as $column) {
             $script .= $column->script();
+        }
+
+        // add action scripts
+        foreach ($this->_actions as $action) {
+            $script .= $action->script();
         }
 
         return $script;
