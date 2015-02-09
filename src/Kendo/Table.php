@@ -105,7 +105,10 @@ class Table extends KendoHelper
         // create column class instance
         $column = new $type($options);
 
-        $this->model->addField($field, $column->getModelOptions());
+        if ($field) {
+            $this->model->addField($field, $column->getModelOptions());
+        }
+
         $this->_widget->addColumns(null, $column->getColumnOptions());
 
         $this->_columns[] = $column;
@@ -161,31 +164,19 @@ class Table extends KendoHelper
      */
     public function script()
     {
-        $row = $this->_rowTemplate;
-
-        // add columns
-        $row .= implode('', $this->_columns);
-
-        // add actions
-        if ($this->_actions) {
-            $row .= '<td class="tableActions">' . implode('', $this->_actions) . '</td>';
+        // define actions
+        if (isset($this->_actions)) {
+            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions]);
         }
 
         // complete row template
-        $row .= '</tr>';
-
-        $this->_widget->setRowTemplate($row);
+        $this->_widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
 
         $script = $this->_widget->__toString();
 
         // add column scripts
         foreach ($this->_columns as $column) {
             $script .= $column->script();
-        }
-
-        // add action scripts
-        foreach ($this->_actions as $action) {
-            $script .= $action->script();
         }
 
         return $script;
