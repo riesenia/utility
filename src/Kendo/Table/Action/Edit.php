@@ -19,4 +19,14 @@ class Edit extends Base
         'title' => 'Edit',
         'icon' => 'edit'
     ];
+
+    /**
+     * Command (for column definition)
+     *
+     * @return mixed
+     */
+    public function command()
+    {
+        return 'edit';
+    }
 }

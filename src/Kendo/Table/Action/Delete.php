@@ -19,4 +19,14 @@ class Delete extends Base
         'title' => 'Delete',
         'icon' => 'remove'
     ];
+
+    /**
+     * Command (for column definition)
+     *
+     * @return mixed
+     */
+    public function command()
+    {
+        return 'destroy';
+    }
 }

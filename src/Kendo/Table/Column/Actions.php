@@ -22,7 +22,14 @@ class Actions extends Base
      */
     public function getColumnOptions()
     {
-        return ['title' => $this->_options['title'], 'headerAttributes' => ['class' => $this->_options['class']]];
+        $command = [];
+
+        // add commands
+        foreach ($this->_options['actions'] as $action) {
+            $command[] = $action->command();
+        }
+
+        return ['title' => $this->_options['title'], 'headerAttributes' => ['class' => $this->_options['class']], 'command' => $command];
     }
 
     /**

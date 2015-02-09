@@ -56,4 +56,14 @@ class Base
     {
         return '';
     }
+
+    /**
+     * Command (for column definition)
+     *
+     * @return mixed
+     */
+    public function command()
+    {
+        return false;
+    }
 }
