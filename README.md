@@ -34,7 +34,7 @@ $table = Table::create('my_table_id');
 // datasource can be accessed directly
 $table->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
 
-// ... but addTransport can be called directly on the table object
+// ... but addTransport can also be called directly on the table object
 $table->addTransport('update', ['dataType' => 'json', 'url' => 'URL']);
 
 // columns can have various types
@@ -46,6 +46,13 @@ $table->addColumn('name', 'Product name')
 // you can use any custom column rendering class
 // as long as it extends Riesenia\Utility\Kendo\Table\Column\Base
 $table->addColumn('custom_field', 'Title', '\\Custom\\Rendering\\Class');
+
+// add delete action
+$table->addAction('delete');
+
+// you can use any custom column action class
+// as long as it extends Riesenia\Utility\Kendo\Table\Action\Base
+$table->addAction('\\Custom\\Action\\Class');
 
 // html element (div)
 echo $table;
