@@ -42,7 +42,8 @@ class Tree extends KendoHelper
         parent::__construct($id);
 
         $this->model = Kendo::createModel()
-            ->setId('id');
+            ->setId('id')
+            ->setHasChildren('hasChildren');
 
         $this->dataSource = Kendo::createHierarchicalDataSource()
             ->setSchema([
@@ -74,6 +75,39 @@ class Tree extends KendoHelper
         $this->_widget = Kendo::createTreeView('#' . $id)
             ->setDataSource($this->dataSource)
             ->setDataTextField('name');
+    }
+
+    /**
+     * Add field (passed to model)
+     *
+     * @param string field name
+     * @param array parameters
+     * @return Riesenia\Utility\Kendo\Tree
+     */
+    public function addField($key, $value = [])
+    {
+        $this->model->addField($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * Add hasChildren field to model
+     *
+     * @param string field name
+     * @return Riesenia\Utility\Kendo\Tree
+     */
+    public function hasChildren($field = 'hasChildren')
+    {
+        $this->model->setHasChildren($field)
+            ->addField($field, [
+                'type' => 'boolean',
+                'parse' => Kendo::js('function (d) {
+                    return d > 0;
+                }')
+            ]);
+
+        return $this;
     }
 
     /**
