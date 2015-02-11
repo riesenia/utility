@@ -47,8 +47,10 @@ class Tree extends KendoHelper
         $this->dataSource = Kendo::createHierarchicalDataSource()
             ->setSchema([
                 'model' => $this->model,
-                'data' => 'results',
                 'parse' => Kendo::js('function (data) {
+                    // take results key
+                    data = data["results"];
+
                     // prevent duplicates
                     var ids = $("#' . $id . '").data("ids");
                     if (typeof ids === "undefined")
