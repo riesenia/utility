@@ -34,7 +34,14 @@ class Base
      *
      * @var array
      */
-    protected $_options;
+    protected $_options = [];
+
+    /**
+     * Model options
+     *
+     * @var array
+     */
+    protected $_modelOptions = [];
 
     /**
      * Construct the column
@@ -43,10 +50,24 @@ class Base
      */
     public function __construct(array $options)
     {
+        // model options first
+        if (isset($options['model'])) {
+            $this->_modelOptions = $options['model'];
+            unset($options['model']);
+        }
+
         $this->_options = $options;
 
         // class
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
+        if (!isset($this->_options['headerAttributes']['class'])) {
+            $this->_options['headerAttributes']['class'] = $this->_options['class'];
+        }
+
+        // type
+        if (!isset($this->_modelOptions['type'])) {
+            $this->_modelOptions['type'] = $this->_type;
+        }
     }
 
     /**
@@ -56,7 +77,7 @@ class Base
      */
     public function getModelOptions()
     {
-        return ['type' => $this->_type];
+        return $this->_modelOptions;
     }
 
     /**
@@ -66,7 +87,7 @@ class Base
      */
     public function getColumnOptions()
     {
-        return ['title' => $this->_options['title'], 'field' => $this->_options['field'], 'headerAttributes' => ['class' => $this->_options['class']]];
+        return $this->_options;
     }
 
     /**

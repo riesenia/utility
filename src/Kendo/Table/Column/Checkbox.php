@@ -43,7 +43,9 @@ class Checkbox extends Base
             if (typeof dataSource.transport.options.update !== "undefined") {
                 var item = dataSource.getByUid($(this).data("row-uid"));
                 item.set("' . $this->_options['field'] . '", !item.' . $this->_options['field'] . ');
-                dataSource.sync();
+                if (!dataSource.options.autoSync) {
+                    dataSource.sync();
+                }
             }
         });';
     }

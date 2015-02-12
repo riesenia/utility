@@ -16,20 +16,20 @@ class Actions extends Base
     protected $_class = 'tableColumn tableActions';
 
     /**
-     * Get options for grid column definition
+     * Construct the column
      *
-     * @return array
+     * @param string id
      */
-    public function getColumnOptions()
+    public function __construct(array $options)
     {
-        $command = [];
+        parent::__construct($options);
 
-        // add commands
+        // add command
+        $this->_options['command'] = [];
+
         foreach ($this->_options['actions'] as $action) {
-            $command[] = $action->command();
+            $this->_options['command'][] = $action->command();
         }
-
-        return ['title' => $this->_options['title'], 'headerAttributes' => ['class' => $this->_options['class']], 'command' => $command];
     }
 
     /**
