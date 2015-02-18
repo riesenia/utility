@@ -84,6 +84,11 @@ class Table extends KendoHelper
      */
     public function addColumn($field, $title = '&nbsp;', $type = null, $options = [])
     {
+        // resolve alias
+        if (isset(static::$_aliases[$type])) {
+            $type = static::$_aliases[$type];
+        }
+
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Column\\Base')) {
             // default class
@@ -125,6 +130,11 @@ class Table extends KendoHelper
      */
     public function addAction($type = null, $options = [])
     {
+        // resolve alias
+        if (isset(static::$_aliases[$type])) {
+            $type = static::$_aliases[$type];
+        }
+
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Action\\Base')) {
             // default class

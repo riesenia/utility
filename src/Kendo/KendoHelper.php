@@ -37,6 +37,13 @@ abstract class KendoHelper
     protected $_widget = null;
 
     /**
+     * Class aliases
+     *
+     * @var array
+     */
+    protected static $_aliases = [];
+
+    /**
      * Construct the helper
      *
      * @param string id
@@ -55,6 +62,18 @@ abstract class KendoHelper
     public static function create($id)
     {
         return new static($id);
+    }
+
+    /**
+     * Define class alias
+     *
+     * @param string alias
+     * @param string full class name
+     * @return void
+     */
+    public static function alias($alias, $class)
+    {
+        static::$_aliases[$alias] = $class;
     }
 
     /**

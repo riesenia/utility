@@ -65,6 +65,10 @@ $table->addAction('delete');
 // as long as it extends Riesenia\Utility\Kendo\Table\Action\Base
 $table->addAction('\\Custom\\Action\\Class');
 
+// generally used classes can be aliased, so previous example is equivalent to
+Table::alias('alias_name', '\\Custom\\Action\\Class');
+$table->addAction('alias_name');
+
 // html element (div)
 echo $table;
 
