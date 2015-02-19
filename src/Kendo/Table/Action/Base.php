@@ -1,6 +1,8 @@
 <?php
 namespace Riesenia\Utility\Kendo\Table\Action;
 
+use Riesenia\Utility\Kendo\Table;
+
 /**
  * Base class for Table helper actions
  *
@@ -28,12 +30,21 @@ class Base
     ];
 
     /**
+     * Reference to table
+     *
+     * @var \Riesenia\Utility\Kendo\Table
+     */
+    protected $_table;
+
+    /**
      * Construct action
      *
      * @param array options
+     * @param \Riesenia\Utility\Kendo\Table
      */
-    public function __construct(array $options)
+    public function __construct(array $options, Table $table)
     {
+        $this->_table = $table;
         $this->_options = array_merge($this->_options, $options);
     }
 

@@ -1,6 +1,8 @@
 <?php
 namespace Riesenia\Utility\Kendo\Table\Column;
 
+use Riesenia\Utility\Kendo\Table;
+
 /**
  * Base class for Table helper columns
  *
@@ -44,12 +46,22 @@ class Base
     protected $_modelOptions = [];
 
     /**
+     * Reference to table
+     *
+     * @var \Riesenia\Utility\Kendo\Table
+     */
+    protected $_table;
+
+    /**
      * Construct the column
      *
      * @param array options
+     * @param \Riesenia\Utility\Kendo\Table
      */
-    public function __construct(array $options)
+    public function __construct(array $options, Table $table)
     {
+        $this->_table = $table;
+
         // model options first
         if (isset($options['model'])) {
             $this->_modelOptions = $options['model'];
