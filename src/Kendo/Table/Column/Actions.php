@@ -1,8 +1,6 @@
 <?php
 namespace Riesenia\Utility\Kendo\Table\Column;
 
-use Riesenia\Utility\Kendo\Table;
-
 /**
  * Actions column
  *
@@ -23,9 +21,9 @@ class Actions extends Base
      * @param string id
      * @param \Riesenia\Utility\Kendo\Table
      */
-    public function __construct(array $options, Table $table)
+    public function __construct(array $options, $tableId)
     {
-        parent::__construct($options);
+        parent::__construct($options, $tableId);
 
         // add command
         $this->_options['command'] = [];

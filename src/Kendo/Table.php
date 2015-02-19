@@ -108,7 +108,7 @@ class Table extends KendoHelper
         $options['title'] = $title;
 
         // create column class instance
-        $column = new $type($options, $this);
+        $column = new $type($options, $this->_id);
 
         if ($field) {
             $this->model->addField($field, $column->getModelOptions());
@@ -150,7 +150,7 @@ class Table extends KendoHelper
         }
 
         // create action class instance
-        $action = new $type($options, $this);
+        $action = new $type($options, $this->_id);
 
         $this->_actions[] = $action;
 
