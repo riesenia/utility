@@ -12,27 +12,6 @@ use Riesenia\Kendo\Kendo;
 class Tree extends KendoHelper
 {
     /**
-     * Row template
-     *
-     * @var string
-     */
-    protected $_rowTemplate;
-
-    /**
-     * Table columns
-     *
-     * @var array
-     */
-    protected $_columns;
-
-    /**
-     * Actions
-     *
-     * @var array
-     */
-    protected $_actions;
-
-    /**
      * Construct the tree
      *
      * @param string id
