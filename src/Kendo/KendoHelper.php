@@ -77,6 +77,16 @@ abstract class KendoHelper
     }
 
     /**
+     * Get id
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->_id;
+    }
+
+    /**
      * Return rendered HTML
      *
      * @return string
