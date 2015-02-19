@@ -54,7 +54,7 @@ class Base
      * Construct the column
      *
      * @param array options
-     * @param \Riesenia\Utility\Kendo\Table
+     * @param string
      */
     public function __construct(array $options, $tableId)
     {

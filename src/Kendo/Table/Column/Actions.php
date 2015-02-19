@@ -19,7 +19,7 @@ class Actions extends Base
      * Construct the column
      *
      * @param string id
-     * @param \Riesenia\Utility\Kendo\Table
+     * @param string
      */
     public function __construct(array $options, $tableId)
     {
