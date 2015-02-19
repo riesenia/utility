@@ -46,6 +46,19 @@ class Window extends KendoHelper
     {
         $script = $this->_widget->__toString();
 
+        // center window on resize
+        $script .= '$(window).resize(function (e) {
+            $("#' . $this->_id . '").data("kendoWindow").center();
+        });';
+
+        // define global function for loading content and opening window
+        $script .= 'window.' . $this->_id . 'Open = function (title, url) {
+            $("#' . $this->_id . '").data("kendoWindow").title(title);
+            $.get(url, {}, function (data) {
+                $("#' . $this->_id . '").data("kendoWindow").content(data).center().open();
+            });
+        };';
+
         return $script;
     }
 }

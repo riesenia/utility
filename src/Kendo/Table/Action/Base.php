@@ -28,9 +28,9 @@ class Base
     ];
 
     /**
-     * Construct the column
+     * Construct action
      *
-     * @param string id
+     * @param array options
      */
     public function __construct(array $options)
     {

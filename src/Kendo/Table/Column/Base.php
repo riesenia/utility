@@ -46,7 +46,7 @@ class Base
     /**
      * Construct the column
      *
-     * @param string id
+     * @param array options
      */
     public function __construct(array $options)
     {

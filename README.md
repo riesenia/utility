@@ -29,7 +29,7 @@ Helpers simplifying usage of Kendo UI components.
 ```php
 use Riesenia\Utility\Kendo\Table;
 
-$table = Table::create('my_table_id');
+$table = Table::create('myTableId');
 
 // datasource can be accessed directly
 $table->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
@@ -81,7 +81,7 @@ echo '<script>' . $table->script() . '</script>';
 ```php
 use Riesenia\Utility\Kendo\Tree;
 
-$tree = Tree::create('my_tree_id');
+$tree = Tree::create('myTreeId');
 
 // datasource can be accessed directly
 $tree->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
@@ -98,4 +98,27 @@ echo $tree;
 
 // generated javascript
 echo '<script>' . $tree->script() . '</script>';
+```
+
+### Window
+
+```php
+use Riesenia\Utility\Kendo\Window;
+
+$window = Window::create('myWindowId');
+
+// datasource can be accessed directly
+$window->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
+
+// ... but addTransport can also be called directly on the window object
+$window->addTransport('delete', ['dataType' => 'json', 'url' => 'URL']);
+
+// html element (div)
+echo $window;
+
+// generated javascript
+echo '<script>' . $window->script() . '</script>';
+
+// method for opening window is automatically defined
+echo '<script>myWindowIdOpen("WINDOW TITLE", "URL OF THE CONTENT TO LOAD");</script>';
 ```
