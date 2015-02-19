@@ -175,7 +175,7 @@ class Table extends KendoHelper
     public function script()
     {
         // define actions
-        if (isset($this->_actions)) {
+        if (count($this->_actions)) {
             $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions]);
         }
 
