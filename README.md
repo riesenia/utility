@@ -107,12 +107,6 @@ use Riesenia\Utility\Kendo\Window;
 
 $window = Window::create('myWindowId');
 
-// datasource can be accessed directly
-$window->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
-
-// ... but addTransport can also be called directly on the window object
-$window->addTransport('delete', ['dataType' => 'json', 'url' => 'URL']);
-
 // html element (div)
 echo $window;
 
@@ -121,4 +115,24 @@ echo '<script>' . $window->script() . '</script>';
 
 // method for opening window is automatically defined
 echo '<script>myWindowIdOpen("WINDOW TITLE", "URL OF THE CONTENT TO LOAD");</script>';
+```
+
+### Tabber
+
+```php
+use Riesenia\Utility\Kendo\Tabber;
+
+$tabber = Tabber::create('myTabberId');
+
+// adding remote tab
+$tabber->addRemoteTab('First tab', 'URL');
+
+// active tab is set using third parameter
+$tabber->addRemoteTab('Second tab', 'URL', true);
+
+// html element (div & ul)
+echo $tabber;
+
+// generated javascript
+echo '<script>' . $tabber->script() . '</script>';
 ```
