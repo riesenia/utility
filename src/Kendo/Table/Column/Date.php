@@ -20,7 +20,7 @@ class Date extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%">kendo.toString(%field%, "d")</td>';
+    protected $_template = '<td class="%class%">#: kendo.toString(%field%, "d") #</td>';
 
     /**
      * Predefined class
