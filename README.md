@@ -50,6 +50,12 @@ $table->addColumn('name', 'Product name', null, ['model' => ['editable' => false
 // as long as it extends Riesenia\Utility\Kendo\Table\Column\Base
 $table->addColumn('custom_field', 'Title', '\\Custom\\Rendering\\Class');
 
+// link is built-in option
+$table->addColumn('...', '...', '...', ['link' => 'URL']);
+
+// any link attributes can be set
+$table->addColumn('...', '...', '...', ['link' => ['href' => 'URL', 'title' => 'TITLE']]);
+
 // actions are usually icons with links
 // icons are bootstrap classes without glyphicon prefix
 $table->addAction(null, [
@@ -64,6 +70,9 @@ $table->addAction('delete');
 // you can use any custom column action class
 // as long as it extends Riesenia\Utility\Kendo\Table\Action\Base
 $table->addAction('\\Custom\\Action\\Class');
+
+// condition is built-in option
+$table->addAction('...', ['condition' => 'count > 0']);
 
 // generally used classes can be aliased, so previous example is equivalent to
 Table::alias('alias_name', '\\Custom\\Action\\Class');
