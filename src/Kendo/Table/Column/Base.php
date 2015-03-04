@@ -107,7 +107,28 @@ class Base
      */
     public function __toString()
     {
-        return str_replace(['%field%', '%class%'], [$this->_options['field'], $this->_options['class']], $this->_template);
+        $template = $this->_template;
+
+        // link
+        if (isset($this->_options['link']) && $this->_options['link']) {
+            if (!is_array($this->_options['link'])) {
+                $this->_options['link'] = ['href' => $this->_options['link']];
+            }
+
+            // build link template
+            $link = '<a';
+
+            foreach ($this->_options['link'] as $attribute => $value) {
+                $link .= ' ' . $attribute . '="' . $value . '"';
+            }
+
+            $link .= '>';
+
+            $template = preg_replace('/(<td[^>]+>)/', '\\1' . $link, $template);
+            $template = str_replace('</td>', '</a></td>', $template);
+        }
+
+        return str_replace(['%field%', '%class%'], [$this->_options['field'], $this->_options['class']], $template);
     }
 
     /**
