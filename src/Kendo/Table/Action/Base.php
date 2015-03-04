@@ -53,7 +53,14 @@ class Base
      */
     public function __toString()
     {
-        return str_replace(['%class%', '%link%', '%title%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['icon']], $this->_template);
+        $template = $this->_template;
+
+        // condition
+        if (isset($this->_options['condition'])) {
+            $template = '# if (' . $options['condition'] . ') { #' . $template . '# } #';
+        }
+
+        return str_replace(['%class%', '%link%', '%title%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['icon']], $template);
     }
 
     /**
