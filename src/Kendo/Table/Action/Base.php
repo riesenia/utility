@@ -57,7 +57,7 @@ class Base
 
         // condition
         if (isset($this->_options['condition'])) {
-            $template = '# if (' . $options['condition'] . ') { #' . $template . '# } #';
+            $template = '# if (' . $this->_options['condition'] . ') { #' . $template . '# } #';
         }
 
         return str_replace(['%class%', '%link%', '%title%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['icon']], $template);
