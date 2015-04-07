@@ -46,6 +46,11 @@ class Window extends KendoHelper
     {
         $script = $this->_widget->__toString();
 
+        // center window on open
+        $script .= '$("#' . $this->_id . '").data("kendoWindow").bind("open", function (e) {
+            $("#' . $this->_id . '").data("kendoWindow").center();
+        });';
+
         // center window on resize
         $script .= '$(window).resize(function (e) {
             $("#' . $this->_id . '").data("kendoWindow").center();
