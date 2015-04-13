@@ -18,8 +18,8 @@ class Actions extends Base
     /**
      * Construct the column
      *
-     * @param string id
-     * @param string
+     * @param array options
+     * @param string table id
      */
     public function __construct(array $options, $tableId)
     {
