@@ -16,11 +16,11 @@ class Date extends Base
     protected $_type = 'date';
 
     /**
-     * Column template with %field% placeholder
+     * Field format with %field% placeholder
      *
      * @var string
      */
-    protected $_template = '<td class="%class%">#: kendo.toString(%field%, "d") #</td>';
+    protected $_format = '#: kendo.toString(%field%, "d") #';
 
     /**
      * Predefined class

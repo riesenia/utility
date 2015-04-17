@@ -16,13 +16,6 @@ class Number extends Base
     protected $_type = 'number';
 
     /**
-     * Column template with %field% placeholder
-     *
-     * @var string
-     */
-    protected $_template = '<td class="%class%">#: %field% #</td>';
-
-    /**
      * Predefined class
      *
      * @var string

@@ -16,11 +16,18 @@ class Base
     protected $_type = 'string';
 
     /**
-     * Column template with %field% placeholder
+     * Column template with %format% / %field% / %class% placeholder
      *
      * @var string
      */
-    protected $_template = '<td class="%class%">#: %field% #</td>';
+    protected $_template = '<td class="%class%">%format%</td>';
+
+    /**
+     * Field format with %field% placeholder
+     *
+     * @var string
+     */
+    protected $_format = '#: %field% #';
 
     /**
      * Predefined class
@@ -101,13 +108,13 @@ class Base
     }
 
     /**
-     * Column defintion in a grid row template
+     * Return rendered column
      *
      * @return string
      */
     public function __toString()
     {
-        $template = $this->_template;
+        $format = $this->_format;
 
         // link
         if (isset($this->_options['link']) && $this->_options['link']) {
@@ -124,11 +131,13 @@ class Base
 
             $link .= '>';
 
-            $template = preg_replace('/(<td[^>]+>)/', '\\1' . $link, $template);
-            $template = str_replace('</td>', '</a></td>', $template);
+            $format = $link . $format . '</a>';
         }
 
-        return str_replace(['%field%', '%class%'], [$this->_options['field'], $this->_options['class']], $template);
+        // print N/A for empty columns
+        $format = '# if (%field% !== null && %field% !== "") { #' . $format . '# } else { # N/A # } #';
+
+        return str_replace(['%format%', '%field%', '%class%'], [$format, $this->_options['field'], $this->_options['class']], $this->_template);
     }
 
     /**

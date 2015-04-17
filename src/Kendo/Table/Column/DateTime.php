@@ -9,11 +9,11 @@ namespace Riesenia\Utility\Kendo\Table\Column;
 class DateTime extends Date
 {
     /**
-     * Column template with %field% placeholder
+     * Field format with %field% placeholder
      *
      * @var string
      */
-    protected $_template = '<td class="%class%">#: kendo.toString(%field%, "g") #</td>';
+    protected $_format = '#: kendo.toString(%field%, "g") #';
 
     /**
      * Predefined class

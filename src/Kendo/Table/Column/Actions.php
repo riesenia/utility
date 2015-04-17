@@ -34,7 +34,7 @@ class Actions extends Base
     }
 
     /**
-     * Column defintion in a grid row template
+     * Return rendered column
      *
      * @return string
      */

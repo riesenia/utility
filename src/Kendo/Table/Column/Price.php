@@ -9,11 +9,11 @@ namespace Riesenia\Utility\Kendo\Table\Column;
 class Price extends Number
 {
     /**
-     * Column template with %field% placeholder
+     * Field format with %field% placeholder
      *
      * @var string
      */
-    protected $_template = '<td class="%class%">#: kendo.toString(%field%, "c2") #</td>';
+    protected $_format = '#: kendo.toString(%field%, "c2") #';
 
     /**
      * Predefined class
