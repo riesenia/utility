@@ -33,6 +33,13 @@ class Table extends KendoHelper
     protected $_actions;
 
     /**
+     * Text for no results
+     *
+     * @var string
+     */
+    protected $_noResults;
+
+    /**
      * Construct the table
      *
      * @param string id
@@ -158,6 +165,18 @@ class Table extends KendoHelper
     }
 
     /**
+     * Set no results text
+     *
+     * @param string
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function setNoResults($text) {
+        $this->_noResults = $text;
+
+        return $this;
+    }
+
+    /**
      * Return HTML
      *
      * @return string
@@ -183,6 +202,18 @@ class Table extends KendoHelper
         $this->_widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
 
         $script = $this->_widget->__toString();
+
+        // handle empty result set
+        if ($this->_noResults) {
+            $script .= '$(function() {
+                $("#' . $this->_id . '").data("kendoGrid").bind("dataBound", function(e) {
+                    if (!e.sender.dataSource.view().length) {
+                        console.log(e.sender);
+                        e.sender.tbody.append("<tr><td colspan=\"' . count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
+                    }
+                });
+            });';
+        }
 
         // add column scripts
         foreach ($this->_columns as $column) {

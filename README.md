@@ -78,6 +78,9 @@ $table->addAction('...', ['condition' => 'count > 0']);
 Table::alias('alias_name', '\\Custom\\Action\\Class');
 $table->addAction('alias_name');
 
+// set text for no results (will be added as first colspaned row)
+$table->setNoResults('NO RESULTS!');
+
 // html element (div)
 echo $table;
 
@@ -145,3 +148,16 @@ echo $tabber;
 // generated javascript
 echo '<script>' . $tabber->script() . '</script>';
 ```
+
+### Upload
+
+```php
+use Riesenia\Utility\Kendo\Upload;
+
+$upload = Upload::create('myUploadId');
+
+// html element (input type file)
+echo $upload;
+
+// generated javascript
+echo '<script>' . $upload->script() . '</script>';
