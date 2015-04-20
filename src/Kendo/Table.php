@@ -177,6 +177,18 @@ class Table extends KendoHelper
     }
 
     /**
+     * Set no results text
+     *
+     * @param string
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function setRowTemplate($template) {
+        $this->_rowTemplate = $template;
+
+        return $this;
+    }
+
+    /**
      * Return HTML
      *
      * @return string
