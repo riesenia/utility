@@ -220,7 +220,6 @@ class Table extends KendoHelper
             $script .= '$(function() {
                 $("#' . $this->_id . '").data("kendoGrid").bind("dataBound", function(e) {
                     if (!e.sender.dataSource.view().length) {
-                        console.log(e.sender);
                         e.sender.tbody.append("<tr><td colspan=\"' . count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
                     }
                 });
