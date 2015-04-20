@@ -170,7 +170,8 @@ class Table extends KendoHelper
      * @param string
      * @return Riesenia\Utility\Kendo\Table
      */
-    public function setNoResults($text) {
+    public function setNoResults($text)
+    {
         $this->_noResults = $text;
 
         return $this;
@@ -182,7 +183,8 @@ class Table extends KendoHelper
      * @param string
      * @return Riesenia\Utility\Kendo\Table
      */
-    public function setRowTemplate($template) {
+    public function setRowTemplate($template)
+    {
         $this->_rowTemplate = $template;
 
         return $this;
