@@ -21,33 +21,14 @@ class Tree extends KendoHelper
         parent::__construct($id);
 
         $this->model = Kendo::createModel()
-            ->setId('id')
-            ->setHasChildren('hasChildren');
+            ->setId('id');
 
         $this->dataSource = Kendo::createHierarchicalDataSource()
             ->setSchema([
                 'model' => $this->model,
                 'parse' => Kendo::js('function (data) {
                     // take results key
-                    data = data["results"];
-
-                    // prevent duplicates
-                    var ids = $("#' . $id . '").data("ids");
-                    if (typeof ids === "undefined")
-                        ids = [];
-
-                    ret = [];
-
-                    for (var i in data) {
-                        if ($.inArray(data[i].id, ids) > -1)
-                            continue;
-
-                        ids.push(data[i].id);
-                        ret.push(data[i]);
-                    }
-                    $("#' . $id . '").data("ids", ids);
-
-                    return ret;
+                    return data["results"];
                 }')
             ]);
 
@@ -117,6 +98,40 @@ class Tree extends KendoHelper
         }
 
         $this->_widget->setCheckboxes($options);
+
+        return $this;
+    }
+
+    /**
+     * Expand tree through provided path
+     *
+     * @param array path from highest node to the last
+     * @return Riesenia\Utility\Kendo\Tree
+     */
+    public function expand($path = [])
+    {
+        $this->_widget->setDataBound(Kendo::js('function (e) {
+            var expand = $("#' . $this->_id . '").data("expand");
+
+            // initial
+            if (typeof expand === "undefined") {
+                expand = ' . json_encode($path) . ';
+            }
+
+            if (expand.length) {
+                var id = expand.shift();
+
+                // select if last node or expand this node
+                var node = this.findByUid(this.dataSource.get(id).uid);
+                if (!expand.length) {
+                    this.select(node);
+                } else {
+                    this.expand(node);
+                }
+
+                $("#' . $this->_id . '").data("expand", expand);
+            }
+        }'));
 
         return $this;
     }
