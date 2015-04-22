@@ -1,5 +1,4 @@
 <?php
-
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;

@@ -1,5 +1,4 @@
 <?php
-
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -12,6 +11,13 @@ use Riesenia\Kendo\Kendo;
 class Upload extends KendoHelper
 {
     /**
+     * Input name
+     *
+     * @var string
+     */
+    protected $_name;
+
+    /**
      * Construct the uploader
      *
      * @param string id
@@ -21,6 +27,17 @@ class Upload extends KendoHelper
         parent::__construct($id);
 
         $this->_widget = Kendo::createUpload('#' . $id);
+        $this->_name = $id;
+    }
+
+    /**
+     * Set input name
+     *
+     * @param string name
+     * @return Riesenia\Utility\Kendo\Upload
+     */
+    public function setName($name) {
+        $this->_name = $name;
     }
 
     /**
@@ -30,7 +47,7 @@ class Upload extends KendoHelper
      */
     public function html()
     {
-        return '<input id="' . $this->_id . '" name="' . $this->_id . '" type="file" />';
+        return '<input id="' . $this->_id . '" name="' . $this->_name . '" type="file" />';
     }
 
     /**
