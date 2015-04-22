@@ -39,6 +39,8 @@ class Upload extends KendoHelper
     public function setName($name)
     {
         $this->_name = $name;
+
+        return $this;
     }
 
     /**
