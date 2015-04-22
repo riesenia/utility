@@ -23,13 +23,7 @@ class Tree extends KendoHelper
             ->setId('id');
 
         $this->dataSource = Kendo::createHierarchicalDataSource()
-            ->setSchema([
-                'model' => $this->model,
-                'parse' => Kendo::js('function (data) {
-                    // take results key
-                    return data["results"];
-                }')
-            ]);
+            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count']);
 
         $this->_widget = Kendo::createTreeView('#' . $id)
             ->setDataSource($this->dataSource)

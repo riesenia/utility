@@ -27,12 +27,7 @@ class Select extends KendoHelper
         parent::__construct($id);
 
         $this->dataSource = Kendo::createDataSource()
-            ->setSchema([
-                'parse' => Kendo::js('function (data) {
-                    // take results key
-                    return data["results"];
-                }')
-            ])
+            ->setSchema(['data' => 'results', 'total' => 'count'])
             ->setServerFiltering(true)
             ->setServerPaging(true);
 
