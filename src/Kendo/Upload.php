@@ -36,7 +36,8 @@ class Upload extends KendoHelper
      * @param string name
      * @return Riesenia\Utility\Kendo\Upload
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->_name = $name;
     }
 
