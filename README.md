@@ -156,8 +156,33 @@ use Riesenia\Utility\Kendo\Upload;
 
 $upload = Upload::create('myUploadId');
 
+// optionally set name attribute of the input
+$upload->setName('NAME');
+
 // html element (input type file)
 echo $upload;
 
 // generated javascript
 echo '<script>' . $upload->script() . '</script>';
+
+### Select
+
+```php
+use Riesenia\Utility\Kendo\Select;
+
+$select = Select::create('mySelectId');
+
+// datasource can be accessed directly
+$select->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
+
+// ... but addTransport can also be called directly on the select object
+$select->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
+
+// optionally set name attribute of the input
+$select->setName('NAME');
+
+// html element (input)
+echo $select;
+
+// generated javascript
+echo '<script>' . $select->script() . '</script>';
