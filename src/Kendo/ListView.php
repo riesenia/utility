@@ -19,8 +19,11 @@ class ListView extends KendoHelper
     {
         parent::__construct($id);
 
+        $this->model = Kendo::createModel()
+            ->setId('id');
+
         $this->dataSource = Kendo::createDataSource()
-            ->setSchema(['data' => 'results', 'total' => 'count'])
+            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count'])
             ->setServerFiltering(true)
             ->setServerSorting(true)
             ->setServerPaging(true);
