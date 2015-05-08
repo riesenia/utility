@@ -18,7 +18,7 @@ class Select extends KendoHelper
     protected $_name;
 
     /**
-     * Construct the uploader
+     * Construct the select
      *
      * @param string id
      */
