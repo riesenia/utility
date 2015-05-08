@@ -186,3 +186,25 @@ echo $select;
 
 // generated javascript
 echo '<script>' . $select->script() . '</script>';
+
+### ListView
+
+```php
+use Riesenia\Utility\Kendo\ListView;
+
+$listView = Select::create('myListViewId');
+
+// datasource can be accessed directly
+$listView->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
+
+// ... but addTransport can also be called directly on the listView object
+$listView->addTransport('destroy', ['dataType' => 'json', 'url' => 'URL']);
+
+// template can be set by id attribute
+$listView->setTemplateById('ID');
+
+// html element (div)
+echo $listView;
+
+// generated javascript
+echo '<script>' . $listView->script() . '</script>';
