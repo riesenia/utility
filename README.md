@@ -164,6 +164,7 @@ echo $upload;
 
 // generated javascript
 echo '<script>' . $upload->script() . '</script>';
+```
 
 ### Select
 
@@ -186,6 +187,7 @@ echo $select;
 
 // generated javascript
 echo '<script>' . $select->script() . '</script>';
+```
 
 ### ListView
 
@@ -208,3 +210,4 @@ echo $listView;
 
 // generated javascript
 echo '<script>' . $listView->script() . '</script>';
+```
