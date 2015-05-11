@@ -194,7 +194,7 @@ echo '<script>' . $select->script() . '</script>';
 ```php
 use Riesenia\Utility\Kendo\ListView;
 
-$listView = Select::create('myListViewId');
+$listView = ListView::create('myListViewId');
 
 // datasource can be accessed directly
 $listView->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
