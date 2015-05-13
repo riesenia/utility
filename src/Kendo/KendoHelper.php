@@ -57,7 +57,7 @@ abstract class KendoHelper
      * Return new instance
      *
      * @param string id
-     * @return Riesenia\Utils\Kendo\KendoHelper
+     * @return Riesenia\Utility\Kendo\KendoHelper
      */
     public static function create($id)
     {
@@ -89,6 +89,34 @@ abstract class KendoHelper
      * @return string
      */
     abstract public function script();
+
+    /**
+     * Add transport (passed to datasource)
+     *
+     * @param string type
+     * @param array options
+     * @return Riesenia\Utility\Kendo\KendoHelper
+     */
+    public function addTransport($type, $options = [])
+    {
+        $this->dataSource->addTransport($type, $options);
+
+        return $this;
+    }
+
+    /**
+     * Add field (passed to model)
+     *
+     * @param string field name
+     * @param array options
+     * @return Riesenia\Utility\Kendo\Tree
+     */
+    public function addField($key, $options = [])
+    {
+        $this->model->addField($key, $options);
+
+        return $this;
+    }
 
     /**
      * Output HTML on echoing

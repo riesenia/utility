@@ -31,20 +31,6 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Add field (passed to model)
-     *
-     * @param string field name
-     * @param array parameters
-     * @return Riesenia\Utility\Kendo\Tree
-     */
-    public function addField($key, $value = [])
-    {
-        $this->model->addField($key, $value);
-
-        return $this;
-    }
-
-    /**
      * Add hasChildren field to model
      *
      * @param string field name
@@ -59,20 +45,6 @@ class Tree extends KendoHelper
                     return d > 0;
                 }')
             ]);
-
-        return $this;
-    }
-
-    /**
-     * Add transport (passed to datasource)
-     *
-     * @param string type
-     * @param array options
-     * @return Riesenia\Utility\Kendo\Tree
-     */
-    public function addTransport($type, $options = [])
-    {
-        $this->dataSource->addTransport($type, $options);
 
         return $this;
     }

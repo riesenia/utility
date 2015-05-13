@@ -35,20 +35,6 @@ class ListView extends KendoHelper
     /**
      * Add transport (passed to datasource)
      *
-     * @param string type
-     * @param array options
-     * @return Riesenia\Utility\Kendo\ListView
-     */
-    public function addTransport($type, $options = [])
-    {
-        $this->dataSource->addTransport($type, $options);
-
-        return $this;
-    }
-
-    /**
-     * Add transport (passed to datasource)
-     *
      * @param string template id
      * @return Riesenia\Utility\Kendo\ListView
      */

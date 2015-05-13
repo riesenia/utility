@@ -53,20 +53,6 @@ class Select extends KendoHelper
     }
 
     /**
-     * Add transport (passed to datasource)
-     *
-     * @param string type
-     * @param array options
-     * @return Riesenia\Utility\Kendo\Select
-     */
-    public function addTransport($type, $options = [])
-    {
-        $this->dataSource->addTransport($type, $options);
-
-        return $this;
-    }
-
-    /**
      * Return HTML
      *
      * @return string
