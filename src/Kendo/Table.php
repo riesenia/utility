@@ -66,6 +66,19 @@ class Table extends KendoHelper
     }
 
     /**
+     * Add checkboxes
+     *
+     * @param array options
+     * @return Riesenia\Utility\Kendo\Tree
+     */
+    public function addCheckboxes($options = [])
+    {
+        $this->addColumn(null, '&nbsp;', 'tableCheckbox', $options);
+
+        return $this;
+    }
+
+    /**
      * Add table column
      *
      * @param string field name
