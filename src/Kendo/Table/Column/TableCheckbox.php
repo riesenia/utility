@@ -30,6 +30,9 @@ class TableCheckbox extends Base
      */
     public function __construct(array $options, $tableId)
     {
+        $options['filterable'] = false;
+        $options['sortable'] = false;
+
         parent::__construct($options, $tableId);
 
         // default field is id
