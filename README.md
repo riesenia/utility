@@ -211,3 +211,21 @@ echo $listView;
 // generated javascript
 echo '<script>' . $listView->script() . '</script>';
 ```
+
+### DateTime
+
+```php
+use Riesenia\Utility\Kendo\DateTime;
+
+$dateTime = DateTime::create('myDateTimeId');
+
+// range can be set between two elements (two fields with ids 'from' and 'to')
+DateTime::create('from')->rangeTo('to');
+DateTime::create('to')->rangeFrom('from');
+
+// html element (input)
+// hidden input with same name is added automatically to provide MySQL datetime format
+echo $dateTime;
+
+// generated javascript
+echo '<script>' . $dateTime->script() . '</script>';
