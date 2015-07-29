@@ -11,13 +11,6 @@ use Riesenia\Kendo\Kendo;
 class Select extends KendoHelper
 {
     /**
-     * Input name
-     *
-     * @var string
-     */
-    protected $_name;
-
-    /**
      * Construct the select
      *
      * @param string id
@@ -40,26 +33,13 @@ class Select extends KendoHelper
     }
 
     /**
-     * Set input name
-     *
-     * @param string name
-     * @return Riesenia\Utility\Kendo\Select
-     */
-    public function setName($name)
-    {
-        $this->_name = $name;
-
-        return $this;
-    }
-
-    /**
      * Return HTML
      *
      * @return string
      */
     public function html()
     {
-        return '<input id="' . $this->_id . '" name="' . $this->_name . '" />';
+        return $this->_input($this->_id);
     }
 
     /**

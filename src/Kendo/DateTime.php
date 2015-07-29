@@ -25,13 +25,6 @@ class DateTime extends KendoHelper
     protected $_rangeTo;
 
     /**
-     * Input name
-     *
-     * @var string
-     */
-    protected $_name;
-
-    /**
      * Construct the select
      *
      * @param string id
@@ -43,19 +36,6 @@ class DateTime extends KendoHelper
         $this->_widget = Kendo::createDateTimePicker('#' . $id);
 
         $this->_name = $id;
-    }
-
-    /**
-     * Set input name
-     *
-     * @param string name
-     * @return Riesenia\Utility\Kendo\DateTime
-     */
-    public function setName($name)
-    {
-        $this->_name = $name;
-
-        return $this;
     }
 
     /**
@@ -91,7 +71,7 @@ class DateTime extends KendoHelper
      */
     public function html()
     {
-        return '<input id="' . $this->_id . '" name="' . $this->_name . '" /><input type="hidden" id="' . $this->_id . '-hidden" name="' . $this->_name . '" />';
+        return $this->_input($this->_id) . $this->_input($this->_id . '-hidden');
     }
 
     /**

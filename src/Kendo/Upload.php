@@ -11,13 +11,6 @@ use Riesenia\Kendo\Kendo;
 class Upload extends KendoHelper
 {
     /**
-     * Input name
-     *
-     * @var string
-     */
-    protected $_name;
-
-    /**
      * Construct the uploader
      *
      * @param string id
@@ -31,26 +24,15 @@ class Upload extends KendoHelper
     }
 
     /**
-     * Set input name
-     *
-     * @param string name
-     * @return Riesenia\Utility\Kendo\Upload
-     */
-    public function setName($name)
-    {
-        $this->_name = $name;
-
-        return $this;
-    }
-
-    /**
      * Return HTML
      *
      * @return string
      */
     public function html()
     {
-        return '<input id="' . $this->_id . '" name="' . $this->_name . '" type="file" />';
+        $this->setAttribute('type', 'file');
+
+        return $this->_input($this->_id);
     }
 
     /**

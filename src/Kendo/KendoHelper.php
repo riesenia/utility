@@ -37,6 +37,13 @@ abstract class KendoHelper
     protected $_widget = null;
 
     /**
+     * HTML attributes
+     *
+     * @var array
+     */
+    protected $_htmlAttributes = [];
+
+    /**
      * Class aliases
      *
      * @var array
@@ -109,11 +116,25 @@ abstract class KendoHelper
      *
      * @param string field name
      * @param array options
-     * @return Riesenia\Utility\Kendo\Tree
+     * @return Riesenia\Utility\Kendo\KendoHelper
      */
     public function addField($key, $options = [])
     {
         $this->model->addField($key, $options);
+
+        return $this;
+    }
+
+    /**
+     * Set HTML attributes
+     *
+     * @param string name
+     * @param string value
+     * @return Riesenia\Utility\Kendo\KendoHelper
+     */
+    public function setAttribute($name, $value)
+    {
+        $this->_htmlAttributes[$name] = $value;
 
         return $this;
     }
@@ -126,6 +147,38 @@ abstract class KendoHelper
     public function __toString()
     {
         return $this->html();
+    }
+
+    /**
+     * Render input
+     *
+     * @param string id attribute
+     * @return string
+     */
+    protected function _input($id)
+    {
+        return $this->_tag('input', false, array_merge($this->_htmlAttributes, ['id' => $id]));
+    }
+
+    /**
+     * Render HTML tag
+     *
+     * @param string tag name
+     * @param string|bool content (false for not pair tag)
+     * @param array attributes
+     * @return string
+     */
+    protected function _tag($name, $content = false, $attributes = [])
+    {
+        $tag = '<' . $name;
+
+        foreach ($attributes as $attribute => $value) {
+            $tag .= ' ' . $attribute . '="' . $value . '"';
+        }
+
+        $tag .= $content === false ? ' />' : '>' . $content . '</' . $name . '>';
+
+        return $tag;
     }
 
     /**
