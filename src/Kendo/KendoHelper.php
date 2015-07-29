@@ -161,6 +161,17 @@ abstract class KendoHelper
     }
 
     /**
+     * Render select
+     *
+     * @param string id attribute
+     * @return string
+     */
+    protected function _select($id)
+    {
+        return $this->_tag('select', '', array_merge($this->_htmlAttributes, ['id' => $id]));
+    }
+
+    /**
      * Render div
      *
      * @param string id attribute

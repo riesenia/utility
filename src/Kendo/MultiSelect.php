@@ -39,7 +39,7 @@ class MultiSelect extends KendoHelper
      */
     public function html()
     {
-        return $this->_input($this->_id);
+        return $this->_select($this->_id);
     }
 
     /**
