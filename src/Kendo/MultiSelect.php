@@ -29,7 +29,7 @@ class MultiSelect extends KendoHelper
             ->setDataValueField('id')
             ->setDataTextField('name');
 
-        $this->setAttribute('name', $id);
+        $this->addAttribute('name', $id);
     }
 
     /**

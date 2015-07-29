@@ -35,7 +35,7 @@ class DateTime extends KendoHelper
 
         $this->_widget = Kendo::createDateTimePicker('#' . $id);
 
-        $this->setAttribute('name', $id);
+        $this->addAttribute('name', $id);
     }
 
     /**

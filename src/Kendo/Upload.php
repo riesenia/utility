@@ -21,7 +21,7 @@ class Upload extends KendoHelper
 
         $this->_widget = Kendo::createUpload('#' . $id);
 
-        $this->setAttribute('name', $id);
+        $this->addAttribute('name', $id);
     }
 
     /**
