@@ -157,7 +157,7 @@ use Riesenia\Utility\Kendo\Upload;
 $upload = Upload::create('myUploadId');
 
 // optionally set any attribute of the input
-$upload->setAttribute('name', 'NAME');
+$upload->addAttribute('name', 'NAME');
 
 // html element (input type file)
 echo $upload;
@@ -180,7 +180,7 @@ $select->dataSource->addTransport('read', ['dataType' => 'json', 'url' => 'URL']
 $select->addTransport('read', ['dataType' => 'json', 'url' => 'URL']);
 
 // optionally set any attribute of the input
-$select->setAttribute('name', 'NAME');
+$select->addAttribute('name', 'NAME');
 
 // html element (input)
 echo $select;
@@ -224,7 +224,7 @@ DateTime::create('from')->rangeTo('to');
 DateTime::create('to')->rangeFrom('from');
 
 // optionally set any attribute of the input
-$dateTime->setAttribute('name', 'NAME');
+$dateTime->addAttribute('name', 'NAME');
 
 // html element (input)
 // hidden input with same name is added automatically to provide MySQL datetime format

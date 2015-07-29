@@ -126,13 +126,13 @@ abstract class KendoHelper
     }
 
     /**
-     * Set HTML attributes
+     * Add HTML attribute
      *
      * @param string name
      * @param string value
      * @return Riesenia\Utility\Kendo\KendoHelper
      */
-    public function setAttribute($name, $value)
+    public function addAttribute($name, $value)
     {
         $this->_htmlAttributes[$name] = $value;
 
