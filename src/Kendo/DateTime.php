@@ -71,7 +71,10 @@ class DateTime extends KendoHelper
      */
     public function html()
     {
-        return $this->_input($this->_id) . $this->_input($this->_id . '-hidden');
+        $html = $this->_input($this->_id);
+        $this->setAttribute('type', 'hidden');
+
+        return $html . $this->_input($this->_id . '-hidden');
     }
 
     /**
