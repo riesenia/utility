@@ -33,7 +33,7 @@ class Window extends KendoHelper
      */
     public function html()
     {
-        return '<div id="' . $this->_id . '"></div>';
+        return $this->_div($this->_id);
     }
 
     /**

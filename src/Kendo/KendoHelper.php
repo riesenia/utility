@@ -161,6 +161,18 @@ abstract class KendoHelper
     }
 
     /**
+     * Render div
+     *
+     * @param string id attribute
+     * @param string content
+     * @return string
+     */
+    protected function _div($id, $content = '')
+    {
+        return $this->_tag('div', $content, array_merge($this->_htmlAttributes, ['id' => $id]));
+    }
+
+    /**
      * Render HTML tag
      *
      * @param string tag name

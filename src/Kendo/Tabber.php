@@ -53,7 +53,7 @@ class Tabber extends KendoHelper
      */
     public function html()
     {
-        return '<div id="' . $this->_id . '"><ul>' . $this->_ulContent . '</ul></div>';
+        return $this->_div($this->_id, '<ul>' . $this->_ulContent . '</ul>');
     }
 
     /**
