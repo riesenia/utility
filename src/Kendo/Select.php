@@ -29,7 +29,7 @@ class Select extends KendoHelper
             ->setDataValueField('id')
             ->setDataTextField('name');
 
-        $this->_name = $id;
+        $this->setAttribute('name', $id);
     }
 
     /**
