@@ -129,7 +129,7 @@ abstract class KendoHelper
      * Add HTML attribute
      *
      * @param string name
-     * @param string value
+     * @param mixed value
      * @return Riesenia\Utility\Kendo\KendoHelper
      */
     public function addAttribute($name, $value)
@@ -173,7 +173,9 @@ abstract class KendoHelper
         $tag = '<' . $name;
 
         foreach ($attributes as $attribute => $value) {
-            $tag .= ' ' . $attribute . '="' . $value . '"';
+            if (!is_null($value) && $value !== false) {
+                $tag .= ' ' . $attribute . '="' . ($value === true ? $attribute : $value) . '"';
+            }
         }
 
         $tag .= $content === false ? ' />' : '>' . $content . '</' . $name . '>';
