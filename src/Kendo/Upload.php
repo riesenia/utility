@@ -31,7 +31,7 @@ class Upload extends KendoHelper
      */
     public function html()
     {
-        $this->setAttribute('type', 'file');
+        $this->addAttribute('type', 'file');
 
         return $this->_input($this->_id);
     }
