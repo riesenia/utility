@@ -97,9 +97,7 @@ class DateTime extends KendoHelper
         $this->_widget->setChange(Kendo::js('function(e) {
             // date for hidden field
             var value = this.value();
-            if (value !== null) {
-                $("#' . $this->_id . '-hidden").val(kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(0, 19).replace("T", " "));
-            }
+            $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(0, 19).replace("T", " ") : "");
             ' . @$rangeCode . '
         }'));
 
