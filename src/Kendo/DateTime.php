@@ -72,7 +72,7 @@ class DateTime extends KendoHelper
     public function html()
     {
         $html = $this->_input($this->_id);
-        $this->setAttribute('type', 'hidden');
+        $this->addAttribute('type', 'hidden');
 
         return $html . $this->_input($this->_id . '-hidden');
     }
