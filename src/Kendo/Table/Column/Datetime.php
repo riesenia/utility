@@ -2,11 +2,11 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Date column
+ * Datetime column
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
-class DateTime extends Date
+class Datetime extends Date
 {
     /**
      * Field format with %field% placeholder
@@ -20,5 +20,5 @@ class DateTime extends Date
      *
      * @var string
      */
-    protected $_class = 'tableColumn tableDate tableDateTime';
+    protected $_class = 'tableColumn tableDate tableDatetime';
 }
