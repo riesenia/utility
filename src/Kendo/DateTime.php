@@ -103,7 +103,11 @@ class DateTime extends KendoHelper
 
         $script = $this->_widget->__toString();
 
-        $script .= 'setTimeout(function() { $("#' . $this->_id . '").data("kendoDateTimePicker").trigger("change"); }, 1);';
+        $script .= 'setTimeout(function() {
+            if ($("#' . $this->_id . '").length) {
+                $("#' . $this->_id . '").data("kendoDateTimePicker").trigger("change");
+            }
+        }, 1);';
 
         return $script;
     }
