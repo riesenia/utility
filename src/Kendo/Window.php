@@ -46,21 +46,21 @@ class Window extends KendoHelper
         $script = $this->_widget->__toString();
 
         // center window on open
-        $script .= '$("#' . $this->_id . '").data("kendoWindow").bind("open", function (e) {
-            $("#' . $this->_id . '").data("kendoWindow").center();
+        $script .= '$("#' . $this->_id . '").data("' . $this->_widget->name() . '").bind("open", function (e) {
+            $("#' . $this->_id . '").data("' . $this->_widget->name() . '").center();
         });';
 
         // center window on resize
         $script .= '$(window).resize(function (e) {
-            $("#' . $this->_id . '").data("kendoWindow").center();
+            $("#' . $this->_id . '").data("' . $this->_widget->name() . '").center();
         });';
 
         // define global function for loading content and opening window
         $script .= 'window.' . $this->_id . 'Open = function (title, url) {
-            $("#' . $this->_id . '").data("kendoWindow").title(title);
+            $("#' . $this->_id . '").data("' . $this->_widget->name() . '").title(title);
 
             $.get(url, {}, function (data) {
-                $("#' . $this->_id . '").data("kendoWindow").content(data).center().open();
+                $("#' . $this->_id . '").data("' . $this->_widget->name() . '").content(data).center().open();
             });
 
             return false;

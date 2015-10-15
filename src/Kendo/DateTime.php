@@ -86,12 +86,12 @@ class DateTime extends KendoHelper
     {
         // range from
         if ($this->_rangeFrom) {
-            $rangeCode = '$("#' . $this->_rangeFrom . '").data("kendoDateTimePicker").max(this.value() ? this.value() : this.max());';
+            $rangeCode = '$("#' . $this->_rangeFrom . '").data("' . $this->_widget->name() . '").max(this.value() ? this.value() : this.max());';
         }
 
         // range from
         if ($this->_rangeTo) {
-            $rangeCode = '$("#' . $this->_rangeTo . '").data("kendoDateTimePicker").min(this.value() ? this.value() : this.min());';
+            $rangeCode = '$("#' . $this->_rangeTo . '").data("' . $this->_widget->name() . '").min(this.value() ? this.value() : this.min());';
         }
 
         $this->_widget->setChange(Kendo::js('function(e) {
@@ -105,7 +105,7 @@ class DateTime extends KendoHelper
 
         $script .= 'setTimeout(function() {
             if ($("#' . $this->_id . '").length) {
-                $("#' . $this->_id . '").data("kendoDateTimePicker").trigger("change");
+                $("#' . $this->_id . '").data("' . $this->_widget->name() . '").trigger("change");
             }
         }, 1);';
 

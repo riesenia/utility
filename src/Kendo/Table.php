@@ -15,21 +15,21 @@ class Table extends KendoHelper
      *
      * @var string
      */
-    protected $_rowTemplate;
+    protected $_rowTemplate = '<tr data-uid="#: uid #">';
 
     /**
      * Table columns
      *
      * @var array
      */
-    protected $_columns;
+    protected $_columns = [];
 
     /**
      * Actions
      *
      * @var array
      */
-    protected $_actions;
+    protected $_actions = [];
 
     /**
      * Text for no results
@@ -59,10 +59,6 @@ class Table extends KendoHelper
         $this->_widget = Kendo::createGrid('#' . $this->_id)
             ->setDataSource($this->dataSource)
             ->setSortable(['allowUnsort' => false]);
-
-        $this->_rowTemplate = '<tr data-uid="#: uid #">';
-        $this->_columns = [];
-        $this->_actions = [];
     }
 
     /**
@@ -218,7 +214,7 @@ class Table extends KendoHelper
         // handle empty result set
         if ($this->_noResults) {
             $script .= '$(function() {
-                $("#' . $this->_id . '").data("kendoGrid").bind("dataBound", function(e) {
+                $("#' . $this->_id . '").data("' . $this->_widget->name() . '").bind("dataBound", function(e) {
                     if (!e.sender.dataSource.view().length) {
                         e.sender.tbody.append("<tr><td colspan=\"' . count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
                     }
