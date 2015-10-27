@@ -25,7 +25,7 @@ class DateTime extends KendoHelper
     protected $_rangeTo;
 
     /**
-     * Construct the select
+     * Construct the picker
      *
      * @param string id
      */

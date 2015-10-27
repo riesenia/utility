@@ -11,7 +11,7 @@ use Riesenia\Kendo\Kendo;
 class Window extends KendoHelper
 {
     /**
-     * Construct the tree
+     * Construct the window
      *
      * @param string id
      */
