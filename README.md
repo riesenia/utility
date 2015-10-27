@@ -56,6 +56,9 @@ $table->addColumn('...', '...', '...', ['link' => 'URL']);
 // any link attributes can be set
 $table->addColumn('...', '...', '...', ['link' => ['href' => 'URL', 'title' => 'TITLE']]);
 
+// the whole template can be overridden
+$table->addColumn('...', '...', '...', ['template' => '# if (field) { # yes # } else { # no # } #']);
+
 // actions are usually icons with links
 // icons are bootstrap classes without glyphicon prefix
 $table->addAction(null, [
@@ -212,7 +215,7 @@ echo $listView;
 echo '<script>' . $listView->script() . '</script>';
 ```
 
-### DateTime
+### Date / DateTime
 
 ```php
 use Riesenia\Utility\Kendo\DateTime;

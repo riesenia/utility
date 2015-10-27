@@ -9,13 +9,6 @@ namespace Riesenia\Utility\Kendo\Table\Column;
 class Enum extends Base
 {
     /**
-     * Type used for model type property
-     *
-     * @var string
-     */
-    protected $_type = 'boolean';
-
-    /**
      * Construct the column
      *
      * @param array options

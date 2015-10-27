@@ -77,8 +77,14 @@ class Base
 
         // class
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
+
         if (!isset($this->_options['headerAttributes']['class'])) {
             $this->_options['headerAttributes']['class'] = $this->_options['class'];
+        }
+
+        // template
+        if (isset($this->_options['template'])) {
+            $this->_template = str_replace('%format%', $this->_options['template'], $this->_template);
         }
 
         // type
