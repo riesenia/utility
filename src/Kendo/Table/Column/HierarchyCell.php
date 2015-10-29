@@ -7,7 +7,7 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  * @author Tomas Saghy <segy@riesenia.com>
  * @see http://demos.telerik.com/kendo-ui/grid/hierarchy
  */
-class TableCheckbox extends Base
+class HierarchyCell extends Base
 {
     /**
      * Column template with %field% placeholder
