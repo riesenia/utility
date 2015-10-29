@@ -43,6 +43,12 @@ $table->addColumn('name', 'Product name')
     ->addColumn('active', 'Is active?', 'checkbox')
     ->addColumn('stock', 'Stock', 'number');
 
+// checkboxes for batch operations can be added
+$table->addCheckboxes();
+
+// class for table row can be added using 'addRowClass' method
+$table->addRowClass('#: active ? "active" : "not-active" #');
+
 // additional model options can be set using 'model' key
 $table->addColumn('name', 'Product name', null, ['model' => ['editable' => false]]);
 

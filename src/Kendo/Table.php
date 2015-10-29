@@ -15,7 +15,14 @@ class Table extends KendoHelper
      *
      * @var string
      */
-    protected $_rowTemplate = '<tr data-uid="#: uid #">';
+    protected $_rowTemplate = '<tr data-uid="#: uid #" class="%class%">';
+
+    /**
+     * Row classes
+     *
+     * @var array
+     */
+    protected $_rowClasses = [];
 
     /**
      * Table columns
@@ -62,14 +69,28 @@ class Table extends KendoHelper
     }
 
     /**
+     * Set detailInit property
+     *
+     * @param \Riesenia\Kendo\JavascriptFunction
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function setDetailInit($value)
+    {
+        $this->addColumn(null, '&nbsp;', 'hierarchyCell', [], true);
+        $this->addRowClass('k-master-row');
+
+        return $this;
+    }
+
+    /**
      * Add checkboxes
      *
      * @param array options
-     * @return Riesenia\Utility\Kendo\Tree
+     * @return Riesenia\Utility\Kendo\Table
      */
     public function addCheckboxes($options = [])
     {
-        $this->addColumn(null, '&nbsp;', 'tableCheckbox', $options);
+        $this->addColumn(null, '&nbsp;', 'tableCheckbox', $options, true);
 
         return $this;
     }
@@ -83,7 +104,7 @@ class Table extends KendoHelper
      * @param array options
      * @return Riesenia\Utility\Kendo\Table
      */
-    public function addColumn($field, $title = '&nbsp;', $type = null, $options = [])
+    public function addColumn($field, $title = '&nbsp;', $type = null, $options = [], $prepend = false)
     {
         // resolve alias
         if (isset(static::$_aliases[$type])) {
@@ -117,7 +138,7 @@ class Table extends KendoHelper
 
         $this->_widget->addColumns(null, $column->getColumnOptions());
 
-        $this->_columns[] = $column;
+        $prepend ? array_unshift($this->_columns, $column) : array_push($this->_columns, $column);
 
         return $this;
     }
@@ -185,6 +206,19 @@ class Table extends KendoHelper
     }
 
     /**
+     * Add row class
+     *
+     * @param string
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function addRowClass($class)
+    {
+        $this->_rowClasses[] = $class;
+
+        return $this;
+    }
+
+    /**
      * Return HTML
      *
      * @return string
@@ -207,6 +241,7 @@ class Table extends KendoHelper
         }
 
         // complete row template
+        $this->_rowTemplate = str_replace('%class%', implode(' ', $this->_rowClasses), $this->_rowTemplate);
         $this->_widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
 
         $script = $this->_widget->__toString();
