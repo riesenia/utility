@@ -78,6 +78,7 @@ class Table extends KendoHelper
     {
         $this->addColumn(null, '&nbsp;', 'hierarchyCell', [], true);
         $this->addRowClass('k-master-row');
+        $this->_widget->setDetailInit($value);
 
         return $this;
     }
