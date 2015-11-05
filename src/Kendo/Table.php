@@ -76,7 +76,7 @@ class Table extends KendoHelper
      */
     public function setDetailInit($value)
     {
-        $this->addColumn(null, '&nbsp;', 'hierarchyCell', [], true);
+        $this->addColumn(null, '&nbsp;', 'hierarchyCell', [], true, false);
         $this->addRowClass('k-master-row');
         $this->_widget->setDetailInit($value);
 
@@ -103,9 +103,11 @@ class Table extends KendoHelper
      * @param string column title
      * @param string type
      * @param array options
+     * @param bool prepend
+     * @param bool add widget column
      * @return Riesenia\Utility\Kendo\Table
      */
-    public function addColumn($field, $title = '&nbsp;', $type = null, $options = [], $prepend = false)
+    public function addColumn($field, $title = '&nbsp;', $type = null, $options = [], $prepend = false, $addWidgetColumn = true)
     {
         // resolve alias
         if (isset(static::$_aliases[$type])) {
@@ -137,7 +139,9 @@ class Table extends KendoHelper
             $this->model->addField($field, $column->getModelOptions());
         }
 
-        $this->_widget->addColumns(null, $column->getColumnOptions());
+        if ($addWidgetColumn) {
+            $prepend ? $this->_widget->setColumns(array_merge([$column->getColumnOptions()], $this->_widget->getColumns())) : $this->_widget->addColumns(null, $column->getColumnOptions());
+        }
 
         $prepend ? array_unshift($this->_columns, $column) : array_push($this->_columns, $column);
 
