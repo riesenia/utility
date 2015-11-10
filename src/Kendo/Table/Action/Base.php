@@ -13,7 +13,7 @@ class Base
      *
      * @var string
      */
-    protected $_template = '<a class="btn btn-default %class%" href="%link%" title="%title%"><span class="glyphicon glyphicon-%icon%"></span></a>';
+    protected $_template = '<a class="btn btn-default %class%" href="%link%" title="%title%" target="%target%"><span class="glyphicon glyphicon-%icon%"></span></a>';
 
     /**
      * Options
@@ -24,6 +24,7 @@ class Base
         'class' => '',
         'link' => '\#',
         'title' => '',
+        'target' => '_self',
         'icon' => 'question-sign'
     ];
 

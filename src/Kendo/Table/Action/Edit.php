@@ -17,6 +17,7 @@ class Edit extends Base
         'class' => 'k-grid-edit',
         'link' => '\#',
         'title' => 'Edit',
+        'target' => '_self',
         'icon' => 'edit'
     ];
 

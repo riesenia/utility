@@ -17,6 +17,7 @@ class Delete extends Base
         'class' => 'k-grid-delete',
         'link' => '\#',
         'title' => 'Delete',
+        'target' => '_self',
         'icon' => 'remove'
     ];
 
