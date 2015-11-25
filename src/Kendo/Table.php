@@ -140,7 +140,7 @@ class Table extends KendoHelper
         }
 
         if ($addWidgetColumn) {
-            $prepend ? $this->_widget->setColumns(array_merge([$column->getColumnOptions()], $this->_widget->getColumns())) : $this->_widget->addColumns(null, $column->getColumnOptions());
+            $prepend ? $this->_widget->setColumns(array_merge([$column->getColumnOptions()], is_array($this->_widget->getColumns()) ? $this->_widget->getColumns() : [])) : $this->_widget->addColumns(null, $column->getColumnOptions());
         }
 
         $prepend ? array_unshift($this->_columns, $column) : array_push($this->_columns, $column);
