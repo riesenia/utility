@@ -4,14 +4,14 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * ListView helper
+ * Chart helper
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
-class ListView extends KendoHelper
+class Chart extends KendoHelper
 {
     /**
-     * Construct the list view
+     * Construct the chart
      *
      * @param string id
      */
@@ -23,26 +23,10 @@ class ListView extends KendoHelper
             ->setId('id');
 
         $this->dataSource = Kendo::createDataSource()
-            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count'])
-            ->setServerFiltering(true)
-            ->setServerSorting(true)
-            ->setServerPaging(true);
+            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count']);
 
-        $this->_widget = Kendo::createListView('#' . $id)
+        $this->_widget = Kendo::createChart('#' . $id)
             ->setDataSource($this->dataSource);
-    }
-
-    /**
-     * Set template providing only id
-     *
-     * @param string template id
-     * @return Riesenia\Utility\Kendo\ListView
-     */
-    public function setTemplateById($id)
-    {
-        $this->_widget->setTemplate(Kendo::js('kendo.template($("#' . $id . '").html())'));
-
-        return $this;
     }
 
     /**
