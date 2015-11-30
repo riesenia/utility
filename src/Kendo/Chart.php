@@ -23,7 +23,8 @@ class Chart extends KendoHelper
             ->setId('id');
 
         $this->dataSource = Kendo::createDataSource()
-            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count']);
+            ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count'])
+            ->setServerFiltering(true);
 
         $this->_widget = Kendo::createChart('#' . $id)
             ->setDataSource($this->dataSource);
