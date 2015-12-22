@@ -33,7 +33,7 @@ class Date extends KendoHelper
     {
         parent::__construct($id);
 
-        $this->_widget = Kendo::createDatePicker('#' . $id);
+        $this->widget = Kendo::createDatePicker('#' . $id);
 
         $this->addAttribute('name', $id);
     }
@@ -88,26 +88,26 @@ class Date extends KendoHelper
 
         // range from
         if ($this->_rangeFrom) {
-            $rangeCode = '$("#' . $this->_rangeFrom . '").data("' . $this->_widget->name() . '").max(this.value() ? this.value() : this.max());';
+            $rangeCode = '$("#' . $this->_rangeFrom . '").data("' . $this->widget->name() . '").max(this.value() ? this.value() : this.max());';
         }
 
         // range from
         if ($this->_rangeTo) {
-            $rangeCode = '$("#' . $this->_rangeTo . '").data("' . $this->_widget->name() . '").min(this.value() ? this.value() : this.min());';
+            $rangeCode = '$("#' . $this->_rangeTo . '").data("' . $this->widget->name() . '").min(this.value() ? this.value() : this.min());';
         }
 
-        $this->_widget->setChange(Kendo::js('function(e) {
+        $this->widget->setChange(Kendo::js('function(e) {
             // date for hidden field
             var value = this.value();
             $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(0, 19).replace("T", " ") : "");
             ' . $rangeCode . '
         }'));
 
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         $script .= 'setTimeout(function() {
             if ($("#' . $this->_id . '").length) {
-                $("#' . $this->_id . '").data("' . $this->_widget->name() . '").trigger("change");
+                $("#' . $this->_id . '").data("' . $this->widget->name() . '").trigger("change");
             }
         }, 1);';
 

@@ -63,7 +63,7 @@ class Table extends KendoHelper
             ->setServerSorting(true)
             ->setServerPaging(true);
 
-        $this->_widget = Kendo::createGrid('#' . $this->_id)
+        $this->widget = Kendo::createGrid('#' . $this->_id)
             ->setDataSource($this->dataSource)
             ->setSortable(['allowUnsort' => false]);
     }
@@ -78,7 +78,7 @@ class Table extends KendoHelper
     {
         $this->addColumn(null, '&nbsp;', 'hierarchyCell', [], true, false);
         $this->addRowClass('k-master-row');
-        $this->_widget->setDetailInit($value);
+        $this->widget->setDetailInit($value);
 
         return $this;
     }
@@ -140,7 +140,7 @@ class Table extends KendoHelper
         }
 
         if ($addWidgetColumn) {
-            $prepend ? $this->_widget->setColumns(array_merge([$column->getColumnOptions()], is_array($this->_widget->getColumns()) ? $this->_widget->getColumns() : [])) : $this->_widget->addColumns(null, $column->getColumnOptions());
+            $prepend ? $this->widget->setColumns(array_merge([$column->getColumnOptions()], is_array($this->widget->getColumns()) ? $this->widget->getColumns() : [])) : $this->widget->addColumns(null, $column->getColumnOptions());
         }
 
         $prepend ? array_unshift($this->_columns, $column) : array_push($this->_columns, $column);
@@ -247,14 +247,14 @@ class Table extends KendoHelper
 
         // complete row template
         $this->_rowTemplate = str_replace('%class%', implode(' ', $this->_rowClasses), $this->_rowTemplate);
-        $this->_widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
+        $this->widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
 
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         // handle empty result set
         if ($this->_noResults) {
             $script .= '$(function() {
-                $("#' . $this->_id . '").data("' . $this->_widget->name() . '").bind("dataBound", function(e) {
+                $("#' . $this->_id . '").data("' . $this->widget->name() . '").bind("dataBound", function(e) {
                     if (!e.sender.dataSource.view().length) {
                         e.sender.tbody.append("<tr><td colspan=\"' . count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
                     }

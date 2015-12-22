@@ -80,12 +80,12 @@ $table->addAction('delete');
 // as long as it extends Riesenia\Utility\Kendo\Table\Action\Base
 $table->addAction('\\Custom\\Action\\Class');
 
-// condition is built-in option
-$table->addAction('...', ['condition' => 'count > 0']);
-
 // generally used classes can be aliased, so previous example is equivalent to
 Table::alias('alias_name', '\\Custom\\Action\\Class');
 $table->addAction('alias_name');
+
+// condition is built-in option
+$table->addAction('...', ['condition' => 'count > 0']);
 
 // set text for no results (will be added as first colspaned row)
 $table->setNoResults('NO RESULTS!');

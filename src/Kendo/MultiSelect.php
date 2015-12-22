@@ -24,7 +24,7 @@ class MultiSelect extends KendoHelper
             ->setServerFiltering(true)
             ->setServerPaging(true);
 
-        $this->_widget = Kendo::createMultiSelect('#' . $id)
+        $this->widget = Kendo::createMultiSelect('#' . $id)
             ->setDataSource($this->dataSource)
             ->setDataValueField('id')
             ->setDataTextField('name');
@@ -49,7 +49,7 @@ class MultiSelect extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }

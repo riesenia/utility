@@ -25,7 +25,7 @@ class Tree extends KendoHelper
         $this->dataSource = Kendo::createHierarchicalDataSource()
             ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count']);
 
-        $this->_widget = Kendo::createTreeView('#' . $id)
+        $this->widget = Kendo::createTreeView('#' . $id)
             ->setDataSource($this->dataSource)
             ->setDataTextField('name');
     }
@@ -62,7 +62,7 @@ class Tree extends KendoHelper
             $options = ['template' => '<input type="checkbox" value="#: item.id #" />'];
         }
 
-        $this->_widget->setCheckboxes($options);
+        $this->widget->setCheckboxes($options);
 
         return $this;
     }
@@ -75,7 +75,7 @@ class Tree extends KendoHelper
      */
     public function expand($path = [])
     {
-        $this->_widget->setDataBound(Kendo::js('function (e) {
+        $this->widget->setDataBound(Kendo::js('function (e) {
             var expand = $("#' . $this->_id . '").data("expand");
 
             // initial
@@ -118,7 +118,7 @@ class Tree extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }

@@ -9,11 +9,12 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.4",
         "riesenia/kendo": "~1.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0"
+        "phpspec/phpspec": "~2.0",
+        "bossa/phpspec2-expect": "*"
     },
     "autoload": {
         "psr-4": {

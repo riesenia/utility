@@ -26,7 +26,7 @@ class Chart extends KendoHelper
             ->setSchema(['model' => $this->model, 'data' => 'results', 'total' => 'count'])
             ->setServerFiltering(true);
 
-        $this->_widget = Kendo::createChart('#' . $id)
+        $this->widget = Kendo::createChart('#' . $id)
             ->setDataSource($this->dataSource);
     }
 
@@ -47,7 +47,7 @@ class Chart extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }

@@ -19,7 +19,7 @@ class Upload extends KendoHelper
     {
         parent::__construct($id);
 
-        $this->_widget = Kendo::createUpload('#' . $id);
+        $this->widget = Kendo::createUpload('#' . $id);
 
         $this->addAttribute('name', $id);
     }
@@ -43,7 +43,7 @@ class Upload extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }

@@ -34,7 +34,7 @@ abstract class KendoHelper
      *
      * @var Riesenia\Kendo\Widget\Base
      */
-    protected $_widget = null;
+    public $widget = null;
 
     /**
      * HTML attributes
@@ -215,13 +215,13 @@ abstract class KendoHelper
      */
     public function __call($method, $arguments)
     {
-        if (is_null($this->_widget)) {
+        if (is_null($this->widget)) {
             throw new \BadMethodCallException("Unknown method: " . $method);
         }
 
-        $return = call_user_func_array([$this->_widget, $method], $arguments);
+        $return = call_user_func_array([$this->widget, $method], $arguments);
 
-        if (gettype($return) == 'object' && get_class($return) == get_class($this->_widget)) {
+        if (gettype($return) == 'object' && get_class($return) == get_class($this->widget)) {
             return $this;
         }
 

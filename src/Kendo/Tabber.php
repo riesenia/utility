@@ -26,7 +26,7 @@ class Tabber extends KendoHelper
     {
         parent::__construct($id);
 
-        $this->_widget = Kendo::createTabStrip('#' . $id);
+        $this->widget = Kendo::createTabStrip('#' . $id);
     }
 
     /**
@@ -41,7 +41,7 @@ class Tabber extends KendoHelper
     {
         $this->_ulContent .= '<li' . ($active ? ' class="k-state-active"' : '') . '>' . $content . '</li>';
 
-        $this->_widget->addContentUrls(null, $url);
+        $this->widget->addContentUrls(null, $url);
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Tabber extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }

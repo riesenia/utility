@@ -19,6 +19,6 @@ class DateTime extends Date
     {
         parent::__construct($id);
 
-        $this->_widget = Kendo::createDateTimePicker('#' . $id);
+        $this->widget = Kendo::createDateTimePicker('#' . $id);
     }
 }

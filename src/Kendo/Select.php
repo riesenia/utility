@@ -24,7 +24,7 @@ class Select extends KendoHelper
             ->setServerFiltering(true)
             ->setServerPaging(true);
 
-        $this->_widget = Kendo::createDropDownList('#' . $id)
+        $this->widget = Kendo::createDropDownList('#' . $id)
             ->setDataSource($this->dataSource)
             ->setDataValueField('id')
             ->setDataTextField('name');
@@ -49,7 +49,7 @@ class Select extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }

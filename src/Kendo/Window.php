@@ -19,7 +19,7 @@ class Window extends KendoHelper
     {
         parent::__construct($id);
 
-        $this->_widget = Kendo::createWindow('#' . $id)
+        $this->widget = Kendo::createWindow('#' . $id)
             ->setWidth(700)
             ->setModal(true)
             ->setResizable(false)
@@ -43,24 +43,24 @@ class Window extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         // center window on open
-        $script .= '$("#' . $this->_id . '").data("' . $this->_widget->name() . '").bind("open", function (e) {
-            $("#' . $this->_id . '").data("' . $this->_widget->name() . '").center();
+        $script .= '$("#' . $this->_id . '").data("' . $this->widget->name() . '").bind("open", function (e) {
+            $("#' . $this->_id . '").data("' . $this->widget->name() . '").center();
         });';
 
         // center window on resize
         $script .= '$(window).resize(function (e) {
-            $("#' . $this->_id . '").data("' . $this->_widget->name() . '").center();
+            $("#' . $this->_id . '").data("' . $this->widget->name() . '").center();
         });';
 
         // define global function for loading content and opening window
         $script .= 'window.' . $this->_id . 'Open = function (title, url) {
-            $("#' . $this->_id . '").data("' . $this->_widget->name() . '").title(title);
+            $("#' . $this->_id . '").data("' . $this->widget->name() . '").title(title);
 
             $.get(url, {}, function (data) {
-                $("#' . $this->_id . '").data("' . $this->_widget->name() . '").content(data).center().open();
+                $("#' . $this->_id . '").data("' . $this->widget->name() . '").content(data).center().open();
             });
 
             return false;

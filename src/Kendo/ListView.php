@@ -28,7 +28,7 @@ class ListView extends KendoHelper
             ->setServerSorting(true)
             ->setServerPaging(true);
 
-        $this->_widget = Kendo::createListView('#' . $id)
+        $this->widget = Kendo::createListView('#' . $id)
             ->setDataSource($this->dataSource);
     }
 
@@ -40,7 +40,7 @@ class ListView extends KendoHelper
      */
     public function setTemplateById($id)
     {
-        $this->_widget->setTemplate(Kendo::js('kendo.template($("#' . $id . '").html())'));
+        $this->widget->setTemplate(Kendo::js('kendo.template($("#' . $id . '").html())'));
 
         return $this;
     }
@@ -62,7 +62,7 @@ class ListView extends KendoHelper
      */
     public function script()
     {
-        $script = $this->_widget->__toString();
+        $script = $this->widget->__toString();
 
         return $script;
     }
