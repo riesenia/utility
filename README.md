@@ -1,5 +1,6 @@
 # Riesenia Utility Classes
 
+[![Build Status](https://img.shields.io/travis/riesenia/utility/master.svg?style=flat-square)](https://travis-ci.org/riesenia/utility)
 [![Latest Version](https://img.shields.io/packagist/v/riesenia/utility.svg?style=flat-square)](https://packagist.org/packages/riesenia/utility)
 [![Total Downloads](https://img.shields.io/packagist/dt/riesenia/utility.svg?style=flat-square)](https://packagist.org/packages/riesenia/utility)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
