@@ -61,7 +61,7 @@ class Base
             $template = '# if (' . $this->_options['condition'] . ') { #' . $template . '# } #';
         }
 
-        return str_replace(['%class%', '%link%', '%title%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['icon']], $template);
+        return str_replace(['%class%', '%link%', '%title%', '%target%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['target'], $this->_options['icon']], $template);
     }
 
     /**
