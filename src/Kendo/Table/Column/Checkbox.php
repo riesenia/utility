@@ -36,7 +36,7 @@ class Checkbox extends Base
      */
     public function script()
     {
-        return parent::script() . '$("body").on("change", "[name=' . $this->_options['field'] . 'Checkbox]", function (e) {
+        return parent::script() . '$("#' . $this->_tableId . '").on("change", "[name=' . $this->_options['field'] . 'Checkbox]", function (e) {
             var dataSource = $("#' . $this->_tableId . '").data("kendoGrid").dataSource;
 
             // only for datasource that can be updated
