@@ -20,7 +20,7 @@ class TableCheckbox extends Base
      *
      * @var string
      */
-    protected $_class = 'tableColumn tableCheckbox';
+    protected $_class = 'tableColumn tableCheckbox tableCheckbox--main';
 
     /**
      * Construct the column
