@@ -51,13 +51,11 @@ class TableCheckbox extends Base
     public function script()
     {
         return parent::script() . '$("#' . $this->_tableId . '").on("change", "[name=tableCheckboxAll]", function (e) {
-            var dataSource = $("#' . $this->_tableId . '").data("kendoGrid").dataSource;
-
-            $("#' . $this->_tableId . ' [name=tableCheckbox]").prop("checked", $(this).prop("checked"));
+            $("#' . $this->_tableId . ' [name=tableCheckbox]").prop("checked", $(this).prop("checked")).prop("disabled", $(this).prop("checked"));
         });
         $("#' . $this->_tableId . '").data("kendoGrid").bind("dataBound", function(e) {
             if ($("#' . $this->_tableId . ' [name=tableCheckboxAll]").prop("checked")) {
-                $("#' . $this->_tableId . ' [name=tableCheckbox]").prop("checked", true);
+                $("#' . $this->_tableId . ' [name=tableCheckbox]").prop("checked", true).prop("disabled", true);
             }
         });';
     }
