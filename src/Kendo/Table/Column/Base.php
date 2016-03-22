@@ -20,7 +20,7 @@ class Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%">%format%</td>';
+    protected $_template = '<td class="%class%" style="%style%">%format%</td>';
 
     /**
      * Field format with %field% placeholder
@@ -77,6 +77,12 @@ class Base
 
         // class
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
+
+        // cell display has to be handled manually
+        $style = '# for (var i = 0; i < grid.columns.length; i++) { if (grid.columns[i].field == "' . $this->_options['field'] . '") { ##: grid.columns[i].hidden ? "display: none;" : "" ## break; } } #';
+
+        // style
+        $this->_options['style'] = isset($this->_options['style']) ? $style . ' ' . $this->_options['style'] : $style;
 
         if (!isset($this->_options['headerAttributes']['class'])) {
             $this->_options['headerAttributes']['class'] = $this->_options['class'];
@@ -143,7 +149,7 @@ class Base
         // print N/A for empty columns
         $format = '# if (%field% !== null && %field% !== "") { #' . $format . '# } else { # N/A # } #';
 
-        return str_replace(['%format%', '%field%', '%class%'], [$format, $this->_options['field'], $this->_options['class']], $this->_template);
+        return str_replace(['%format%', '%field%', '%class%', '%style%'], [$format, $this->_options['field'], $this->_options['class'], $this->_options['style']], $this->_template);
     }
 
     /**
@@ -153,6 +159,19 @@ class Base
      */
     public function script()
     {
-        return '';
+        $script = '';
+
+        // hide under certain width
+        if (isset($this->_options['display'])) {
+            $script .= '$(window).resize(function(e) {
+                if ($("#' . $this->_tableId . '").width() < ' . (int)$this->_options['display'] . ') {
+                    $("#' . $this->_tableId . '").data("kendoGrid").hideColumn("' . $this->_options['field'] . '");
+                } else {
+                    $("#' . $this->_tableId . '").data("kendoGrid").showColumn("' . $this->_options['field'] . '");
+                }
+            });';
+        }
+
+        return $script;
     }
 }

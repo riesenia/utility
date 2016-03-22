@@ -246,7 +246,7 @@ class Table extends KendoHelper
         }
 
         // complete row template
-        $this->_rowTemplate = str_replace('%class%', implode(' ', $this->_rowClasses), $this->_rowTemplate);
+        $this->_rowTemplate = '# var grid = $("\\#' . $this->_id . '").data("kendoGrid"); #' . str_replace('%class%', implode(' ', $this->_rowClasses), $this->_rowTemplate);
         $this->widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
 
         $script = $this->widget->__toString();
