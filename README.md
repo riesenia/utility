@@ -66,6 +66,9 @@ $table->addColumn('...', '...', '...', ['link' => ['href' => 'URL', 'title' => '
 // the whole template can be overridden
 $table->addColumn('...', '...', '...', ['template' => '# if (field) { # yes # } else { # no # } #']);
 
+// it is possible to hide columns under certain table width
+$table->addColumn('...', '...', '...', ['display' => 700]);
+
 // actions are usually icons with links
 // icons are bootstrap classes without glyphicon prefix
 $table->addAction(null, [
