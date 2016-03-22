@@ -79,7 +79,7 @@ class Base
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
 
         // cell display has to be handled manually
-        $style = '# for (var i = 0; i < grid.columns.length; i++) { if (grid.columns[i].field == "' . $this->_options['field'] . '") { ##: grid.columns[i].hidden ? "display: none;" : "" ## break; } } #';
+        $style = '#: grid.columns[grid.element.find("th[data-field=' . $this->_options['field'] . ']").data("index")].hidden ? "display: none;" : "" #';
 
         // style
         $this->_options['style'] = isset($this->_options['style']) ? $style . ' ' . $this->_options['style'] : $style;
