@@ -16,7 +16,7 @@ class Enum extends Base
      */
     public function __construct(array $options, $tableId)
     {
-        $this->_template = '<td class="%class%">';
+        $this->_template = '<td class="%class%" style="%style%">';
 
         if (isset($options['options'])) {
             foreach ($options['options'] as $key => $value) {

@@ -15,7 +15,7 @@ class Table extends KendoHelper
      *
      * @var string
      */
-    protected $_rowTemplate = '<tr data-uid="#: uid #" class="%class%">';
+    protected $_rowTemplate = '<tr data-uid="#: uid #" class="%class%" style="%style%">';
 
     /**
      * Row classes
@@ -23,6 +23,13 @@ class Table extends KendoHelper
      * @var array
      */
     protected $_rowClasses = [];
+
+    /**
+     * Row styles
+     *
+     * @var array
+     */
+    protected $_rowStyles = [];
 
     /**
      * Table columns
@@ -224,6 +231,19 @@ class Table extends KendoHelper
     }
 
     /**
+     * Add row style
+     *
+     * @param string
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function addRowStyle($style)
+    {
+        $this->_rowStyles[] = $style;
+
+        return $this;
+    }
+
+    /**
      * Return HTML
      *
      * @return string
@@ -246,7 +266,7 @@ class Table extends KendoHelper
         }
 
         // complete row template
-        $this->_rowTemplate = '# var grid = $("\\#' . $this->_id . '").data("kendoGrid"); #' . str_replace('%class%', implode(' ', $this->_rowClasses), $this->_rowTemplate);
+        $this->_rowTemplate = '# var grid = $("\\#' . $this->_id . '").data("kendoGrid"); #' . str_replace(['%class%', '%style%'], [implode(' ', $this->_rowClasses), implode(' ', $this->_rowStyles)], $this->_rowTemplate);
         $this->widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
 
         $script = $this->widget->__toString();
