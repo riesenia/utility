@@ -37,6 +37,13 @@ class Base
     protected $_class = 'tableColumn';
 
     /**
+     * Predefined style
+     *
+     * @var string
+     */
+    protected $_style = '#: grid.columns[grid.element.find("th[data-field=%field%]").data("index")].hidden ? "display: none;" : "" #';
+
+    /**
      * Options
      *
      * @var array
@@ -78,11 +85,9 @@ class Base
         // class
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
 
-        // cell display has to be handled manually
-        $style = '#: grid.columns[grid.element.find("th[data-field=' . $this->_options['field'] . ']").data("index")].hidden ? "display: none;" : "" #';
-
         // style
-        $this->_options['style'] = isset($this->_options['style']) ? $style . ' ' . $this->_options['style'] : $style;
+        $this->_style = str_replace('%field%', $this->_options['field'], $this->_style);
+        $this->_options['style'] = isset($this->_options['style']) ? $this->_style . ' ' . $this->_options['style'] : $this->_style;
 
         if (!isset($this->_options['headerAttributes']['class'])) {
             $this->_options['headerAttributes']['class'] = $this->_options['class'];

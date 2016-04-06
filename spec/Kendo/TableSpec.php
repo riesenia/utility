@@ -109,7 +109,7 @@ class TableSpec extends ObjectBehavior
     public function it_can_add_checkboxes()
     {
         $this->addCheckboxes()->shouldReturn($this);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableCheckbox tableCheckbox--main"><input type="checkbox" value="#: id #" name="tableCheckbox" /></td></tr>');
+        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableCheckbox tableCheckbox--main" style=""><input type="checkbox" value="#: id #" name="tableCheckbox" /></td></tr>');
     }
 
     public function it_can_add_action()

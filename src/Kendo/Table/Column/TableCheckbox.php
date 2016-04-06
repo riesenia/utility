@@ -13,7 +13,7 @@ class TableCheckbox extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%"><input type="checkbox" value="#: %field% #" name="tableCheckbox" /></td>';
+    protected $_template = '<td class="%class%" style="%style%"><input type="checkbox" value="#: %field% #" name="tableCheckbox" /></td>';
 
     /**
      * Predefined class
@@ -21,6 +21,13 @@ class TableCheckbox extends Base
      * @var string
      */
     protected $_class = 'tableColumn tableCheckbox tableCheckbox--main';
+
+    /**
+     * Predefined style
+     *
+     * @var string
+     */
+    protected $_style = '';
 
     /**
      * Construct the column
