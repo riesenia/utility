@@ -277,6 +277,16 @@ class Table extends KendoHelper
                 $("#' . $this->_id . '").data("' . $this->widget->name() . '").bind("dataBound", function(e) {
                     if (!e.sender.dataSource.view().length) {
                         e.sender.tbody.append("<tr><td colspan=\"' . count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
+
+                        // checkbox
+                        if ($("#' . $this->_id . ' [name=tableCheckboxAll]").length) {
+                            $("#' . $this->_id . ' [name=tableCheckboxAll]").prop("checked", false).prop("disabled", true);
+                        }
+                    } else {
+                        // checkbox
+                        if ($("#' . $this->_id . ' [name=tableCheckboxAll]").length) {
+                            $("#' . $this->_id . ' [name=tableCheckboxAll]").prop("disabled", false);
+                        }
                     }
                 });
             });';
