@@ -245,3 +245,58 @@ echo $dateTime;
 
 // generated javascript
 echo '<script>' . $dateTime->script() . '</script>';
+```
+
+## Traits
+
+Various traits providing useful methods.
+
+### ParseDecimalTrait
+
+Adds a protected *_parseDecimal()* method that transforms input to float replacing spaces, commas, etc.
+
+## Condition
+
+Condition (query) parsers.
+
+### QueryEvaluator
+
+```php
+use Riesenia\Utility\Condition\QueryEvaluator;
+
+// available fields and operators are defined during consstruction
+$evaluator = new QueryEvaluator([
+    'pid' => [
+        'field' => 'id',
+        'operators' => ['=', 'NOT', 'IN', 'NOT IN']
+    ],
+    'name' => [
+        'field' => 'name',
+        'operators' => ['=', 'NOT', 'CONTAINS']
+    ],
+    'price' => [
+        'field' => 'unit_price',
+        'operators' => ['>=', '>', '<', '<=']
+    ]
+]);
+
+// simple conditions
+$evaluator->parse('price >= 10'); // ['unit_price >=' => '10']
+
+// use AND / OR operators
+$evaluator->parse('pid IN 2, 3 AND price >= 10'); // ['AND' => [['id IN' => ['2', '3']], ['unit_price >=' => '10']]]
+
+// use parenthesis for complex conditions
+$evaluator->parse('pid IN 2, 3 AND ((price >= 10 OR name = x) OR name CONTAINS y)'); // ... see tests
+
+// throws custom exception for incorrect query
+use Riesenia\Utility\Condition\QueryEvaluatorException;
+
+try {
+    $evaluator->parse('(pid = 56');
+} catch(QueryEvaluatorException $e) {
+    if ($e->getCode() == QueryEvaluatorException::MISSING_CLOSING_PARENTHESIS) { // true
+        echo $e->getAttributes()['position']; // 0
+    }
+}
+```
