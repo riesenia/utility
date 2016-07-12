@@ -300,3 +300,11 @@ try {
     }
 }
 ```
+
+### QueryEvaluatorCallable
+
+Returns function that evaluates all attributes of passed array / ArrayAccess returning boolean result.
+
+### QueryEvaluatorCart
+
+Returns function that evaluates aggregates condition for *riesenia/cart* package.
