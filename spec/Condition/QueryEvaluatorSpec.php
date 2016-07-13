@@ -75,6 +75,7 @@ class QueryEvaluatorSpec extends ObjectBehavior
 
     public function it_throws_exception_for_incorrect_query()
     {
+        $this->shouldThrow(new QueryEvaluatorException(['placeholder' => 'pid'], QueryEvaluatorException::INVALID_CONDITION))->duringParse('pid =');
         $this->shouldThrow(new QueryEvaluatorException(['position' => 8], QueryEvaluatorException::MISSING_OPENING_PARENTHESIS))->duringParse('pid = 56)');
         $this->shouldThrow(new QueryEvaluatorException(['position' => 0], QueryEvaluatorException::MISSING_CLOSING_PARENTHESIS))->duringParse('(pid = 56');
         $this->shouldThrow(new QueryEvaluatorException(['placeholder' => 'id'], QueryEvaluatorException::UNKNOWN_PLACEHOLDER))->duringParse('id NOT 3');

@@ -8,6 +8,7 @@ class QueryEvaluatorException extends \RuntimeException
     const MISSING_CLOSING_PARENTHESIS = 702;
     const UNKNOWN_PLACEHOLDER = 703;
     const UNKNOWN_OPERATOR = 704;
+    const INVALID_CONDITION = 705;
 
     /**
      * Array of attributes that are passed in from the constructor

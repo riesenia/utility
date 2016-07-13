@@ -94,7 +94,13 @@ class QueryEvaluator
      */
     public function parseCondition($condition)
     {
-        list($column, $operator, $value) = array_map('trim', explode(' ', $condition, 3));
+        $condition = array_map('trim', explode(' ', $condition, 3));
+
+        if (count($condition) < 3) {
+            throw new QueryEvaluatorException(['placeholder' => $condition[0]], QueryEvaluatorException::INVALID_CONDITION);
+        }
+
+        list($column, $operator, $value) = $condition;
 
         if (!isset($this->_config[$column])) {
             throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::UNKNOWN_PLACEHOLDER);
