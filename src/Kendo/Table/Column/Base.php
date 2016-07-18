@@ -65,6 +65,13 @@ class Base
     protected $_tableId;
 
     /**
+     * Not available text
+     *
+     * @var string
+     */
+    protected $_notAvailableText = 'N/A';
+
+    /**
      * Construct the column
      *
      * @param array options
@@ -152,7 +159,7 @@ class Base
         }
 
         // print N/A for empty columns
-        $format = '# if (%field% !== null && %field% !== "") { #' . $format . '# } else { # N/A # } #';
+        $format = '# if (%field% !== null && %field% !== "") { #' . $format . '# } else { # ' . $this->_notAvailableText . ' # } #';
 
         return str_replace(['%format%', '%field%', '%class%', '%style%'], [$format, $this->_options['field'], $this->_options['class'], $this->_options['style']], $this->_template);
     }
