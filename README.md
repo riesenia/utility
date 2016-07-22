@@ -261,6 +261,8 @@ Condition (query) parsers.
 
 ### QueryEvaluator
 
+Returns array that can be passed to CakePHP Query builder as a condition.
+
 ```php
 use Riesenia\Utility\Condition\QueryEvaluator;
 
@@ -304,6 +306,20 @@ try {
 ### QueryEvaluatorCallable
 
 Returns function that evaluates all attributes of passed array / ArrayAccess returning boolean result.
+
+```php
+use Riesenia\Utility\Condition\QueryEvaluatorCallable;
+
+// using configuration from previous example
+$evaluator = new QueryEvaluatorCallable([...]);
+
+$condition = $evaluator->parse('pid IN 2, 3 AND price >= 10');
+
+$condition(['id' => 2, 'unit_price' => 7]); // true
+$condition(['id' => 4, 'unit_price' => 7]); // false
+$condition(['unit_price' => 4]); // false
+
+```
 
 ### QueryEvaluatorCart
 

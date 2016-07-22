@@ -52,52 +52,50 @@ class QueryEvaluatorCallable extends QueryEvaluator
         switch ($operator) {
             case 'CONTAINS':
                 return function ($item) use ($field, $value) {
-                    return stripos(iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
+                    return isset($item[$field]) && stripos(iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
                 };
 
             case 'IN':
                 $value = array_map('trim', explode(',', trim($value, '()')));
                 return function ($item) use ($field, $value) {
-                    return in_array($item[$field], $value);
+                    return isset($item[$field]) && in_array($item[$field], $value);
                 };
 
             case 'NOT IN':
                 $value = array_map('trim', explode(',', trim($value, '()')));
                 return function ($item) use ($field, $value) {
-                    return !in_array($item[$field], $value);
+                    return !isset($item[$field]) || !in_array($item[$field], $value);
                 };
 
             case '=':
                 return function ($item) use ($field, $value) {
-                    return $item[$field] == $value;
+                    return isset($item[$field]) && $item[$field] == $value;
                 };
 
             case 'NOT':
                 return function ($item) use ($field, $value) {
-                    return $item[$field] != $value;
+                    return !isset($item[$field]) || $item[$field] != $value;
                 };
 
             case '>=':
                 return function ($item) use ($field, $value) {
-                    return $item[$field] >= $value;
+                    return isset($item[$field]) && $item[$field] >= $value;
                 };
 
             case '<=':
                 return function ($item) use ($field, $value) {
-                    return $item[$field] <= $value;
+                    return isset($item[$field]) && $item[$field] <= $value;
                 };
 
             case '>':
                 return function ($item) use ($field, $value) {
-                    return $item[$field] > $value;
+                    return isset($item[$field]) && $item[$field] > $value;
                 };
 
             case '<':
                 return function ($item) use ($field, $value) {
-                    return $item[$field] < $value;
+                    return isset($item[$field]) && $item[$field] < $value;
                 };
         }
-
-        return [$field . $operator => $value];
     }
 }
