@@ -59,7 +59,7 @@ class Tree extends KendoHelper
     {
         // default template
         if (is_null($options)) {
-            $options = ['template' => '<input type="checkbox" value="#: item.id #" />'];
+            $options = ['template' => '<input type="checkbox" name="tableCheckbox" value="#: item.id #" />'];
         }
 
         $this->widget->setCheckboxes($options);
