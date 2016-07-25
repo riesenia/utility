@@ -142,7 +142,7 @@ class QueryEvaluator
                 break;
         }
 
-        if ($this->_config['_prefix'] && !strpos($field, '.')) {
+        if (isset($this->_config['_prefix']) && !strpos($field, '.')) {
             $field = $this->_config['_prefix'] . '.' . $field;
         }
 
