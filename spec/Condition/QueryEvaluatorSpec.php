@@ -73,6 +73,26 @@ class QueryEvaluatorSpec extends ObjectBehavior
         ]]);
     }
 
+    public function it_adds_prefix_correctly()
+    {
+        $this->beConstructedWith([
+            '_prefix' => 'Product',
+            'pid' => [
+                'field' => 'id',
+                'operators' => ['=', 'NOT', 'IN', 'NOT IN']
+            ],
+            'price' => [
+                'field' => 'Price.unit_price',
+                'operators' => ['>=', '>', '<', '<=']
+            ]
+        ]);
+
+        $this->parse('pid IN 2, 3 OR price >= 10')->shouldReturn(['OR' => [
+            ['Product.id IN' => ['2', '3']],
+            ['Price.unit_price >=' => '10']
+        ]]);
+    }
+
     public function it_throws_exception_for_incorrect_query()
     {
         $this->shouldThrow(new QueryEvaluatorException(['placeholder' => 'pid'], QueryEvaluatorException::INVALID_CONDITION))->duringParse('pid =');
