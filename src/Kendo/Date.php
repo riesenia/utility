@@ -25,6 +25,20 @@ class Date extends KendoHelper
     protected $_rangeTo;
 
     /**
+     * Substring of datetime start
+     *
+     * @var int
+     */
+    protected $_substringStart = 0;
+
+    /**
+     * Substring of datetime end
+     *
+     * @var int
+     */
+    protected $_substringEnd = 10;
+
+    /**
      * Construct the picker
      *
      * @param string id
@@ -99,7 +113,7 @@ class Date extends KendoHelper
         $this->widget->setChange(Kendo::js('function(e) {
             // date for hidden field
             var value = this.value();
-            $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(0, 19).replace("T", " ") : "");
+            $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(' . $this->_substringStart . ', ' . $this->_substringEnd . ').replace("T", " ") : "");
             ' . $rangeCode . '
         }'));
 

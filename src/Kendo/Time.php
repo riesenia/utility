@@ -4,12 +4,19 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * DateTime helper
+ * Time helper
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
-class DateTime extends Date
+class Time extends Date
 {
+    /**
+     * Substring of datetime start
+     *
+     * @var int
+     */
+    protected $_substringStart = 11;
+
     /**
      * Substring of datetime end
      *
@@ -26,6 +33,6 @@ class DateTime extends Date
     {
         parent::__construct($id);
 
-        $this->widget = Kendo::createDateTimePicker('#' . $id);
+        $this->widget = Kendo::createTimePicker('#' . $id);
     }
 }
