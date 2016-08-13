@@ -137,6 +137,10 @@ class QueryEvaluator
                 $operator = '';
                 break;
 
+            case 'NOT':
+                $operator = ' !=';
+                break;
+
             default:
                 $operator = ' ' . $operator;
                 break;

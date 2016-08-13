@@ -27,7 +27,7 @@ class QueryEvaluatorSpec extends ObjectBehavior
     public function it_parses_simple_conditions()
     {
         $this->parse('pid = 56')->shouldReturn(['id' => '56']);
-        $this->parse('pid NOT 3')->shouldReturn(['id NOT' => '3']);
+        $this->parse('pid NOT 3')->shouldReturn(['id !=' => '3']);
         $this->parse('pid IN 2, 3')->shouldReturn(['id IN' => ['2', '3']]);
         $this->parse('name CONTAINS abcd etc')->shouldReturn(['name LIKE' => '%abcd etc%']);
     }
