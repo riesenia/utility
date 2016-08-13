@@ -11,7 +11,7 @@ class QueryEvaluatorSpec extends ObjectBehavior
         $this->beConstructedWith([
             'pid' => [
                 'field' => 'id',
-                'operators' => ['=', 'NOT', 'IN', 'NOT IN']
+                'operators' => ['=', 'NOT', 'IN', 'NOTIN']
             ],
             'name' => [
                 'field' => 'name',
@@ -79,7 +79,7 @@ class QueryEvaluatorSpec extends ObjectBehavior
             '_prefix' => 'Product',
             'pid' => [
                 'field' => 'id',
-                'operators' => ['=', 'NOT', 'IN', 'NOT IN']
+                'operators' => ['=', 'NOT', 'IN', 'NOTIN']
             ],
             'price' => [
                 'field' => 'Price.unit_price',

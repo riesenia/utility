@@ -61,7 +61,7 @@ class QueryEvaluatorCallable extends QueryEvaluator
                     return isset($item[$field]) && in_array($item[$field], $value);
                 };
 
-            case 'NOT IN':
+            case 'NOTIN':
                 $value = array_map('trim', explode(',', trim($value, '()')));
                 return function ($item) use ($field, $value) {
                     return !isset($item[$field]) || !in_array($item[$field], $value);

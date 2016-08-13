@@ -270,7 +270,7 @@ use Riesenia\Utility\Condition\QueryEvaluator;
 $evaluator = new QueryEvaluator([
     'pid' => [
         'field' => 'id',
-        'operators' => ['=', 'NOT', 'IN', 'NOT IN']
+        'operators' => ['=', 'NOT', 'IN', 'NOTIN']
     ],
     'name' => [
         'field' => 'name',

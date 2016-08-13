@@ -11,7 +11,7 @@ class QueryEvaluatorCallableSpec extends ObjectBehavior
         $this->beConstructedWith([
             'pid' => [
                 'field' => 'id',
-                'operators' => ['=', 'NOT', 'IN', 'NOT IN']
+                'operators' => ['=', 'NOT', 'IN', 'NOTIN']
             ],
             'name' => [
                 'field' => 'name',
