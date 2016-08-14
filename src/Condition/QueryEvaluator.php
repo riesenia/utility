@@ -128,8 +128,12 @@ class QueryEvaluator
                 break;
 
             case 'IN':
+                $operator = ' IN';
+                $value = array_map('trim', explode(',', trim($value, '()')));
+                break;
+
             case 'NOTIN':
-                $operator = ' ' . $operator;
+                $operator = ' NOT IN';
                 $value = array_map('trim', explode(',', trim($value, '()')));
                 break;
 
