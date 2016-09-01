@@ -40,7 +40,7 @@ class TableCheckbox extends Base
         $options['filterable'] = false;
         $options['sortable'] = false;
 
-        $options['headerTemplate'] = '<input type="checkbox" value="#: %field% #" name="tableCheckboxAll" />';
+        $options['headerTemplate'] = isset($options['selectAll']) && !$options['selectAll'] ? '' : '<input type="checkbox" value="#: %field% #" name="tableCheckboxAll" />';
 
         parent::__construct($options, $tableId);
 
