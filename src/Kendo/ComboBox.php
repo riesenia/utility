@@ -1,0 +1,56 @@
+<?php
+namespace Riesenia\Utility\Kendo;
+
+use Riesenia\Kendo\Kendo;
+
+/**
+ * ComboBox helper
+ *
+ * @author Tomas Saghy <segy@riesenia.com>
+ */
+class ComboBox extends KendoHelper
+{
+    /**
+     * Construct the combo box
+     *
+     * @param string id
+     */
+    public function __construct($id)
+    {
+        parent::__construct($id);
+
+        $this->dataSource = Kendo::createDataSource()
+            ->setSchema(['data' => 'results', 'total' => 'count'])
+            ->setServerFiltering(true)
+            ->setServerPaging(true);
+
+        $this->widget = Kendo::createComboBox('#' . $id)
+            ->setDataSource($this->dataSource)
+            ->setDataValueField('id')
+            ->setDataTextField('name');
+
+        $this->addAttribute('name', $id);
+    }
+
+    /**
+     * Return HTML
+     *
+     * @return string
+     */
+    public function html()
+    {
+        return $this->_input($this->_id);
+    }
+
+    /**
+     * Return JavaScript
+     *
+     * @return string
+     */
+    public function script()
+    {
+        $script = $this->widget->__toString();
+
+        return $script;
+    }
+}
