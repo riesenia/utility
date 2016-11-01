@@ -6,7 +6,7 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
-class Checkbox extends Base
+class Checkbox extends Input
 {
     /**
      * Type used for model type property
@@ -20,7 +20,7 @@ class Checkbox extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%" style="%style%"><input type="checkbox" data-row-uid="#: uid #" name="%field%Checkbox" # if (%field%) { # checked="checked" # } # /></td>';
+    protected $_template = '<td class="%class%" style="%style%"><input type="checkbox" data-row-uid="#: uid #" name="%field%Input" # if (%field%) { # checked="checked" # } # /></td>';
 
     /**
      * Predefined class
@@ -30,23 +30,12 @@ class Checkbox extends Base
     protected $_class = 'tableColumn tableCheckbox';
 
     /**
-     * Return rendered javascript
+     * Value setter
      *
-     * @return string
+     * @var string
      */
-    public function script()
+    protected function _setValue() 
     {
-        return parent::script() . '$("#' . $this->_tableId . '").on("change", "[name=' . $this->_options['field'] . 'Checkbox]", function (e) {
-            var dataSource = $("#' . $this->_tableId . '").data("kendoGrid").dataSource;
-
-            // only for datasource that can be updated
-            if (typeof dataSource.transport.options.update !== "undefined") {
-                var item = dataSource.getByUid($(this).data("row-uid"));
-                item.set("' . $this->_options['field'] . '", !item.' . $this->_options['field'] . ');
-                if (!dataSource.options.autoSync) {
-                    dataSource.sync();
-                }
-            }
-        });';
+        return '!item.' . $this->_options['field'];
     }
 }
