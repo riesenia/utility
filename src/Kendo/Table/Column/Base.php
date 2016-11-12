@@ -65,6 +65,13 @@ class Base
     protected $_tableId;
 
     /**
+     * Not available condition
+     *
+     * @var string
+     */
+    protected $_notAvailableCondition = '%field% !== null && %field% !== ""';
+
+    /**
      * Not available text
      *
      * @var string
@@ -85,6 +92,11 @@ class Base
         if (isset($options['model'])) {
             $this->_modelOptions = $options['model'];
             unset($options['model']);
+        }
+
+        // N/A condition
+        if (isset($options['condition'])) {
+            $this->_notAvailableCondition = $options['condition'];
         }
 
         $this->_options = $options;
@@ -159,7 +171,7 @@ class Base
         }
 
         // print N/A for empty columns
-        $format = '# if (%field% !== null && %field% !== "") { #' . $format . '# } else { # ' . $this->_notAvailableText . ' # } #';
+        $format = '# if (' . $this->_notAvailableCondition . ') { #' . $format . '# } else { # ' . $this->_notAvailableText . ' # } #';
 
         return str_replace(['%format%', '%field%', '%class%', '%style%'], [$format, $this->_options['field'], $this->_options['class'], $this->_options['style']], $this->_template);
     }

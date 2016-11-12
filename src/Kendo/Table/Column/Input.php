@@ -13,7 +13,7 @@ class Input extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%" style="%style%"><input type="%type%" data-row-uid="#: uid #" name="%field%Input" value="#: %field% #"%options% /></td>';
+    protected $_format = '<input type="%type%" data-row-uid="#: uid #" name="%field%Input" value="#: %field% #"%options% />';
 
     /**
      * Predefined class
@@ -21,6 +21,13 @@ class Input extends Base
      * @var string
      */
     protected $_class = 'tableColumn tableInput';
+
+    /**
+     * Not available condition
+     *
+     * @var string
+     */
+    protected $_notAvailableCondition = 'true';
 
     /**
      * Get options for grid column definition
@@ -82,7 +89,7 @@ class Input extends Base
      *
      * @var string
      */
-    protected function _setValue() 
+    protected function _setValue()
     {
         return '$(this).val()';
     }

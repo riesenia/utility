@@ -63,7 +63,7 @@ class TableSpec extends ObjectBehavior
         $this->addColumn('name', 'Name', 'input')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['name' => ['type' => 'string']]);
         $this->widget->getColumns()->shouldReturn([['field' => 'name', 'title' => 'Name', 'class' => 'tableColumn tableInput', 'style' => '#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableInput']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableInput" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"><input type="text" data-row-uid="#: uid #" name="nameInput" value="#: name #" /></td></tr>');
+        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableInput" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (true) { #<input type="text" data-row-uid="#: uid #" name="nameInput" value="#: name #" /># } else { # N/A # } #</td></tr>');
     }
 
     public function it_can_add_numeric_input_column()
@@ -71,7 +71,7 @@ class TableSpec extends ObjectBehavior
         $this->addColumn('stock', 'Stock', 'input', ['model' => ['type' => 'number'], 'input' => ['type' => 'number', 'min' => 0]])->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['stock' => ['type' => 'number']]);
         $this->widget->getColumns()->shouldReturn([['field' => 'stock', 'title' => 'Stock', 'class' => 'tableColumn tableInput', 'style' => '#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableInput']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableInput" style="#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #"><input type="number" data-row-uid="#: uid #" name="stockInput" value="#: stock #" min="0" /></td></tr>');
+        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableInput" style="#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #"># if (true) { #<input type="number" data-row-uid="#: uid #" name="stockInput" value="#: stock #" min="0" /># } else { # N/A # } #</td></tr>');
     }
 
     public function it_can_add_checkbox_column()
