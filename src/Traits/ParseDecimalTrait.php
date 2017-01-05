@@ -13,6 +13,7 @@ trait ParseDecimalTrait
      *
      * @param mixed number
      * @param array options
+     * @param bool allow null value to return null
      * @return float
      */
     protected function _parseDecimal($number, array $options = [], $allowNull = false)
