@@ -15,8 +15,12 @@ trait ParseDecimalTrait
      * @param array options
      * @return float
      */
-    protected function _parseDecimal($number, array $options = [])
+    protected function _parseDecimal($number, array $options = [], $allowNull = false)
     {
+        if ($allowNull && is_null($number)) {
+            return $number;
+        }
+
         if (isset($options['thousands_separator'])) {
             $number = str_replace($options['thousands_separator'], '', $number);
         }
