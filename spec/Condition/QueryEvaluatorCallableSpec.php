@@ -2,7 +2,6 @@
 namespace spec\Riesenia\Utility\Condition;
 
 use PhpSpec\ObjectBehavior;
-use Riesenia\Utility\Condition\QueryEvaluatorException;
 
 class QueryEvaluatorCallableSpec extends ObjectBehavior
 {
