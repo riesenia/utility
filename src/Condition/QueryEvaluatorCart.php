@@ -54,28 +54,28 @@ class QueryEvaluatorCart extends QueryEvaluatorCallable
                 return function ($item) use ($sum, $value) {
                     $total = $sum($item);
 
-                    return $total->comp($value) > -1;
+                    return trim($total) >= trim($value);
                 };
 
             case '<=':
                 return function ($item) use ($sum, $value) {
                     $total = $sum($item);
 
-                    return $total->comp($value) < 1;
+                    return trim($total) <= trim($value);
                 };
 
             case '>':
                 return function ($item) use ($sum, $value) {
                     $total = $sum($item);
 
-                    return $total->comp($value) > 0;
+                    return trim($total) > trim($value);
                 };
 
             case '<':
                 return function ($item) use ($sum, $value) {
                     $total = $sum($item);
 
-                    return $total->comp($value) < 0;
+                    return trim($total) < trim($value);
                 };
         }
 
