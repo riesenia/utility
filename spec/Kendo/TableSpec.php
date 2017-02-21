@@ -137,7 +137,7 @@ class TableSpec extends ObjectBehavior
     public function it_can_add_action()
     {
         $this->addAction(null, ['icon' => 'music', 'link' => 'URL', 'title' => 'Play!'])->shouldReturn($this);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableActions"><a class="btn btn-default " href="URL" title="Play!" target="_self"><span class="glyphicon glyphicon-music"></span></a></td></tr>');
+        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableActions" style="width: 45px;"><a class="btn btn-default " href="URL" title="Play!" target="_self"><span class="glyphicon glyphicon-music"></span></a></td></tr>');
     }
 
     protected function _match_property($property)

@@ -40,7 +40,7 @@ class Actions extends Base
      */
     public function __toString()
     {
-        return '<td class="' . $this->_options['class'] . '">' . implode(' ', $this->_options['actions']) . '</td>';
+        return '<td class="' . $this->_options['class'] . '" style="width: ' . (count($this->_options['actions']) * $this->_options['width']) . 'px;">' . implode(' ', $this->_options['actions']) . '</td>';
     }
 
     /**

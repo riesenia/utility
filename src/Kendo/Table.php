@@ -53,6 +53,13 @@ class Table extends KendoHelper
     protected $_noResults;
 
     /**
+     * Width for one action button
+     *
+     * @var int
+     */
+    protected $_actionWidth = 45;
+
+    /**
      * Construct the table
      *
      * @param string id
@@ -244,6 +251,19 @@ class Table extends KendoHelper
     }
 
     /**
+     * Add checkboxes
+     *
+     * @param int options
+     * @return Riesenia\Utility\Kendo\Table
+     */
+    public function setActionWidth($width)
+    {
+        $this->_actionWidth = $width;
+
+        return $this;
+    }
+
+    /**
      * Return HTML
      *
      * @return string
@@ -262,7 +282,7 @@ class Table extends KendoHelper
     {
         // define actions
         if (count($this->_actions)) {
-            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions]);
+            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions, 'width' => $this->_actionWidth]);
         }
 
         // complete row template
