@@ -108,8 +108,12 @@ class Base
         $this->_style = str_replace('%field%', $this->_options['field'], $this->_style);
         $this->_options['style'] = isset($this->_options['style']) ? $this->_style . ' ' . $this->_options['style'] : $this->_style;
 
+        // header style and class
         if (!isset($this->_options['headerAttributes']['class'])) {
             $this->_options['headerAttributes']['class'] = $this->_options['class'];
+        }
+        if (!isset($this->_options['headerAttributes']['style'])) {
+            $this->_options['headerAttributes']['style'] = $this->_options['style'];
         }
 
         // template

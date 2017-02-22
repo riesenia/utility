@@ -16,6 +16,13 @@ class Actions extends Base
     protected $_class = 'tableColumn tableActions';
 
     /**
+     * Predefined style
+     *
+     * @var string
+     */
+    protected $_style = '';
+
+    /**
      * Construct the column
      *
      * @param array options
@@ -23,6 +30,8 @@ class Actions extends Base
      */
     public function __construct(array $options, $tableId)
     {
+        $this->_style = 'width: ' . (count($options['actions']) * $options['width']) . 'px;';
+
         parent::__construct($options, $tableId);
 
         // add command
@@ -40,7 +49,7 @@ class Actions extends Base
      */
     public function __toString()
     {
-        return '<td class="' . $this->_options['class'] . '" style="width: ' . (count($this->_options['actions']) * $this->_options['width']) . 'px;">' . implode(' ', $this->_options['actions']) . '</td>';
+        return '<td class="' . $this->_options['class'] . '" style="' . $this->_style . '">' . implode(' ', $this->_options['actions']) . '</td>';
     }
 
     /**

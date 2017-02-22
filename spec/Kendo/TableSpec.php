@@ -42,8 +42,9 @@ class TableSpec extends ObjectBehavior
     {
         $this->addColumn('name', 'Product name')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['name' => ['type' => 'string']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'name', 'title' => 'Product name', 'class' => 'tableColumn', 'style' => '#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (name !== null && name !== "") { ##: name ## } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('name', 'Product name', 'tableColumn', '#: name #');
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_column_with_link()
@@ -62,64 +63,72 @@ class TableSpec extends ObjectBehavior
     {
         $this->addColumn('name', 'Name', 'input')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['name' => ['type' => 'string']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'name', 'title' => 'Name', 'class' => 'tableColumn tableInput', 'style' => '#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableInput']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableInput" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (true) { #<input type="text" data-row-uid="#: uid #" name="nameInput" value="#: name #" /># } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('name', 'Name', 'tableColumn tableInput', '# if (true) { #<input type="text" data-row-uid="#: uid #" name="nameInput" value="#: name #" /># } else { # N/A # } #', false);
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_numeric_input_column()
     {
         $this->addColumn('stock', 'Stock', 'input', ['model' => ['type' => 'number'], 'input' => ['type' => 'number', 'min' => 0]])->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['stock' => ['type' => 'number']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'stock', 'title' => 'Stock', 'class' => 'tableColumn tableInput', 'style' => '#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableInput']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableInput" style="#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #"># if (true) { #<input type="number" data-row-uid="#: uid #" name="stockInput" value="#: stock #" min="0" /># } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('stock', 'Stock', 'tableColumn tableInput', '# if (true) { #<input type="number" data-row-uid="#: uid #" name="stockInput" value="#: stock #" min="0" /># } else { # N/A # } #', false);
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_checkbox_column()
     {
         $this->addColumn('active', 'Active', 'checkbox')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['active' => ['type' => 'boolean']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'active', 'title' => 'Active', 'class' => 'tableColumn tableCheckbox', 'style' => '#: grid.columns[grid.element.find("th[data-field=active]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableCheckbox']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableCheckbox" style="#: grid.columns[grid.element.find("th[data-field=active]").data("index")].hidden ? "display: none;" : "" #"><input type="checkbox" data-row-uid="#: uid #" name="activeInput" # if (active) { # checked="checked" # } # /></td></tr>');
+        $expected = $this->_expected('active', 'Active', 'tableColumn tableCheckbox', '<input type="checkbox" data-row-uid="#: uid #" name="activeInput" # if (active) { # checked="checked" # } # />', false);
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_date_column()
     {
         $this->addColumn('created', 'Created', 'date')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['created' => ['type' => 'date']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'created', 'title' => 'Created', 'class' => 'tableColumn tableDate', 'style' => '#: grid.columns[grid.element.find("th[data-field=created]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableDate']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableDate" style="#: grid.columns[grid.element.find("th[data-field=created]").data("index")].hidden ? "display: none;" : "" #"># if (created !== null && created !== "") { ##: kendo.toString(created, "d") ## } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('created', 'Created', 'tableColumn tableDate', '#: kendo.toString(created, "d") #');
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_datetime_column()
     {
         $this->addColumn('created', 'Created', 'datetime')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['created' => ['type' => 'date']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'created', 'title' => 'Created', 'class' => 'tableColumn tableDate tableDatetime', 'style' => '#: grid.columns[grid.element.find("th[data-field=created]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableDate tableDatetime']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableDate tableDatetime" style="#: grid.columns[grid.element.find("th[data-field=created]").data("index")].hidden ? "display: none;" : "" #"># if (created !== null && created !== "") { ##: kendo.toString(created, "g") ## } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('created', 'Created', 'tableColumn tableDate tableDatetime', '#: kendo.toString(created, "g") #');
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_enum_column()
     {
         $this->addColumn('type', 'Type', 'enum', ['options' => ['A' => 'Type A', 'B' => 'Type B']])->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['type' => ['type' => 'string']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'type', 'title' => 'Type', 'class' => 'tableColumn', 'style' => '#: grid.columns[grid.element.find("th[data-field=type]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=type]").data("index")].hidden ? "display: none;" : "" #"># if (type.toString() == "A") { # Type A # } ## if (type.toString() == "B") { # Type B # } #</td></tr>');
+        $expected = $this->_expected('type', 'Type', 'tableColumn', '# if (type.toString() == "A") { # Type A # } ## if (type.toString() == "B") { # Type B # } #', false);
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_number_column()
     {
         $this->addColumn('stock', 'Stock', 'number')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['stock' => ['type' => 'number']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'stock', 'title' => 'Stock', 'class' => 'tableColumn tableNumber', 'style' => '#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableNumber']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableNumber" style="#: grid.columns[grid.element.find("th[data-field=stock]").data("index")].hidden ? "display: none;" : "" #"># if (stock !== null && stock !== "") { ##: stock ## } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('stock', 'Stock', 'tableColumn tableNumber', '#: stock #');
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_price_column()
     {
         $this->addColumn('eur', 'Price', 'price')->shouldReturn($this);
         $this->model->getFields()->shouldReturn(['eur' => ['type' => 'number']]);
-        $this->widget->getColumns()->shouldReturn([['field' => 'eur', 'title' => 'Price', 'class' => 'tableColumn tableNumber tablePrice', 'style' => '#: grid.columns[grid.element.find("th[data-field=eur]").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => 'tableColumn tableNumber tablePrice']]]);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableNumber tablePrice" style="#: grid.columns[grid.element.find("th[data-field=eur]").data("index")].hidden ? "display: none;" : "" #"># if (eur !== null && eur !== "") { ##: kendo.toString(eur, "c2") ## } else { # N/A # } #</td></tr>');
+        $expected = $this->_expected('eur', 'Price', 'tableColumn tableNumber tablePrice', '#: kendo.toString(eur, "c2") #');
+        $this->widget->getColumns()->shouldReturn($expected[0]);
+        expect($this->_match_property("rowTemplate"))->toBe($expected[1]);
     }
 
     public function it_can_add_hierarchy_cell()
@@ -143,5 +152,17 @@ class TableSpec extends ObjectBehavior
     protected function _match_property($property)
     {
         return preg_match('/"' . $property . '":"(.+?)(?<!\\\\)"/', $this->script()->getWrappedObject(), $m) ? stripslashes($m[1]) : false;
+    }
+
+    protected function _expected($property, $title, $class, $td, $condition = true)
+    {
+        if ($condition) {
+            $td = '# if (' . $property . ' !== null && ' . $property . ' !== "") { #' . $td . '# } else { # N/A # } #';
+        }
+
+        return [
+            [['field' => $property, 'title' => $title, 'class' => $class, 'style' => '#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => $class, 'style' => '#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #']]],
+            '# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="' . $class . '" style="#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #">' . $td . '</td></tr>'
+        ];
     }
 }
