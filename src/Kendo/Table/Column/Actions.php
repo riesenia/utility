@@ -30,7 +30,7 @@ class Actions extends Base
      */
     public function __construct(array $options, $tableId)
     {
-        $this->_style = 'width: ' . (count($options['actions']) * $options['width']) . 'px;';
+        $this->_style = 'width: ' . $options['width'] . 'px;';
 
         parent::__construct($options, $tableId);
 

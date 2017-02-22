@@ -282,7 +282,7 @@ class Table extends KendoHelper
     {
         // define actions
         if (count($this->_actions)) {
-            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions, 'width' => $this->_actionWidth]);
+            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions, 'width' => count($this->_actions) * $this->_actionWidth]);
         }
 
         // complete row template
