@@ -171,7 +171,12 @@ class Base
 
             $link .= '>';
 
-            $format = $link . $format . '</a>';
+            // link condition
+            if (isset($this->_options['link_condition']) && $this->_options['link_condition']) {
+                $format = '# if (' . $this->_options['link_condition'] . ') { #' . $link . $format . '</a># } else { # ' . $format . ' # } #';
+            } else {
+                $format = $link . $format . '</a>';
+            }
         }
 
         // print N/A for empty columns

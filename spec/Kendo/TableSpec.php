@@ -55,8 +55,8 @@ class TableSpec extends ObjectBehavior
 
     public function it_can_add_column_with_complex_link()
     {
-        $this->addColumn('name', 'Product name', null, ['link' => ['href' => 'URL', 'target' => '_blank', 'title' => 'Link']])->shouldReturn($this);
-        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (name !== null && name !== "") { #<a href="URL" target="_blank" title="Link">#: name #</a># } else { # N/A # } #</td></tr>');
+        $this->addColumn('name', 'Product name', null, ['link' => ['href' => 'URL', 'target' => '_blank', 'title' => 'Link'], 'link_condition' => 'field'])->shouldReturn($this);
+        expect($this->_match_property("rowTemplate"))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (name !== null && name !== "") { ## if (field) { #<a href="URL" target="_blank" title="Link">#: name #</a># } else { # #: name # # } ## } else { # N/A # } #</td></tr>');
     }
 
     public function it_can_add_input_column()
