@@ -87,4 +87,9 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
             ]]
         ]]);
     }
+
+    public function it_throws_exception_for_incorrect_query()
+    {
+        $this->shouldThrow(new QueryEvaluatorException(['placeholder' => 'pid'], QueryEvaluatorException::MISSING_PREFIX))->duringParse('pid = 10');
+    }
 }

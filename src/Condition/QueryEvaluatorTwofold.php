@@ -23,9 +23,8 @@ class QueryEvaluatorTwofold extends QueryEvaluator
      */
     public function __construct(array $config)
     {
-        if (!is_array($config)) {
+        if (!is_array($config) or count($config) == 0) {
             throw new QueryEvaluatorException('Invalid config format');
-            exit(0);
         }
 
         $this->_config = $config;
@@ -61,7 +60,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
 
             $parsedCondition = $this->_parseCondition($prefix.".".$this->_config[$prefix][$column]['field'], $operator, $value);
         } else {
-            throw new QueryEvaluatorException('The column requires a prefix');
+            throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::MISSING_PREFIX);
         }
 
         return $parsedCondition;
