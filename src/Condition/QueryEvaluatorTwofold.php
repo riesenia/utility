@@ -24,7 +24,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
     public function __construct(array $config)
     {
         if (!is_array($config) or count($config) == 0) {
-            throw new QueryEvaluatorException('Invalid config format');
+            throw new QueryEvaluatorException('Invalid config format', QueryEvaluatorException::MISSING_CONFIG_FORMAT);
         }
 
         $this->_config = $config;
