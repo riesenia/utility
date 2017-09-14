@@ -58,7 +58,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
                 throw new QueryEvaluatorException(['placeholder' => "{$prefix}.{$column}", 'operator' => $operator], QueryEvaluatorException::UNKNOWN_OPERATOR);
             }
 
-            $parsedCondition = $this->_parseCondition($prefix.".".$this->_config[$prefix][$column]['field'], $operator, $value);
+            $parsedCondition = $this->_parseCondition($prefix . "." . $this->_config[$prefix][$column]['field'], $operator, $value);
         } else {
             throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::MISSING_PREFIX);
         }
