@@ -154,7 +154,20 @@ class QueryEvaluator
             $field = $this->_config['_prefix'] . '.' . $field;
         }
 
-        return [$field . $operator => $value];
+        // check if value is a field with prefix (e.g. P1.pid)
+        if (!is_array($value)) {
+            if (strpos($value, '.') !== false) {
+                $operator = trim($operator);
+                $parsedCondition = ["$field $operator $value" => null];
+            } else {
+                $parsedCondition = [$field . $operator => $value];    
+            }
+        } else {
+            $parsedCondition = [$field . $operator => $value];
+        }
+
+
+        return $parsedCondition;
     }
 
     /**

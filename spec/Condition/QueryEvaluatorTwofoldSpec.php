@@ -88,6 +88,11 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
         ]]);
     }
 
+    public function it_parse_value()
+    {
+        $this->parse('P1.price > P2.price')->shouldReturn(['P1.unit_price > P2.price' => null]);
+    }
+
     public function it_throws_exception_for_incorrect_query()
     {
         $this->shouldThrow(new QueryEvaluatorException(['placeholder' => 'pid'], QueryEvaluatorException::UNKNOWN_PREFIX))->duringParse('pid = 10');

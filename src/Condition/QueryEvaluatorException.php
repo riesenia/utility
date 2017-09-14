@@ -4,7 +4,6 @@ namespace Riesenia\Utility\Condition;
 class QueryEvaluatorException extends \RuntimeException
 {
     // exception codes
-    const MISSING_CONFIG_FORMAT = 700;
     const MISSING_OPENING_PARENTHESIS = 701;
     const MISSING_CLOSING_PARENTHESIS = 702;
     const UNKNOWN_PLACEHOLDER = 703;
