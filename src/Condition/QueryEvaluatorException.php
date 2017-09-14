@@ -10,7 +10,7 @@ class QueryEvaluatorException extends \RuntimeException
     const UNKNOWN_PLACEHOLDER = 703;
     const UNKNOWN_OPERATOR = 704;
     const INVALID_CONDITION = 705;
-    const MISSING_PREFIX = 706;
+    const UNKNOWN_PREFIX = 706;
 
     /**
      * Array of attributes that are passed in from the constructor

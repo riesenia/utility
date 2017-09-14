@@ -17,20 +17,6 @@ namespace Riesenia\Utility\Condition;
 class QueryEvaluatorTwofold extends QueryEvaluator
 {
     /**
-     * Setup
-     *
-     * @param array configuration options
-     */
-    public function __construct(array $config)
-    {
-        if (!is_array($config) or count($config) == 0) {
-            throw new QueryEvaluatorException('Invalid config format', QueryEvaluatorException::MISSING_CONFIG_FORMAT);
-        }
-
-        $this->_config = $config;
-    }
-
-    /**
      * Parse condition (column operator value)
      *
      * @param string condition
@@ -60,7 +46,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
 
             $parsedCondition = $this->_parseCondition($prefix . "." . $this->_config[$prefix][$column]['field'], $operator, $value);
         } else {
-            throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::MISSING_PREFIX);
+            throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::UNKNOWN_PREFIX);
         }
 
         return $parsedCondition;
