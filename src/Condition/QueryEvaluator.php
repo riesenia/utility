@@ -163,8 +163,15 @@ class QueryEvaluator
                 if (isset($this->_config[$prefix])) {
                     $operator = trim($operator);
                     $fieldname = $prefix . "." . $this->_config[$prefix][$fieldname]['field'];
-                    $parsedCondition = ["$field $operator $fieldname"];
+
+                    if (empty($operator)) {
+                        $parsedCondition = [$field . $operator => $fieldname];
+                    } else {
+                        $parsedCondition = ["$field $operator $fieldname"];
+                    }
+
                 } else {
+
                     $parsedCondition = [$field . $operator => $value];
                 }
 
