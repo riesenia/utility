@@ -41,7 +41,8 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
 
     public function it_parses_simple_conditions()
     {
-        $this->parse('P1.pid = P2.pid')->shouldReturn(['P1.id' => 'P2.id']);
+        $this->parse('P1.pid = P2.pid')->shouldReturn(['P1.id = P2.id']);
+        $this->parse('P1.price >= P2.price')->shouldReturn(['P1.unit_price >= P2.unit_price']);
         $this->parse('P1.name NOT P2.name')->shouldReturn(['P1.name != P2.name']);
         $this->parse('P1.name CONTAINS xxx.rrr')->shouldReturn(['P1.name LIKE' => '%xxx.rrr%']);
     }

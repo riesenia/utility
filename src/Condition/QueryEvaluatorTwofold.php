@@ -51,4 +51,39 @@ class QueryEvaluatorTwofold extends QueryEvaluator
 
         return $parsedCondition;
     }
+
+    /**
+     * Parse condition divided to field, operator and value
+     *
+     * @param string field
+     * @return array
+     */
+    protected function _parseCondition($field, $operator, $value)
+    {
+        $parsedCondition = parent::_parseCondition($field, $operator, $value);
+
+        // check if value is a field with prefix (e.g. P1.pid)
+        if (!is_array($value)) {
+            if (strpos($value, '.') !== false) {
+                list($prefix, $fieldname) = explode('.', $value);
+
+                // validate if the prefix is existing the given config
+                if (isset($this->_config[$prefix])) {
+                    $operator = trim($operator);
+                    $fieldname = $prefix . "." . $this->_config[$prefix][$fieldname]['field'];
+
+                    $key = explode(' ', array_keys($parsedCondition)[0]);
+
+                    if (count($key) > 1) {
+                        $operator = $key[1];
+                        $parsedCondition = ["$field $operator $fieldname"];
+                    } else {
+                        $parsedCondition = ["$field = $fieldname"];
+                    }
+                }
+            }
+        }
+
+        return $parsedCondition;
+    }
 }
