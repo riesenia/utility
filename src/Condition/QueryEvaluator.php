@@ -154,36 +154,7 @@ class QueryEvaluator
             $field = $this->_config['_prefix'] . '.' . $field;
         }
 
-        // check if value is a field with prefix (e.g. P1.pid)
-        if (!is_array($value)) {
-            if (strpos($value, '.') !== false) {
-                list($prefix, $fieldname) = explode('.', $value);
-
-                // validate if the prefix is existing the given config
-                if (isset($this->_config[$prefix])) {
-                    $operator = trim($operator);
-                    $fieldname = $prefix . "." . $this->_config[$prefix][$fieldname]['field'];
-
-                    if (empty($operator)) {
-                        $parsedCondition = [$field . $operator => $fieldname];
-                    } else {
-                        $parsedCondition = ["$field $operator $fieldname"];
-                    }
-
-                } else {
-
-                    $parsedCondition = [$field . $operator => $value];
-                }
-
-            } else {
-                $parsedCondition = [$field . $operator => $value];
-            }
-
-        } else {
-            $parsedCondition = [$field . $operator => $value];
-        }
-
-        return $parsedCondition;
+        return [$field . $operator => $value];
     }
 
     /**
