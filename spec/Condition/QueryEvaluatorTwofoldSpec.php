@@ -24,7 +24,7 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
                 ],
             'P2' => [
                 'pid' => [
-                    'field' => 'id',
+                    'field' => 'uuid',
                     'operators' => ['=', 'NOT', 'IN', 'NOTIN']
                 ],
                 'name' => [
@@ -41,7 +41,7 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
 
     public function it_parses_simple_conditions()
     {
-        $this->parse('P1.pid = P2.pid')->shouldReturn(['P1.id = P2.id']);
+        $this->parse('P1.pid = P2.pid')->shouldReturn(['P1.id = P2.uuid']);
         $this->parse('P1.price >= P2.price')->shouldReturn(['P1.unit_price >= P2.unit_price']);
         $this->parse('P1.name NOT P2.name')->shouldReturn(['P1.name != P2.name']);
         $this->parse('P1.name CONTAINS xxx.rrr')->shouldReturn(['P1.name LIKE' => '%xxx.rrr%']);
@@ -58,7 +58,7 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
     public function it_parses_or_condition()
     {
         $this->parse('P2.pid IN 2, 3 OR P2.price >= P1.price')->shouldReturn(['OR' => [
-            ['P2.id IN' => ['2', '3']],
+            ['P2.uuid IN' => ['2', '3']],
             ['P2.unit_price >= P1.unit_price']
         ]]);
     }

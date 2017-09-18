@@ -30,26 +30,28 @@ class QueryEvaluatorTwofold extends QueryEvaluator
             throw new QueryEvaluatorException(['placeholder' => $condition[0]], QueryEvaluatorException::INVALID_CONDITION);
         }
 
-        list($column, $operator, $value) = $condition;
+        list($prefixedColumn, $operator, $value) = $condition;
 
         // check if field has a prefix
-        if (strpos($column, '.') !== false) {
-            list($prefix, $column) = explode('.', $column);
-
-            if (!isset($this->_config[$prefix][$column])) {
-                throw new QueryEvaluatorException(['placeholder' => "{$prefix}.{$column}"], QueryEvaluatorException::UNKNOWN_PLACEHOLDER);
-            }
-
-            if (!in_array($operator, $this->_config[$prefix][$column]['operators'])) {
-                throw new QueryEvaluatorException(['placeholder' => "{$prefix}.{$column}", 'operator' => $operator], QueryEvaluatorException::UNKNOWN_OPERATOR);
-            }
-
-            $parsedCondition = $this->_parseCondition($prefix . "." . $this->_config[$prefix][$column]['field'], $operator, $value);
-        } else {
-            throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::UNKNOWN_PREFIX);
+        if (strpos($prefixedColumn, '.') === false) {
+            throw new QueryEvaluatorException(['placeholder' => $prefixedColumn], QueryEvaluatorException::UNKNOWN_PREFIX);
         }
 
-        return $parsedCondition;
+        list($prefix, $column) = explode('.', $prefixedColumn, 2);
+
+        if (!isset($this->_config[$prefix])) {
+            throw new QueryEvaluatorException(['placeholder' => $prefix], QueryEvaluatorException::UNKNOWN_PREFIX);
+        }
+
+        if (!isset($this->_config[$prefix][$column])) {
+            throw new QueryEvaluatorException(['placeholder' => $prefixedColumn], QueryEvaluatorException::UNKNOWN_PLACEHOLDER);
+        }
+
+        if (!in_array($operator, $this->_config[$prefix][$column]['operators'])) {
+            throw new QueryEvaluatorException(['placeholder' => $prefixedColumn, 'operator' => $operator], QueryEvaluatorException::UNKNOWN_OPERATOR);
+        }
+
+        return $this->_parseCondition($prefix . '.' . $this->_config[$prefix][$column]['field'], $operator, $value);
     }
 
     /**
@@ -62,28 +64,44 @@ class QueryEvaluatorTwofold extends QueryEvaluator
     {
         $parsedCondition = parent::_parseCondition($field, $operator, $value);
 
-        // check if value is a field with prefix (e.g. P1.pid)
-        if (!is_array($value)) {
-            if (strpos($value, '.') !== false) {
-                list($prefix, $fieldname) = explode('.', $value);
+        $key = key($parsedCondition);
+        $value = current($parsedCondition);
 
-                // validate if the prefix is existing the given config
-                if (isset($this->_config[$prefix])) {
-                    $operator = trim($operator);
-                    $fieldname = $prefix . "." . $this->_config[$prefix][$fieldname]['field'];
+        // handle operator =
+        if ($operator == '=') {
+            $key .= ' =';
+        }
 
-                    $key = explode(' ', array_keys($parsedCondition)[0]);
+        // try to parse
+        $twofold = $this->_parseTwofold($key, $value);
 
-                    if (count($key) > 1) {
-                        $operator = $key[1];
-                        $parsedCondition = ["$field $operator $fieldname"];
-                    } else {
-                        $parsedCondition = ["$field = $fieldname"];
-                    }
-                }
-            }
+        if ($twofold) {
+            return $twofold;
         }
 
         return $parsedCondition;
+    }
+
+    /**
+     * Evaluate if right side of the condition is expression
+     *
+     * @param string key part
+     * @param string value part
+     * @return array|null
+     */
+    protected function _parseTwofold($key, $value)
+    {
+        if (is_array($value) || strpos($value, '.') === false) {
+            return null;
+        }
+
+        list($prefix, $field) = explode('.', $value, 2);
+
+        // validate existing prefix and field
+        if (!isset($this->_config[$prefix]) || !isset($this->_config[$prefix][$field])) {
+            return null;
+        }
+
+        return [$key . ' ' . $prefix . '.' . $this->_config[$prefix][$field]['field']];
     }
 }
