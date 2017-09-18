@@ -5,7 +5,7 @@ use Litipk\BigNumbers\Decimal;
 use Riesenia\Utility\Traits\ParseDecimalTrait;
 
 /**
- * Class parsing written condition (query) to a function returning bool.
+ * Class parsing written condition (query) to a function that evaluates aggregates condition for riesenia/cart package.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */

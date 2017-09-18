@@ -2,7 +2,7 @@
 namespace Riesenia\Utility\Condition;
 
 /**
- * This class will enable to provide configuration for two independent “prefixes”.
+ * Class enabling to provide configuration for two independent "prefixes".
  *
  * Constructor accepts configuration array in format:
  *     'prefix' => [

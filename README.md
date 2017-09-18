@@ -324,3 +324,47 @@ $condition(['unit_price' => 4]); // false
 ### QueryEvaluatorCart
 
 Returns function that evaluates aggregates condition for *riesenia/cart* package.
+
+### QueryEvaluatorTwofold
+
+Allows passing prefixed condition.
+
+```php
+use Riesenia\Utility\Condition\QueryEvaluatorTwofold;
+
+// using configuration from previous example
+$evaluator = new QueryEvaluatorTwofold([
+    'P1' => [
+        'pid' => [
+            'field' => 'id',
+            'operators' => ['=', 'NOT', 'IN', 'NOTIN']
+        ],
+        'name' => [
+            'field' => 'name',
+            'operators' => ['=', 'NOT', 'CONTAINS']
+        ],
+        'price' => [
+            'field' => 'unit_price',
+            'operators' => ['>=', '>', '<', '<=']
+        ]
+    ],
+    'P2' => [
+        'pid' => [
+            'field' => 'id',
+            'operators' => ['=', 'NOT', 'IN', 'NOTIN']
+        ],
+        'name' => [
+            'field' => 'name',
+            'operators' => ['=', 'NOT', 'CONTAINS']
+        ],
+        'price' => [
+            'field' => 'unit_price',
+            'operators' => ['>=', '>', '<', '<=']
+        ]
+    ]
+]);
+
+// example
+$evaluator->parse('P1.pid IN 2, 3 AND P1.price >= P2.price'); // ['AND' => [['P1.id IN' => ['2', '3']], ['P1.unit_price >= P2.unit_price']]]
+
+```
