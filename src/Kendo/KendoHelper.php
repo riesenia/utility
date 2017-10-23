@@ -2,58 +2,58 @@
 namespace Riesenia\Utility\Kendo;
 
 /**
- * Base class for Kendo helpers
+ * Base class for Kendo helpers.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 abstract class KendoHelper
 {
     /**
-     * Id of the main element
+     * Kendo Model.
+     *
+     * @var Riesenia\Kendo\Widget\Model
+     */
+    public $model;
+
+    /**
+     * Kendo data source.
+     *
+     * @var Riesenia\Kendo\Widget\DataSource
+     */
+    public $dataSource;
+
+    /**
+     * Kendo widget.
+     *
+     * @var Riesenia\Kendo\Widget\Base
+     */
+    public $widget;
+
+    /**
+     * Id of the main element.
      *
      * @var string
      */
     protected $_id;
 
     /**
-     * Kendo Model
-     *
-     * @var Riesenia\Kendo\Widget\Model
-     */
-    public $model = null;
-
-    /**
-     * Kendo data source
-     *
-     * @var Riesenia\Kendo\Widget\DataSource
-     */
-    public $dataSource = null;
-
-    /**
-     * Kendo widget
-     *
-     * @var Riesenia\Kendo\Widget\Base
-     */
-    public $widget = null;
-
-    /**
-     * HTML attributes
+     * HTML attributes.
      *
      * @var array
      */
     protected $_htmlAttributes = [];
 
     /**
-     * Class aliases
+     * Class aliases.
      *
      * @var array
      */
     protected static $_aliases = [];
 
     /**
-     * Construct the helper
+     * Construct the helper.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -61,10 +61,11 @@ abstract class KendoHelper
     }
 
     /**
-     * Return new instance
+     * Return new instance.
      *
-     * @param string id
-     * @return Riesenia\Utility\Kendo\KendoHelper
+     * @param string $id
+     *
+     * @return $this
      */
     public static function create($id)
     {
@@ -72,11 +73,10 @@ abstract class KendoHelper
     }
 
     /**
-     * Define class alias
+     * Define class alias.
      *
-     * @param string alias
-     * @param string full class name
-     * @return void
+     * @param string $alias
+     * @param string $class
      */
     public static function alias($alias, $class)
     {
@@ -84,25 +84,26 @@ abstract class KendoHelper
     }
 
     /**
-     * Return rendered HTML
+     * Return rendered HTML.
      *
      * @return string
      */
     abstract public function html();
 
     /**
-     * Return rendered javascript
+     * Return rendered javascript.
      *
      * @return string
      */
     abstract public function script();
 
     /**
-     * Add transport (passed to datasource)
+     * Add transport (passed to datasource).
      *
-     * @param string type
-     * @param array options
-     * @return Riesenia\Utility\Kendo\KendoHelper
+     * @param string $type
+     * @param array  $options
+     *
+     * @return $this
      */
     public function addTransport($type, $options = [])
     {
@@ -112,11 +113,12 @@ abstract class KendoHelper
     }
 
     /**
-     * Add field (passed to model)
+     * Add field (passed to model).
      *
-     * @param string field name
-     * @param array options
-     * @return Riesenia\Utility\Kendo\KendoHelper
+     * @param string $key
+     * @param array  $options
+     *
+     * @return $this
      */
     public function addField($key, $options = [])
     {
@@ -126,11 +128,12 @@ abstract class KendoHelper
     }
 
     /**
-     * Add HTML attribute
+     * Add HTML attribute.
      *
-     * @param string name
-     * @param mixed value
-     * @return Riesenia\Utility\Kendo\KendoHelper
+     * @param string $name
+     * @param mixed  $value
+     *
+     * @return $this
      */
     public function addAttribute($name, $value)
     {
@@ -140,19 +143,10 @@ abstract class KendoHelper
     }
 
     /**
-     * Output HTML on echoing
+     * Render input.
      *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->html();
-    }
-
-    /**
-     * Render input
+     * @param string $id
      *
-     * @param string id attribute
      * @return string
      */
     protected function _input($id)
@@ -161,9 +155,10 @@ abstract class KendoHelper
     }
 
     /**
-     * Render select
+     * Render select.
      *
-     * @param string id attribute
+     * @param string $id
+     *
      * @return string
      */
     protected function _select($id)
@@ -172,10 +167,11 @@ abstract class KendoHelper
     }
 
     /**
-     * Render div
+     * Render div.
      *
-     * @param string id attribute
-     * @param string content
+     * @param string $id
+     * @param string $content
+     *
      * @return string
      */
     protected function _div($id, $content = '')
@@ -184,11 +180,12 @@ abstract class KendoHelper
     }
 
     /**
-     * Render HTML tag
+     * Render HTML tag.
      *
-     * @param string tag name
-     * @param string|bool content (false for not pair tag)
-     * @param array attributes
+     * @param string      $name
+     * @param bool|string $content
+     * @param array       $attributes
+     *
      * @return string
      */
     protected function _tag($name, $content = false, $attributes = [])
@@ -196,7 +193,7 @@ abstract class KendoHelper
         $tag = '<' . $name;
 
         foreach ($attributes as $attribute => $value) {
-            if (!is_null($value) && $value !== false) {
+            if ($value !== null && $value !== false) {
                 $tag .= ' ' . $attribute . '="' . ($value === true ? $attribute : $value) . '"';
             }
         }
@@ -207,16 +204,27 @@ abstract class KendoHelper
     }
 
     /**
-     * Handle dynamic method calls - forward them to the widget
+     * Output HTML on echoing.
      *
-     * @param string method name
-     * @param array arguments
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->html();
+    }
+
+    /**
+     * Handle dynamic method calls - forward them to the widget.
+     *
+     * @param string $method
+     * @param array  $arguments
+     *
      * @return mixed
      */
     public function __call($method, $arguments)
     {
-        if (is_null($this->widget)) {
-            throw new \BadMethodCallException("Unknown method: " . $method);
+        if ($this->widget === null) {
+            throw new \BadMethodCallException('Unknown method: ' . $method);
         }
 
         $return = call_user_func_array([$this->widget, $method], $arguments);

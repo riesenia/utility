@@ -4,44 +4,44 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Date helper
+ * Date helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Date extends KendoHelper
 {
     /**
-     * Range "from" element id
+     * Range "from" element id.
      *
      * @var string
      */
     protected $_rangeFrom;
 
     /**
-     * Range "to" element id
+     * Range "to" element id.
      *
      * @var string
      */
     protected $_rangeTo;
 
     /**
-     * Substring of datetime start
+     * Substring of datetime start.
      *
      * @var int
      */
     protected $_substringStart = 0;
 
     /**
-     * Substring of datetime end
+     * Substring of datetime end.
      *
      * @var int
      */
     protected $_substringEnd = 10;
 
     /**
-     * Construct the picker
+     * Construct the picker.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -53,10 +53,11 @@ class Date extends KendoHelper
     }
 
     /**
-     * Set range "from" element id
+     * Set range "from" element id.
      *
-     * @param string id of the "from" element
-     * @return Riesenia\Utility\Kendo\DateTime
+     * @param string $id id of the "from" element
+     *
+     * @return $this
      */
     public function rangeFrom($id)
     {
@@ -66,10 +67,11 @@ class Date extends KendoHelper
     }
 
     /**
-     * Set range "to" element id
+     * Set range "to" element id.
      *
-     * @param string id of the "to" element
-     * @return Riesenia\Utility\Kendo\DateTime
+     * @param string $id id of the "to" element
+     *
+     * @return $this
      */
     public function rangeTo($id)
     {
@@ -79,7 +81,7 @@ class Date extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -92,7 +94,7 @@ class Date extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

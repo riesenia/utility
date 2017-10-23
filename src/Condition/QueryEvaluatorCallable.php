@@ -9,9 +9,10 @@ namespace Riesenia\Utility\Condition;
 class QueryEvaluatorCallable extends QueryEvaluator
 {
     /**
-     * Parse query
+     * Parse query.
      *
-     * @param string query
+     * @param string $query
+     *
      * @return array
      */
     public function parse($query)
@@ -42,9 +43,12 @@ class QueryEvaluatorCallable extends QueryEvaluator
     }
 
     /**
-     * Parse condition divided to field, operator and value
+     * Parse condition divided to field, operator and value.
      *
-     * @param string field
+     * @param string $field
+     * @param string $operator
+     * @param string $value
+     *
      * @return array
      */
     protected function _parseCondition($field, $operator, $value)
@@ -57,12 +61,14 @@ class QueryEvaluatorCallable extends QueryEvaluator
 
             case 'IN':
                 $value = array_map('trim', explode(',', trim($value, '()')));
+
                 return function ($item) use ($field, $value) {
                     return isset($item[$field]) && in_array($item[$field], $value);
                 };
 
             case 'NOTIN':
                 $value = array_map('trim', explode(',', trim($value, '()')));
+
                 return function ($item) use ($field, $value) {
                     return !isset($item[$field]) || !in_array($item[$field], $value);
                 };

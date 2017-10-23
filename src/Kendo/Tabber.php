@@ -4,23 +4,23 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Tabber helper
+ * Tabber helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Tabber extends KendoHelper
 {
     /**
-     * List content
+     * List content.
      *
      * @var string
      */
     protected $_ulContent = '';
 
     /**
-     * Construct the tabber
+     * Construct the tabber.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -30,12 +30,13 @@ class Tabber extends KendoHelper
     }
 
     /**
-     * Add remote tab
+     * Add remote tab.
      *
-     * @param string tab content
-     * @param string url
-     * @param bool active tab
-     * @return Riesenia\Utility\Kendo\Tabber
+     * @param string $content
+     * @param string $url
+     * @param bool   $active
+     *
+     * @return $this
      */
     public function addRemoteTab($content, $url, $active = false)
     {
@@ -47,7 +48,7 @@ class Tabber extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -57,7 +58,7 @@ class Tabber extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

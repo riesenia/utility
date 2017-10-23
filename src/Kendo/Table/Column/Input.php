@@ -2,35 +2,35 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Input column
+ * Input column.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Input extends Base
 {
     /**
-     * Column template with %field%, %type% and %options% placeholder
+     * Column template with %field%, %type% and %options% placeholder.
      *
      * @var string
      */
     protected $_format = '<input type="%type%" data-row-uid="#: uid #" name="%field%Input" value="#: %field% #"%options% />';
 
     /**
-     * Predefined class
+     * Predefined class.
      *
      * @var string
      */
     protected $_class = 'tableColumn tableInput';
 
     /**
-     * Not available condition
+     * Not available condition.
      *
      * @var string
      */
     protected $_notAvailableCondition = 'true';
 
     /**
-     * Get options for grid column definition
+     * Get options for grid column definition.
      *
      * @return array
      */
@@ -40,31 +40,7 @@ class Input extends Base
     }
 
     /**
-     * Return rendered column
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        $type = 'text';
-        $options = '';
-
-        if (isset($this->_options['input'])) {
-            if (isset($this->_options['input']['type'])) {
-                $type = $this->_options['input']['type'];
-                unset($this->_options['input']['type']);
-            }
-
-            foreach ($this->_options['input'] as $key => $value) {
-                $options .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
-            }
-        }
-
-        return str_replace(['%type%', '%options%'], [$type, $options], parent::__toString());
-    }
-
-    /**
-     * Return rendered javascript
+     * Return rendered javascript.
      *
      * @return string
      */
@@ -85,12 +61,36 @@ class Input extends Base
     }
 
     /**
-     * Value setter
+     * Value setter.
      *
      * @var string
      */
     protected function _setValue()
     {
         return '$(this).val()';
+    }
+
+    /**
+     * Return rendered column.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $type = 'text';
+        $options = '';
+
+        if (isset($this->_options['input'])) {
+            if (isset($this->_options['input']['type'])) {
+                $type = $this->_options['input']['type'];
+                unset($this->_options['input']['type']);
+            }
+
+            foreach ($this->_options['input'] as $key => $value) {
+                $options .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
+            }
+        }
+
+        return str_replace(['%type%', '%options%'], [$type, $options], parent::__toString());
     }
 }

@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * ComboBox helper
+ * ComboBox helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class ComboBox extends KendoHelper
 {
     /**
-     * Construct the combo box
+     * Construct the combo box.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -33,7 +33,7 @@ class ComboBox extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -43,7 +43,7 @@ class ComboBox extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

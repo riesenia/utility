@@ -14,9 +14,12 @@ class QueryEvaluatorCart extends QueryEvaluatorCallable
     use ParseDecimalTrait;
 
     /**
-     * Parse condition divided to field, operator and value
+     * Parse condition divided to field, operator and value.
      *
-     * @param string field
+     * @param string $field
+     * @param string $operator
+     * @param string $value
+     *
      * @return array
      */
     protected function _parseCondition($field, $operator, $value)

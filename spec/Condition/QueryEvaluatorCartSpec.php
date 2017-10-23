@@ -1,8 +1,8 @@
 <?php
 namespace spec\Riesenia\Utility\Condition;
 
-use PhpSpec\ObjectBehavior;
 use Litipk\BigNumbers\Decimal;
+use PhpSpec\ObjectBehavior;
 
 class QueryEvaluatorCartSpec extends ObjectBehavior
 {

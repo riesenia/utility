@@ -2,31 +2,31 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Actions column
+ * Actions column.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Actions extends Base
 {
     /**
-     * Predefined class
+     * Predefined class.
      *
      * @var string
      */
     protected $_class = 'tableColumn tableActions';
 
     /**
-     * Predefined style
+     * Predefined style.
      *
      * @var string
      */
     protected $_style = '';
 
     /**
-     * Construct the column
+     * Construct the column.
      *
-     * @param array options
-     * @param string table id
+     * @param array  $options
+     * @param string $tableId
      */
     public function __construct(array $options, $tableId)
     {
@@ -43,17 +43,7 @@ class Actions extends Base
     }
 
     /**
-     * Return rendered column
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return '<td class="' . $this->_options['class'] . '" style="' . $this->_style . '">' . implode(' ', $this->_options['actions']) . '</td>';
-    }
-
-    /**
-     * Return rendered javascript
+     * Return rendered javascript.
      *
      * @return string
      */
@@ -67,5 +57,15 @@ class Actions extends Base
         }
 
         return $script;
+    }
+
+    /**
+     * Return rendered column.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return '<td class="' . $this->_options['class'] . '" style="' . $this->_style . '">' . implode(' ', $this->_options['actions']) . '</td>';
     }
 }

@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * ListView helper
+ * ListView helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class ListView extends KendoHelper
 {
     /**
-     * Construct the list view
+     * Construct the list view.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -33,10 +33,11 @@ class ListView extends KendoHelper
     }
 
     /**
-     * Set template providing only id
+     * Set template providing only id.
      *
-     * @param string template id
-     * @return Riesenia\Utility\Kendo\ListView
+     * @param string $id
+     *
+     * @return $this
      */
     public function setTemplateById($id)
     {
@@ -46,7 +47,7 @@ class ListView extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -56,7 +57,7 @@ class ListView extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

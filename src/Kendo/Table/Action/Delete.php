@@ -2,14 +2,14 @@
 namespace Riesenia\Utility\Kendo\Table\Action;
 
 /**
- * Delete action
+ * Delete action.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Delete extends Base
 {
     /**
-     * Options
+     * Options.
      *
      * @var array
      */
@@ -22,7 +22,7 @@ class Delete extends Base
     ];
 
     /**
-     * Command (for column definition)
+     * Command (for column definition).
      *
      * @return mixed
      */

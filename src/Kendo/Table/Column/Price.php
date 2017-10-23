@@ -2,21 +2,21 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Price column
+ * Price column.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Price extends Number
 {
     /**
-     * Field format with %field% placeholder
+     * Field format with %field% placeholder.
      *
      * @var string
      */
     protected $_format = '#: kendo.toString(%field%, "c2") #';
 
     /**
-     * Predefined class
+     * Predefined class.
      *
      * @var string
      */

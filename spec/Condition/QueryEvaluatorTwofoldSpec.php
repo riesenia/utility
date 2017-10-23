@@ -20,7 +20,7 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
                 ],
                 'price' => [
                     'field' => 'unit_price',
-                    'operators' => ['>=', '>', '<', '<='] ]
+                    'operators' => ['>=', '>', '<', '<=']]
                 ],
             'P2' => [
                 'pid' => [

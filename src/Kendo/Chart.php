@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Chart helper
+ * Chart helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Chart extends KendoHelper
 {
     /**
-     * Construct the chart
+     * Construct the chart.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -31,7 +31,7 @@ class Chart extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -41,7 +41,7 @@ class Chart extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

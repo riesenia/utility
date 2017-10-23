@@ -23,16 +23,16 @@ class QueryEvaluator
     const PARENTHESIS_CLOSE = ')';
 
     /**
-     * Config for this class
+     * Config for this class.
      *
      * @var array
      */
     protected $_config = [];
 
     /**
-     * Setup
+     * Setup.
      *
-     * @param array configuration options
+     * @param array $config
      */
     public function __construct(array $config)
     {
@@ -40,9 +40,10 @@ class QueryEvaluator
     }
 
     /**
-     * Parse query
+     * Parse query.
      *
-     * @param string query
+     * @param string $query
+     *
      * @return array
      */
     public function parse($query)
@@ -87,9 +88,10 @@ class QueryEvaluator
     }
 
     /**
-     * Parse condition (column operator value)
+     * Parse condition (column operator value).
      *
-     * @param string condition
+     * @param string $condition
+     *
      * @return array
      */
     public function parseCondition($condition)
@@ -114,9 +116,12 @@ class QueryEvaluator
     }
 
     /**
-     * Parse condition divided to field, operator and value
+     * Parse condition divided to field, operator and value.
      *
-     * @param string field
+     * @param string $field
+     * @param string $operator
+     * @param string $value
+     *
      * @return array
      */
     protected function _parseCondition($field, $operator, $value)
@@ -158,9 +163,10 @@ class QueryEvaluator
     }
 
     /**
-     * Map parenthesis location
+     * Map parenthesis location.
      *
-     * @param string query
+     * @param string $query
+     *
      * @return array
      */
     protected function _mapParenthesis($query)
@@ -168,14 +174,14 @@ class QueryEvaluator
         $parenthesis = [];
         $lastParenthesis = [];
 
-        for ($i = 0; $i < strlen($query); $i++) {
+        for ($i = 0; $i < strlen($query); ++$i) {
             // opening
-            if ($query{$i} == static::PARENTHESIS_OPEN) {
+            if ($query[$i] == static::PARENTHESIS_OPEN) {
                 $parenthesis[$i] = -1;
                 $lastParenthesis[] = $i;
             }
 
-            if ($query{$i} == static::PARENTHESIS_CLOSE) {
+            if ($query[$i] == static::PARENTHESIS_CLOSE) {
                 if (!count($lastParenthesis)) {
                     throw new QueryEvaluatorException(['position' => $i], QueryEvaluatorException::MISSING_OPENING_PARENTHESIS);
                 }
@@ -193,11 +199,12 @@ class QueryEvaluator
     }
 
     /**
-     * Split query by operator
+     * Split query by operator.
      *
-     * @param string query
-     * @param string operator
-     * @param array parenthesis
+     * @param string $query
+     * @param string $operator
+     * @param array  $parenthesis
+     *
      * @return array|bool
      */
     protected function _split($query, $operator, array $parenthesis)

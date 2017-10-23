@@ -2,14 +2,14 @@
 namespace Riesenia\Utility\Kendo\Table\Action;
 
 /**
- * Edit action
+ * Edit action.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Edit extends Base
 {
     /**
-     * Options
+     * Options.
      *
      * @var array
      */
@@ -22,7 +22,7 @@ class Edit extends Base
     ];
 
     /**
-     * Command (for column definition)
+     * Command (for column definition).
      *
      * @return mixed
      */

@@ -2,31 +2,31 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Price column
+ * Price column.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Number extends Base
 {
     /**
-     * Type used for model type property
+     * Type used for model type property.
      *
      * @var string
      */
     protected $_type = 'number';
 
     /**
-     * Predefined class
+     * Predefined class.
      *
      * @var string
      */
     protected $_class = 'tableColumn tableNumber';
 
     /**
-     * Construct the column
+     * Construct the column.
      *
-     * @param array options
-     * @param string table id
+     * @param array  $options
+     * @param string $tableId
      */
     public function __construct(array $options, $tableId)
     {

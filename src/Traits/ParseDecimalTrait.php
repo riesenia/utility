@@ -2,23 +2,24 @@
 namespace Riesenia\Utility\Traits;
 
 /**
- * Add _parseDecimal method
+ * Add _parseDecimal method.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 trait ParseDecimalTrait
 {
     /**
-     * Decimal parser
+     * Decimal parser.
      *
-     * @param mixed number
-     * @param array options
-     * @param bool allow null value to return null
+     * @param mixed $number
+     * @param array $options
+     * @param bool  $allowNull
+     *
      * @return float
      */
     protected function _parseDecimal($number, array $options = [], $allowNull = false)
     {
-        if ($allowNull && is_null($number)) {
+        if ($allowNull && $number === null) {
             return $number;
         }
 

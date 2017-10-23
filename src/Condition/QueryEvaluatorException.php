@@ -12,31 +12,31 @@ class QueryEvaluatorException extends \RuntimeException
     const UNKNOWN_PREFIX = 706;
 
     /**
-     * Array of attributes that are passed in from the constructor
+     * Array of attributes that are passed in from the constructor.
      *
      * @var array
      */
     protected $_attributes = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string|array error message
-     * @param int code
-     * @param \Throwable previous exception
+     * @param array|string    $message
+     * @param int             $code
+     * @param \Throwable|null $previous
      */
-    public function __construct($message = "", $code = 0, $previous = null)
+    public function __construct($message = '', $code = 0, $previous = null)
     {
         if (is_array($message)) {
             $this->_attributes = $message;
-            $message = "Invalid query!";
+            $message = 'Invalid query!';
         }
 
         parent::__construct($message, $code, $previous);
     }
 
     /**
-     * Get the passed in attributes
+     * Get the passed in attributes.
      *
      * @return array
      */

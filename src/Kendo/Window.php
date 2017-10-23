@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Window helper
+ * Window helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Window extends KendoHelper
 {
     /**
-     * Construct the window
+     * Construct the window.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -27,7 +27,7 @@ class Window extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -37,7 +37,7 @@ class Window extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

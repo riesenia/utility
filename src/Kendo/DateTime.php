@@ -4,23 +4,23 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * DateTime helper
+ * DateTime helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class DateTime extends Date
 {
     /**
-     * Substring of datetime end
+     * Substring of datetime end.
      *
      * @var int
      */
     protected $_substringEnd = 19;
 
     /**
-     * Construct the picker
+     * Construct the picker.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {

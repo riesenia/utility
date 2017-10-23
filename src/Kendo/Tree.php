@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Tree helper
+ * Tree helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Tree extends KendoHelper
 {
     /**
-     * Construct the tree
+     * Construct the tree.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -31,10 +31,11 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Add hasChildren field to model
+     * Add hasChildren field to model.
      *
-     * @param string field name
-     * @return Riesenia\Utility\Kendo\Tree
+     * @param string $field
+     *
+     * @return $this
      */
     public function hasChildren($field = 'hasChildren')
     {
@@ -50,15 +51,16 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Add checkboxes
+     * Add checkboxes.
      *
-     * @param mixed checkboxes options
-     * @return Riesenia\Utility\Kendo\Tree
+     * @param mixed|null $options
+     *
+     * @return $this
      */
     public function addCheckboxes($options = null)
     {
         // default template
-        if (is_null($options)) {
+        if ($options === null) {
             $options = ['template' => '<input type="checkbox" name="tableCheckbox" value="#: item.id #" />'];
         }
 
@@ -68,10 +70,11 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Expand tree through provided path
+     * Expand tree through provided path.
      *
-     * @param array path from highest node to the last
-     * @return Riesenia\Utility\Kendo\Tree
+     * @param array $path from highest node to the last
+     *
+     * @return $this
      */
     public function expand($path = [])
     {
@@ -102,7 +105,7 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -112,7 +115,7 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

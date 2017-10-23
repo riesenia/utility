@@ -4,65 +4,65 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Table helper
+ * Table helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Table extends KendoHelper
 {
     /**
-     * Row template
+     * Row template.
      *
      * @var string
      */
     protected $_rowTemplate = '<tr data-uid="#: uid #" class="%class%" style="%style%">';
 
     /**
-     * Row classes
+     * Row classes.
      *
      * @var array
      */
     protected $_rowClasses = [];
 
     /**
-     * Row styles
+     * Row styles.
      *
      * @var array
      */
     protected $_rowStyles = [];
 
     /**
-     * Table columns
+     * Table columns.
      *
      * @var array
      */
     protected $_columns = [];
 
     /**
-     * Actions
+     * Actions.
      *
      * @var array
      */
     protected $_actions = [];
 
     /**
-     * Text for no results
+     * Text for no results.
      *
      * @var string
      */
     protected $_noResults;
 
     /**
-     * Width for one action button
+     * Width for one action button.
      *
      * @var int
      */
     protected $_actionWidth = 45;
 
     /**
-     * Construct the table
+     * Construct the table.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -83,10 +83,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Set detailInit property
+     * Set detailInit property.
      *
-     * @param \Riesenia\Kendo\JavascriptFunction
-     * @return Riesenia\Utility\Kendo\Table
+     * @param \Riesenia\Kendo\JavascriptFunction $value
+     *
+     * @return $this
      */
     public function setDetailInit($value)
     {
@@ -98,10 +99,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Add checkboxes
+     * Add checkboxes.
      *
-     * @param array options
-     * @return Riesenia\Utility\Kendo\Table
+     * @param array $options
+     *
+     * @return $this
      */
     public function addCheckboxes($options = [])
     {
@@ -111,15 +113,16 @@ class Table extends KendoHelper
     }
 
     /**
-     * Add table column
+     * Add table column.
      *
-     * @param string field name
-     * @param string column title
-     * @param string type
-     * @param array options
-     * @param bool prepend
-     * @param bool add widget column
-     * @return Riesenia\Utility\Kendo\Table
+     * @param string      $field
+     * @param string      $title
+     * @param string|null $type
+     * @param array       $options
+     * @param bool        $prepend
+     * @param bool        $addWidgetColumn
+     *
+     * @return $this
      */
     public function addColumn($field, $title = '&nbsp;', $type = null, $options = [], $prepend = false, $addWidgetColumn = true)
     {
@@ -131,14 +134,14 @@ class Table extends KendoHelper
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Column\\Base')) {
             // default class
-            if (is_null($type)) {
+            if ($type === null) {
                 $type = 'base';
             }
 
             $type = __NAMESPACE__ . '\\Table\\Column\\' . ucfirst($type);
 
             if (!class_exists($type)) {
-                throw new \BadMethodCallException("Invalid column class: " . $type);
+                throw new \BadMethodCallException('Invalid column class: ' . $type);
             }
         }
 
@@ -163,11 +166,12 @@ class Table extends KendoHelper
     }
 
     /**
-     * Add table action
+     * Add table action.
      *
-     * @param string type
-     * @param array options
-     * @return Riesenia\Utility\Kendo\Table
+     * @param string|null $type
+     * @param array       $options
+     *
+     * @return $this
      */
     public function addAction($type = null, $options = [])
     {
@@ -179,14 +183,14 @@ class Table extends KendoHelper
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Action\\Base')) {
             // default class
-            if (is_null($type)) {
+            if ($type === null) {
                 $type = 'base';
             }
 
             $type = __NAMESPACE__ . '\\Table\\Action\\' . ucfirst($type);
 
             if (!class_exists($type)) {
-                throw new \BadMethodCallException("Invalid action class: " . $type);
+                throw new \BadMethodCallException('Invalid action class: ' . $type);
             }
         }
 
@@ -199,10 +203,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Set no results text
+     * Set no results text.
      *
-     * @param string
-     * @return Riesenia\Utility\Kendo\Table
+     * @param string $text
+     *
+     * @return $this
      */
     public function setNoResults($text)
     {
@@ -212,10 +217,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Set no results text
+     * Set no results text.
      *
-     * @param string
-     * @return Riesenia\Utility\Kendo\Table
+     * @param string $template
+     *
+     * @return $this
      */
     public function setRowTemplate($template)
     {
@@ -225,10 +231,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Add row class
+     * Add row class.
      *
-     * @param string
-     * @return Riesenia\Utility\Kendo\Table
+     * @param string $class
+     *
+     * @return $this
      */
     public function addRowClass($class)
     {
@@ -238,10 +245,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Add row style
+     * Add row style.
      *
-     * @param string
-     * @return Riesenia\Utility\Kendo\Table
+     * @param string $style
+     *
+     * @return $this
      */
     public function addRowStyle($style)
     {
@@ -251,10 +259,11 @@ class Table extends KendoHelper
     }
 
     /**
-     * Add checkboxes
+     * Add checkboxes.
      *
-     * @param int options
-     * @return Riesenia\Utility\Kendo\Table
+     * @param int $width
+     *
+     * @return $this
      */
     public function setActionWidth($width)
     {
@@ -264,7 +273,7 @@ class Table extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -274,7 +283,7 @@ class Table extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

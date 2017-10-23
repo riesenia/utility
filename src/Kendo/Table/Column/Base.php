@@ -2,87 +2,87 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Base class for Table helper columns
+ * Base class for Table helper columns.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Base
 {
     /**
-     * Type used for model type property
+     * Type used for model type property.
      *
      * @var string
      */
     protected $_type = 'string';
 
     /**
-     * Column template with %format% / %field% / %class% placeholder
+     * Column template with %format% / %field% / %class% placeholder.
      *
      * @var string
      */
     protected $_template = '<td class="%class%" style="%style%">%format%</td>';
 
     /**
-     * Field format with %field% placeholder
+     * Field format with %field% placeholder.
      *
      * @var string
      */
     protected $_format = '#: %field% #';
 
     /**
-     * Predefined class
+     * Predefined class.
      *
      * @var string
      */
     protected $_class = 'tableColumn';
 
     /**
-     * Predefined style
+     * Predefined style.
      *
      * @var string
      */
     protected $_style = '#: grid.columns[grid.element.find("th[data-field=%field%]").data("index")].hidden ? "display: none;" : "" #';
 
     /**
-     * Options
+     * Options.
      *
      * @var array
      */
     protected $_options = [];
 
     /**
-     * Model options
+     * Model options.
      *
      * @var array
      */
     protected $_modelOptions = [];
 
     /**
-     * Table id
+     * Table id.
      *
      * @var string
      */
     protected $_tableId;
 
     /**
-     * Not available condition
+     * Not available condition.
      *
      * @var string
      */
     protected $_notAvailableCondition = '%field% !== null && %field% !== ""';
 
     /**
-     * Not available text
+     * Not available text.
      *
      * @var string
      */
     protected $_notAvailableText = 'N/A';
 
     /**
-     * Construct the column
+     * Construct the column.
      *
-     * @param array options
-     * @param string table id
+     * @param array  $options
+     * @param string $tableId
      */
     public function __construct(array $options, $tableId)
     {
@@ -128,7 +128,7 @@ class Base
     }
 
     /**
-     * Get options for model field definition
+     * Get options for model field definition.
      *
      * @return array
      */
@@ -138,7 +138,7 @@ class Base
     }
 
     /**
-     * Get options for grid column definition
+     * Get options for grid column definition.
      *
      * @return array
      */
@@ -148,7 +148,30 @@ class Base
     }
 
     /**
-     * Return rendered column
+     * Return rendered javascript.
+     *
+     * @return string
+     */
+    public function script()
+    {
+        $script = '';
+
+        // hide under certain width
+        if (isset($this->_options['display'])) {
+            $script .= '$(window).resize(function(e) {
+                if ($("#' . $this->_tableId . '").width() < ' . (int) $this->_options['display'] . ') {
+                    $("#' . $this->_tableId . '").data("kendoGrid").hideColumn("' . $this->_options['field'] . '");
+                } else {
+                    $("#' . $this->_tableId . '").data("kendoGrid").showColumn("' . $this->_options['field'] . '");
+                }
+            });';
+        }
+
+        return $script;
+    }
+
+    /**
+     * Return rendered column.
      *
      * @return string
      */
@@ -183,28 +206,5 @@ class Base
         $format = '# if (' . $this->_notAvailableCondition . ') { #' . $format . '# } else { # ' . $this->_notAvailableText . ' # } #';
 
         return str_replace(['%format%', '%field%', '%class%', '%style%'], [$format, $this->_options['field'], $this->_options['class'], $this->_options['style']], $this->_template);
-    }
-
-    /**
-     * Return rendered javascript
-     *
-     * @return string
-     */
-    public function script()
-    {
-        $script = '';
-
-        // hide under certain width
-        if (isset($this->_options['display'])) {
-            $script .= '$(window).resize(function(e) {
-                if ($("#' . $this->_tableId . '").width() < ' . (int)$this->_options['display'] . ') {
-                    $("#' . $this->_tableId . '").data("kendoGrid").hideColumn("' . $this->_options['field'] . '");
-                } else {
-                    $("#' . $this->_tableId . '").data("kendoGrid").showColumn("' . $this->_options['field'] . '");
-                }
-            });';
-        }
-
-        return $script;
     }
 }

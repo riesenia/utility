@@ -17,9 +17,10 @@ namespace Riesenia\Utility\Condition;
 class QueryEvaluatorTwofold extends QueryEvaluator
 {
     /**
-     * Parse condition (column operator value)
+     * Parse condition (column operator value).
      *
-     * @param string condition
+     * @param string $condition
+     *
      * @return array
      */
     public function parseCondition($condition)
@@ -55,9 +56,12 @@ class QueryEvaluatorTwofold extends QueryEvaluator
     }
 
     /**
-     * Parse condition divided to field, operator and value
+     * Parse condition divided to field, operator and value.
      *
-     * @param string field
+     * @param string $field
+     * @param string $operator
+     * @param string $value
+     *
      * @return array
      */
     protected function _parseCondition($field, $operator, $value)
@@ -83,10 +87,11 @@ class QueryEvaluatorTwofold extends QueryEvaluator
     }
 
     /**
-     * Evaluate if right side of the condition is expression
+     * Evaluate if right side of the condition is expression.
      *
-     * @param string key part
-     * @param string value part
+     * @param string $key
+     * @param string $value
+     *
      * @return array|null
      */
     protected function _parseTwofold($key, $value)

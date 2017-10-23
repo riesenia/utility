@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * MultiSelect helper
+ * MultiSelect helper.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class MultiSelect extends KendoHelper
 {
     /**
-     * Construct the select
+     * Construct the select.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -33,7 +33,7 @@ class MultiSelect extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -43,7 +43,7 @@ class MultiSelect extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

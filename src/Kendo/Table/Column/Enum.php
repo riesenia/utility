@@ -2,17 +2,17 @@
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
- * Enumeration column
+ * Enumeration column.
  *
  * @author Tomas Saghy <segy@riesenia.com>
  */
 class Enum extends Base
 {
     /**
-     * Construct the column
+     * Construct the column.
      *
-     * @param array options
-     * @param string table id
+     * @param array  $options
+     * @param string $tableId
      */
     public function __construct(array $options, $tableId)
     {

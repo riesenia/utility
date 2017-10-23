@@ -4,16 +4,16 @@ namespace Riesenia\Utility\Kendo;
 use Riesenia\Kendo\Kendo;
 
 /**
- * Upload helper
+ * Upload helper.
  *
  * @author Milan Holes <milan@riesenia.com>
  */
 class Upload extends KendoHelper
 {
     /**
-     * Construct the uploader
+     * Construct the uploader.
      *
-     * @param string id
+     * @param string $id
      */
     public function __construct($id)
     {
@@ -25,7 +25,7 @@ class Upload extends KendoHelper
     }
 
     /**
-     * Return HTML
+     * Return HTML.
      *
      * @return string
      */
@@ -37,7 +37,7 @@ class Upload extends KendoHelper
     }
 
     /**
-     * Return JavaScript
+     * Return JavaScript.
      *
      * @return string
      */

@@ -9,13 +9,14 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
-        "riesenia/kendo": "~1.0"
+        "php": ">=7.0",
+        "riesenia/kendo": "~2.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0",
-        "bossa/phpspec2-expect": "*",
-        "litipk/php-bignumbers": "0.7.2"
+        "phpspec/phpspec": "~4.0",
+        "bossa/phpspec2-expect": "~3.0",
+        "rshop/php-cs-fixer-config": "~1.0",
+        "litipk/php-bignumbers": "~0.8"
     },
     "autoload": {
         "psr-4": {
