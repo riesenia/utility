@@ -16,10 +16,12 @@ Or add to your *composer.json* file as a requirement:
 ```json
 {
     "require": {
-        "riesenia/utility": "~1.0"
+        "riesenia/utility": "~2.0"
     }
 }
 ```
+
+*Note: if you use PHP 5.4 - 5.6 use 1.\* version of this library.*
 
 ## Kendo
 
