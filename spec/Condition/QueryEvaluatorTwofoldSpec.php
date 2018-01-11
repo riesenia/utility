@@ -43,7 +43,10 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
     {
         $this->parse('P1.pid = P2.pid')->shouldReturn(['P1.id = P2.uuid']);
         $this->parse('P1.price >= P2.price')->shouldReturn(['P1.unit_price >= P2.unit_price']);
-        $this->parse('P1.name NOT P2.name')->shouldReturn(['P1.name != P2.name']);
+        $this->parse('P1.name NOT P2.name')->shouldReturn(['OR' => [
+            'P1.name != P2.name',
+            'P1.name IS NULL'
+        ]]);
         $this->parse('P1.name CONTAINS xxx.rrr')->shouldReturn(['P1.name LIKE' => '%xxx.rrr%']);
     }
 
@@ -76,8 +79,11 @@ class QueryEvaluatorTwofoldSpec extends ObjectBehavior
 
     public function it_parses_complex_condition_with_parenthesis()
     {
-        $this->parse('P1.pid IN 2, 3 AND ((P1.price >= P2.price OR P1.name = x) OR P1.name CONTAINS yyy.xxx)')->shouldReturn(['AND' => [
-            ['P1.id IN' => ['2', '3']],
+        $this->parse('P1.pid NOTIN 2, 3 AND ((P1.price >= P2.price OR P1.name = x) OR P1.name CONTAINS yyy.xxx)')->shouldReturn(['AND' => [
+            ['OR' => [
+                'P1.id NOT IN' => ['2', '3'],
+                'P1.id IS NULL'
+            ]],
             ['OR' => [
                 ['OR' => [
                     ['P1.unit_price >= P2.unit_price'],

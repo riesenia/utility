@@ -126,6 +126,8 @@ class QueryEvaluator
      */
     protected function _parseCondition($field, $operator, $value)
     {
+        $addNull = false;
+
         switch ($operator) {
             case 'CONTAINS':
                 $operator = ' LIKE';
@@ -138,6 +140,7 @@ class QueryEvaluator
                 break;
 
             case 'NOTIN':
+                $addNull = true;
                 $operator = ' NOT IN';
                 $value = array_map('trim', explode(',', trim($value, '()')));
                 break;
@@ -147,6 +150,7 @@ class QueryEvaluator
                 break;
 
             case 'NOT':
+                $addNull = true;
                 $operator = ' !=';
                 break;
 
@@ -157,6 +161,13 @@ class QueryEvaluator
 
         if (isset($this->_config['_prefix']) && !strpos($field, '.')) {
             $field = $this->_config['_prefix'] . '.' . $field;
+        }
+
+        if ($addNull) {
+            return ['OR' => [
+                $field . $operator => $value,
+                $field . ' IS NULL'
+            ]];
         }
 
         return [$field . $operator => $value];

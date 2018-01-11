@@ -27,7 +27,7 @@ class QueryEvaluatorSpec extends ObjectBehavior
     public function it_parses_simple_conditions()
     {
         $this->parse('pid = 56')->shouldReturn(['id' => '56']);
-        $this->parse('pid NOT 3')->shouldReturn(['id !=' => '3']);
+        $this->parse('pid NOT 3')->shouldReturn(['OR' => ['id !=' => '3', 'id IS NULL']]);
         $this->parse('pid IN 2, 3')->shouldReturn(['id IN' => ['2', '3']]);
         $this->parse('name CONTAINS abcd etc')->shouldReturn(['name LIKE' => '%abcd etc%']);
     }
@@ -50,19 +50,25 @@ class QueryEvaluatorSpec extends ObjectBehavior
 
     public function it_parses_and_or_condition_with_correct_precedence()
     {
-        $this->parse('pid IN 2, 3 AND price >= 10 OR name = x')->shouldReturn(['OR' => [
+        $this->parse('pid IN 2, 3 AND price >= 10 OR name NOT x')->shouldReturn(['OR' => [
             ['AND' => [
                 ['id IN' => ['2', '3']],
                 ['unit_price >=' => '10']
             ]],
-            ['name' => 'x']
+            ['OR' => [
+                'name !=' => 'x',
+                'name IS NULL'
+            ]]
         ]]);
     }
 
     public function it_parses_complex_condition_with_parenthesis()
     {
-        $this->parse('pid IN 2, 3 AND ((price >= 10 OR name = x) OR name CONTAINS y)')->shouldReturn(['AND' => [
-            ['id IN' => ['2', '3']],
+        $this->parse('pid NOTIN 2, 3 AND ((price >= 10 OR name = x) OR name CONTAINS y)')->shouldReturn(['AND' => [
+            ['OR' => [
+                'id NOT IN' => ['2', '3'],
+                'id IS NULL'
+            ]],
             ['OR' => [
                 ['OR' => [
                     ['unit_price >=' => '10'],
