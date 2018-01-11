@@ -64,42 +64,45 @@ class QueryEvaluatorTwofold extends QueryEvaluator
     {
         $parsedCondition = parent::_parseCondition($field, $operator, $value);
 
-        $key = key($parsedCondition);
-        $value = current($parsedCondition);
-
-        // handle operator =
-        if ($operator == '=') {
-            $key .= ' =';
-        }
-
-        // try to parse
-        $twofold = $this->_parseTwofold($key, $value);
-
-        if ($twofold) {
-            return $twofold;
-        }
-
-        return $parsedCondition;
+        // parse twofold
+        return $this->_parseTwofold($parsedCondition);
     }
 
     /**
-     * Evaluate if right side of the condition is expression
+     * Evaluate if right side of the condition is expression.
      *
-     * @param string key part
-     * @param string value part
-     * @return array|null
+     * @param array $parsedCondition
+     *
+     * @return array
      */
-    protected function _parseTwofold($key, $value)
+    protected function _parseTwofold($parsedCondition)
     {
+        $key = key($parsedCondition);
+        $value = current($parsedCondition);
+
+        // handle IS NULL
+        if ($key === 'OR') {
+            $result = [];
+            foreach ($value as $k => $v) {
+                $result = array_merge($result, $this->_parseTwofold([$k => $v]));
+            }
+            return ['OR' => $result];
+        }
+
+        // handle operator =
+        if (!strpos($key, ' ')) {
+            $key .= ' =';
+        }
+
         if (is_array($value) || strpos($value, '.') === false) {
-            return null;
+            return $parsedCondition;
         }
 
         list($prefix, $field) = explode('.', $value, 2);
 
         // validate existing prefix and field
         if (!isset($this->_config[$prefix]) || !isset($this->_config[$prefix][$field])) {
-            return null;
+            return $parsedCondition;
         }
 
         return [$key . ' ' . $prefix . '.' . $this->_config[$prefix][$field]['field']];
