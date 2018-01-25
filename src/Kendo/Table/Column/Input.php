@@ -96,7 +96,7 @@ class Input extends Base
             }
 
             foreach ($this->_options['input'] as $key => $value) {
-                $options .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
+                $options .= ' ' . $key . '="' . htmlspecialchars((string) $value) . '"';
             }
         }
 

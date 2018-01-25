@@ -104,13 +104,13 @@ class QueryEvaluatorTwofold extends QueryEvaluator
             return ['OR' => $result];
         }
 
+        if (!is_string($key) || is_array($value) || strpos($value, '.') === false) {
+            return $parsedCondition;
+        }
+
         // handle operator =
         if (!strpos($key, ' ')) {
             $key .= ' =';
-        }
-
-        if (is_array($value) || strpos($value, '.') === false) {
-            return $parsedCondition;
         }
 
         list($prefix, $field) = explode('.', $value, 2);

@@ -140,13 +140,13 @@ class Table extends KendoHelper
             $type = static::$_aliases[$type];
         }
 
+        // default class
+        if ($type === null) {
+            $type = 'base';
+        }
+
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Column\\Base')) {
-            // default class
-            if ($type === null) {
-                $type = 'base';
-            }
-
             $type = __NAMESPACE__ . '\\Table\\Column\\' . ucfirst($type);
 
             if (!class_exists($type)) {
@@ -189,13 +189,13 @@ class Table extends KendoHelper
             $type = static::$_aliases[$type];
         }
 
+        // default class
+        if ($type === null) {
+            $type = 'base';
+        }
+
         // type can be a name of user defined class
         if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Action\\Base')) {
-            // default class
-            if ($type === null) {
-                $type = 'base';
-            }
-
             $type = __NAMESPACE__ . '\\Table\\Action\\' . ucfirst($type);
 
             if (!class_exists($type)) {
