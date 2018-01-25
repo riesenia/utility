@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -15,7 +24,7 @@ class Select extends KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         parent::__construct($id);
 
@@ -37,7 +46,7 @@ class Select extends KendoHelper
      *
      * @return string
      */
-    public function html()
+    public function html(): string
     {
         return $this->_input($this->_id);
     }
@@ -47,7 +56,7 @@ class Select extends KendoHelper
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $script = $this->widget->__toString();
 

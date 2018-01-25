@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Condition;
 
 /**
@@ -46,7 +55,7 @@ class QueryEvaluator
      *
      * @return array
      */
-    public function parse($query)
+    public function parse(string $query)
     {
         // map parenthesis
         $parenthesis = $this->_mapParenthesis($query);
@@ -94,7 +103,7 @@ class QueryEvaluator
      *
      * @return array
      */
-    public function parseCondition($condition)
+    public function parseCondition(string $condition)
     {
         $condition = array_map('trim', explode(' ', $condition, 3));
 
@@ -124,7 +133,7 @@ class QueryEvaluator
      *
      * @return array
      */
-    protected function _parseCondition($field, $operator, $value)
+    protected function _parseCondition(string $field, string $operator, string $value)
     {
         $addNull = false;
 
@@ -180,7 +189,7 @@ class QueryEvaluator
      *
      * @return array
      */
-    protected function _mapParenthesis($query)
+    protected function _mapParenthesis(string $query): array
     {
         $parenthesis = [];
         $lastParenthesis = [];
@@ -216,14 +225,14 @@ class QueryEvaluator
      * @param string $operator
      * @param array  $parenthesis
      *
-     * @return array|bool
+     * @return array
      */
-    protected function _split($query, $operator, array $parenthesis)
+    protected function _split(string $query, string $operator, array $parenthesis): array
     {
         preg_match_all('/\b' . preg_quote($operator) . '\b/', $query, $matches, PREG_OFFSET_CAPTURE);
 
         if (empty($matches[0])) {
-            return false;
+            return [];
         }
 
         $result = [];
@@ -247,7 +256,7 @@ class QueryEvaluator
         $result[] = trim(substr($query, $start));
 
         if (count($result) == 1) {
-            return false;
+            return [];
         }
 
         return $result;

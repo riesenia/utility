@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
@@ -35,7 +44,7 @@ class TableCheckbox extends Base
      * @param array  $options
      * @param string $tableId
      */
-    public function __construct(array $options, $tableId)
+    public function __construct(array $options, string $tableId)
     {
         $options['filterable'] = false;
         $options['sortable'] = false;
@@ -55,7 +64,7 @@ class TableCheckbox extends Base
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         return parent::script() . '$("#' . $this->_tableId . '").on("change", "[name=tableCheckboxAll]", function (e) {
             $("#' . $this->_tableId . ' [name=tableCheckbox]").prop("checked", $(this).prop("checked")).prop("disabled", $(this).prop("checked"));

@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
@@ -28,7 +37,7 @@ class Actions extends Base
      * @param array  $options
      * @param string $tableId
      */
-    public function __construct(array $options, $tableId)
+    public function __construct(array $options, string $tableId)
     {
         $this->_style = 'width: ' . $options['width'] . 'px;';
 
@@ -47,7 +56,7 @@ class Actions extends Base
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $script = '';
 
@@ -64,7 +73,7 @@ class Actions extends Base
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return '<td class="' . $this->_options['class'] . '" style="' . $this->_style . '">' . implode(' ', $this->_options['actions']) . '</td>';
     }

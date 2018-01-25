@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
@@ -34,7 +43,7 @@ class Input extends Base
      *
      * @return array
      */
-    public function getColumnOptions()
+    public function getColumnOptions(): array
     {
         return array_diff_key($this->_options, ['input' => 1]);
     }
@@ -44,7 +53,7 @@ class Input extends Base
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         return parent::script() . '$("#' . $this->_tableId . '").on("change", "[name=' . $this->_options['field'] . 'Input]", function (e) {
             var dataSource = $("#' . $this->_tableId . '").data("kendoGrid").dataSource;
@@ -63,9 +72,9 @@ class Input extends Base
     /**
      * Value setter.
      *
-     * @var string
+     * @return string
      */
-    protected function _setValue()
+    protected function _setValue(): string
     {
         return '$(this).val()';
     }
@@ -75,7 +84,7 @@ class Input extends Base
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $type = 'text';
         $options = '';

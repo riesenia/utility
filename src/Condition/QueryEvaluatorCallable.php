@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Condition;
 
 /**
@@ -13,9 +22,9 @@ class QueryEvaluatorCallable extends QueryEvaluator
      *
      * @param string $query
      *
-     * @return array
+     * @return callable
      */
-    public function parse($query)
+    public function parse(string $query)
     {
         $parsed = parent::parse($query);
 
@@ -49,9 +58,9 @@ class QueryEvaluatorCallable extends QueryEvaluator
      * @param string $operator
      * @param string $value
      *
-     * @return array
+     * @return callable
      */
-    protected function _parseCondition($field, $operator, $value)
+    protected function _parseCondition(string $field, string $operator, string $value)
     {
         switch ($operator) {
             case 'CONTAINS':
@@ -103,5 +112,7 @@ class QueryEvaluatorCallable extends QueryEvaluator
                     return isset($item[$field]) && $item[$field] < $value;
                 };
         }
+
+        throw new QueryEvaluatorException(['placeholder' => $field, 'operator' => $operator], QueryEvaluatorException::UNKNOWN_OPERATOR);
     }
 }

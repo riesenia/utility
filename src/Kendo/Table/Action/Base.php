@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo\Table\Action;
 
 /**
@@ -41,7 +50,7 @@ class Base
      * @param array  $options
      * @param string $tableId
      */
-    public function __construct(array $options, $tableId)
+    public function __construct(array $options, string $tableId)
     {
         $this->_tableId = $tableId;
         $this->_options = array_merge($this->_options, $options);
@@ -52,7 +61,7 @@ class Base
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         return '';
     }
@@ -72,7 +81,7 @@ class Base
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $template = $this->_template;
 

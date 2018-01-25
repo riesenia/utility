@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Condition;
 
 use Litipk\BigNumbers\Decimal;
@@ -20,9 +29,9 @@ class QueryEvaluatorCart extends QueryEvaluatorCallable
      * @param string $operator
      * @param string $value
      *
-     * @return array
+     * @return callable
      */
-    protected function _parseCondition($field, $operator, $value)
+    protected function _parseCondition(string $field, string $operator, string $value)
     {
         // sum function
         $sum = function ($item) use ($field) {
@@ -36,7 +45,7 @@ class QueryEvaluatorCart extends QueryEvaluatorCallable
         };
 
         // convert value to decimal
-        $value = Decimal::fromFloat($this->_parseDecimal($value));
+        $value = Decimal::fromFloat((float) $this->_parseDecimal($value));
 
         switch ($operator) {
             case '=':
@@ -82,6 +91,6 @@ class QueryEvaluatorCart extends QueryEvaluatorCallable
                 };
         }
 
-        return [$field . $operator => $value];
+        throw new QueryEvaluatorException(['placeholder' => $field, 'operator' => $operator], QueryEvaluatorException::UNKNOWN_OPERATOR);
     }
 }

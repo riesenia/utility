@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -15,7 +24,7 @@ class ListView extends KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         parent::__construct($id);
 
@@ -39,7 +48,7 @@ class ListView extends KendoHelper
      *
      * @return $this
      */
-    public function setTemplateById($id)
+    public function setTemplateById(string $id): self
     {
         $this->widget->setTemplate(Kendo::js('kendo.template($("#' . $id . '").html())'));
 
@@ -51,7 +60,7 @@ class ListView extends KendoHelper
      *
      * @return string
      */
-    public function html()
+    public function html(): string
     {
         return $this->_div($this->_id);
     }
@@ -61,7 +70,7 @@ class ListView extends KendoHelper
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $script = $this->widget->__toString();
 

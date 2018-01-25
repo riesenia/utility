@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -43,7 +52,7 @@ class Date extends KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         parent::__construct($id);
 
@@ -59,7 +68,7 @@ class Date extends KendoHelper
      *
      * @return $this
      */
-    public function rangeFrom($id)
+    public function rangeFrom(string $id): self
     {
         $this->_rangeFrom = $id;
 
@@ -73,7 +82,7 @@ class Date extends KendoHelper
      *
      * @return $this
      */
-    public function rangeTo($id)
+    public function rangeTo(string $id): self
     {
         $this->_rangeTo = $id;
 
@@ -85,7 +94,7 @@ class Date extends KendoHelper
      *
      * @return string
      */
-    public function html()
+    public function html(): string
     {
         $html = $this->_input($this->_id);
         $this->addAttribute('type', 'hidden');
@@ -98,7 +107,7 @@ class Date extends KendoHelper
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $rangeCode = '';
 

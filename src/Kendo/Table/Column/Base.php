@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
@@ -84,7 +93,7 @@ class Base
      * @param array  $options
      * @param string $tableId
      */
-    public function __construct(array $options, $tableId)
+    public function __construct(array $options, string $tableId)
     {
         $this->_tableId = $tableId;
 
@@ -132,7 +141,7 @@ class Base
      *
      * @return array
      */
-    public function getModelOptions()
+    public function getModelOptions(): array
     {
         return $this->_modelOptions;
     }
@@ -142,7 +151,7 @@ class Base
      *
      * @return array
      */
-    public function getColumnOptions()
+    public function getColumnOptions(): array
     {
         return $this->_options;
     }
@@ -152,7 +161,7 @@ class Base
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $script = '';
 
@@ -175,7 +184,7 @@ class Base
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $format = $this->_format;
 

@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -22,7 +31,7 @@ class Tabber extends KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         parent::__construct($id);
 
@@ -38,7 +47,7 @@ class Tabber extends KendoHelper
      *
      * @return $this
      */
-    public function addRemoteTab($content, $url, $active = false)
+    public function addRemoteTab(string $content, string $url, bool $active = false): self
     {
         $this->_ulContent .= '<li' . ($active ? ' class="k-state-active"' : '') . '>' . $content . '</li>';
 
@@ -52,7 +61,7 @@ class Tabber extends KendoHelper
      *
      * @return string
      */
-    public function html()
+    public function html(): string
     {
         return $this->_div($this->_id, '<ul>' . $this->_ulContent . '</ul>');
     }
@@ -62,7 +71,7 @@ class Tabber extends KendoHelper
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $script = $this->widget->__toString();
 

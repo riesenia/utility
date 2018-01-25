@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -64,7 +73,7 @@ class Table extends KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         parent::__construct($id);
 
@@ -89,7 +98,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function setDetailInit($value)
+    public function setDetailInit($value): self
     {
         $this->addColumn(null, '&nbsp;', 'hierarchyCell', [], true, false);
         $this->addRowClass('k-master-row');
@@ -105,7 +114,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function addCheckboxes($options = [])
+    public function addCheckboxes(array $options = []): self
     {
         $this->addColumn(null, '&nbsp;', 'tableCheckbox', $options, true);
 
@@ -115,7 +124,7 @@ class Table extends KendoHelper
     /**
      * Add table column.
      *
-     * @param string      $field
+     * @param string|null $field
      * @param string      $title
      * @param string|null $type
      * @param array       $options
@@ -124,7 +133,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function addColumn($field, $title = '&nbsp;', $type = null, $options = [], $prepend = false, $addWidgetColumn = true)
+    public function addColumn(?string $field, string $title = '&nbsp;', string $type = null, array $options = [], bool $prepend = false, bool $addWidgetColumn = true): self
     {
         // resolve alias
         if (isset(static::$_aliases[$type])) {
@@ -173,7 +182,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function addAction($type = null, $options = [])
+    public function addAction(string $type = null, array $options = []): self
     {
         // resolve alias
         if (isset(static::$_aliases[$type])) {
@@ -209,7 +218,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function setNoResults($text)
+    public function setNoResults(string $text): self
     {
         $this->_noResults = $text;
 
@@ -223,7 +232,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function setRowTemplate($template)
+    public function setRowTemplate(string $template): self
     {
         $this->_rowTemplate = $template;
 
@@ -237,7 +246,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function addRowClass($class)
+    public function addRowClass(string $class): self
     {
         $this->_rowClasses[] = $class;
 
@@ -251,7 +260,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function addRowStyle($style)
+    public function addRowStyle(string $style): self
     {
         $this->_rowStyles[] = $style;
 
@@ -265,7 +274,7 @@ class Table extends KendoHelper
      *
      * @return $this
      */
-    public function setActionWidth($width)
+    public function setActionWidth(int $width): self
     {
         $this->_actionWidth = $width;
 
@@ -277,7 +286,7 @@ class Table extends KendoHelper
      *
      * @return string
      */
-    public function html()
+    public function html(): string
     {
         return $this->_div($this->_id);
     }
@@ -287,7 +296,7 @@ class Table extends KendoHelper
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         // define actions
         if (count($this->_actions)) {

@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 /**
@@ -11,21 +20,21 @@ abstract class KendoHelper
     /**
      * Kendo Model.
      *
-     * @var Riesenia\Kendo\Widget\Model
+     * @var \Riesenia\Kendo\Widget\Model
      */
     public $model;
 
     /**
      * Kendo data source.
      *
-     * @var Riesenia\Kendo\Widget\DataSource
+     * @var \Riesenia\Kendo\Widget\DataSource
      */
     public $dataSource;
 
     /**
      * Kendo widget.
      *
-     * @var Riesenia\Kendo\Widget\Base
+     * @var \Riesenia\Kendo\Widget\Base
      */
     public $widget;
 
@@ -55,7 +64,7 @@ abstract class KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         $this->_id = $id;
     }
@@ -65,9 +74,9 @@ abstract class KendoHelper
      *
      * @param string $id
      *
-     * @return $this
+     * @return static
      */
-    public static function create($id)
+    public static function create(string $id): self
     {
         return new static($id);
     }
@@ -78,7 +87,7 @@ abstract class KendoHelper
      * @param string $alias
      * @param string $class
      */
-    public static function alias($alias, $class)
+    public static function alias(string $alias, string $class)
     {
         static::$_aliases[$alias] = $class;
     }
@@ -88,14 +97,14 @@ abstract class KendoHelper
      *
      * @return string
      */
-    abstract public function html();
+    abstract public function html(): string;
 
     /**
      * Return rendered javascript.
      *
      * @return string
      */
-    abstract public function script();
+    abstract public function script(): string;
 
     /**
      * Add transport (passed to datasource).
@@ -105,7 +114,7 @@ abstract class KendoHelper
      *
      * @return $this
      */
-    public function addTransport($type, $options = [])
+    public function addTransport(string $type, array $options = []): self
     {
         $this->dataSource->addTransport($type, $options);
 
@@ -120,7 +129,7 @@ abstract class KendoHelper
      *
      * @return $this
      */
-    public function addField($key, $options = [])
+    public function addField(string $key, array $options = []): self
     {
         $this->model->addField($key, $options);
 
@@ -135,7 +144,7 @@ abstract class KendoHelper
      *
      * @return $this
      */
-    public function addAttribute($name, $value)
+    public function addAttribute(string $name, $value): self
     {
         $this->_htmlAttributes[$name] = $value;
 
@@ -149,7 +158,7 @@ abstract class KendoHelper
      *
      * @return string
      */
-    protected function _input($id)
+    protected function _input(string $id): string
     {
         return $this->_tag('input', false, array_merge($this->_htmlAttributes, ['id' => $id]));
     }
@@ -161,7 +170,7 @@ abstract class KendoHelper
      *
      * @return string
      */
-    protected function _select($id)
+    protected function _select(string $id): string
     {
         return $this->_tag('select', '', array_merge($this->_htmlAttributes, ['id' => $id]));
     }
@@ -174,7 +183,7 @@ abstract class KendoHelper
      *
      * @return string
      */
-    protected function _div($id, $content = '')
+    protected function _div(string $id, string $content = ''): string
     {
         return $this->_tag('div', $content, array_merge($this->_htmlAttributes, ['id' => $id]));
     }
@@ -188,7 +197,7 @@ abstract class KendoHelper
      *
      * @return string
      */
-    protected function _tag($name, $content = false, $attributes = [])
+    protected function _tag(string $name, $content = false, array $attributes = []): string
     {
         $tag = '<' . $name;
 
@@ -208,7 +217,7 @@ abstract class KendoHelper
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->html();
     }
@@ -221,7 +230,7 @@ abstract class KendoHelper
      *
      * @return mixed
      */
-    public function __call($method, $arguments)
+    public function __call(string $method, array $arguments)
     {
         if ($this->widget === null) {
             throw new \BadMethodCallException('Unknown method: ' . $method);

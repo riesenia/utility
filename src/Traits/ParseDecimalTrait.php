@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Traits;
 
 /**
@@ -15,9 +24,9 @@ trait ParseDecimalTrait
      * @param array $options
      * @param bool  $allowNull
      *
-     * @return float
+     * @return float|null
      */
-    protected function _parseDecimal($number, array $options = [], $allowNull = false)
+    protected function _parseDecimal($number, array $options = [], bool $allowNull = false): ?float
     {
         if ($allowNull && $number === null) {
             return $number;

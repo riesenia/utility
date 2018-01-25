@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Condition;
 
 /**
@@ -23,7 +32,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
      *
      * @return array
      */
-    public function parseCondition($condition)
+    public function parseCondition(string $condition)
     {
         $condition = array_map('trim', explode(' ', $condition, 3));
 
@@ -64,7 +73,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
      *
      * @return array
      */
-    protected function _parseCondition($field, $operator, $value)
+    protected function _parseCondition(string $field, string $operator, string $value)
     {
         $parsedCondition = parent::_parseCondition($field, $operator, $value);
 
@@ -79,7 +88,7 @@ class QueryEvaluatorTwofold extends QueryEvaluator
      *
      * @return array
      */
-    protected function _parseTwofold($parsedCondition)
+    protected function _parseTwofold(array $parsedCondition)
     {
         $key = key($parsedCondition);
         $value = current($parsedCondition);

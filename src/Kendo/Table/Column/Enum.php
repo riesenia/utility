@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo\Table\Column;
 
 /**
@@ -14,7 +23,7 @@ class Enum extends Base
      * @param array  $options
      * @param string $tableId
      */
-    public function __construct(array $options, $tableId)
+    public function __construct(array $options, string $tableId)
     {
         $this->_template = '<td class="%class%" style="%style%">';
 

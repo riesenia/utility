@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of riesenia/utility package.
+ *
+ * Licensed under the MIT License
+ * (c) RIESENIA.com
+ */
+
+declare(strict_types=1);
+
 namespace Riesenia\Utility\Kendo;
 
 use Riesenia\Kendo\Kendo;
@@ -15,7 +24,7 @@ class Tree extends KendoHelper
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct(string $id)
     {
         parent::__construct($id);
 
@@ -37,7 +46,7 @@ class Tree extends KendoHelper
      *
      * @return $this
      */
-    public function hasChildren($field = 'hasChildren')
+    public function hasChildren(string $field = 'hasChildren'): self
     {
         $this->model->setHasChildren($field)
             ->addField($field, [
@@ -57,7 +66,7 @@ class Tree extends KendoHelper
      *
      * @return $this
      */
-    public function addCheckboxes($options = null)
+    public function addCheckboxes($options = null): self
     {
         // default template
         if ($options === null) {
@@ -76,7 +85,7 @@ class Tree extends KendoHelper
      *
      * @return $this
      */
-    public function expand($path = [])
+    public function expand(array $path = []): self
     {
         $this->widget->setDataBound(Kendo::js('function (e) {
             var expand = $("#' . $this->_id . '").data("expand");
@@ -109,7 +118,7 @@ class Tree extends KendoHelper
      *
      * @return string
      */
-    public function html()
+    public function html(): string
     {
         return $this->_div($this->_id);
     }
@@ -119,7 +128,7 @@ class Tree extends KendoHelper
      *
      * @return string
      */
-    public function script()
+    public function script(): string
     {
         $script = $this->widget->__toString();
 

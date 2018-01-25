@@ -1,0 +1,9 @@
+services:
+    -
+        class: Riesenia\Utility\PHPStan\KendoClassReflectionExtension
+        tags:
+            - phpstan.broker.methodsClassReflectionExtension
+    -
+        class: Riesenia\Utility\PHPStan\KendoWidgetClassReflectionExtension
+        tags:
+            - phpstan.broker.methodsClassReflectionExtension
