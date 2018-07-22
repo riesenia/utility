@@ -29,7 +29,7 @@ trait ParseDecimalTrait
     protected function _parseDecimal($number, array $options = [], bool $allowNull = false): ?float
     {
         if ($allowNull && $number === null) {
-            return $number;
+            return null;
         }
 
         if (isset($options['thousands_separator'])) {
@@ -38,6 +38,6 @@ trait ParseDecimalTrait
 
         $number = str_replace(',', '.', $number);
 
-        return (float) preg_replace('/[^0-9.-]/', '', $number);
+        return (float) strval(preg_replace('/[^0-9.-]/', '', $number));
     }
 }

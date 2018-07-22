@@ -236,7 +236,7 @@ abstract class KendoHelper
             throw new \BadMethodCallException('Unknown method: ' . $method);
         }
 
-        $return = call_user_func_array([$this->widget, $method], $arguments);
+        $return = $this->widget->$method(...$arguments);
 
         if (gettype($return) == 'object' && get_class($return) == get_class($this->widget)) {
             return $this;

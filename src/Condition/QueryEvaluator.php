@@ -187,7 +187,7 @@ class QueryEvaluator
      *
      * @param string $query
      *
-     * @return array
+     * @return array<int,int>
      */
     protected function _mapParenthesis(string $query): array
     {
@@ -206,6 +206,7 @@ class QueryEvaluator
                     throw new QueryEvaluatorException(['position' => $i], QueryEvaluatorException::MISSING_OPENING_PARENTHESIS);
                 }
 
+                /** @var int $last */
                 $last = array_pop($lastParenthesis);
                 $parenthesis[$last] = $i;
             }
@@ -221,11 +222,11 @@ class QueryEvaluator
     /**
      * Split query by operator.
      *
-     * @param string $query
-     * @param string $operator
-     * @param array  $parenthesis
+     * @param string         $query
+     * @param string         $operator
+     * @param array<int,int> $parenthesis
      *
-     * @return array
+     * @return string[]
      */
     protected function _split(string $query, string $operator, array $parenthesis): array
     {
@@ -240,16 +241,17 @@ class QueryEvaluator
 
         foreach ($matches[0] as $match) {
             $isRoot = true;
+            $match = (int) $match[1];
 
             foreach ($parenthesis as $from => $to) {
-                if ($match[1] > $from && $match[1] < $to) {
+                if ($match > $from && $match < $to) {
                     $isRoot = false;
                 }
             }
 
             if ($isRoot) {
-                $result[] = trim(substr($query, $start, $match[1] - $start));
-                $start = $match[1] + strlen($operator);
+                $result[] = trim(substr($query, $start, $match - $start));
+                $start = $match + strlen($operator);
             }
         }
 

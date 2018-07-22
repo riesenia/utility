@@ -16,7 +16,7 @@
         "bossa/phpspec2-expect": "~3.0",
         "litipk/php-bignumbers": "~0.8",
         "phpspec/phpspec": "~4.0",
-        "phpstan/phpstan": "~0.9",
+        "phpstan/phpstan": "~0.10.0",
         "rshop/php-cs-fixer-config": "~1.0"
     },
     "autoload": {

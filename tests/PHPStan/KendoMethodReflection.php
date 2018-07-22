@@ -10,10 +10,11 @@ declare(strict_types=1);
 
 namespace Riesenia\Utility\PHPStan;
 
+use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\Type;
 use Riesenia\Kendo\Kendo;
 
 class KendoMethodReflection implements MethodReflection
@@ -30,30 +31,22 @@ class KendoMethodReflection implements MethodReflection
         $this->declaringClass = $declaringClass;
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPrototype(): ClassMemberReflection
+    {
+        return $this;
+    }
+
     public function getDeclaringClass(): ClassReflection
     {
         return $this->declaringClass;
     }
 
-    public function getPrototype(): MethodReflection
-    {
-        return $this;
-    }
-
     public function isStatic(): bool
-    {
-        return true;
-    }
-
-    /**
-     * @return \PHPStan\Reflection\ParameterReflection[]
-     */
-    public function getParameters(): array
-    {
-        return [];
-    }
-
-    public function isVariadic(): bool
     {
         return true;
     }
@@ -68,15 +61,19 @@ class KendoMethodReflection implements MethodReflection
         return true;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getReturnType(): Type
+    /**
+     * @return \PHPStan\Reflection\ParametersAcceptor[]
+     */
+    public function getVariants(): array
     {
         $obj = Kendo::{$this->name}();
 
-        return new ObjectType(get_class($obj));
+        return [
+            new FunctionVariant(
+                [],
+                true,
+                new ObjectType(get_class($obj))
+            )
+        ];
     }
 }

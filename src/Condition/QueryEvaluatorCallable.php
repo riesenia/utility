@@ -65,7 +65,7 @@ class QueryEvaluatorCallable extends QueryEvaluator
         switch ($operator) {
             case 'CONTAINS':
                 return function ($item) use ($field, $value) {
-                    return isset($item[$field]) && stripos(iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
+                    return isset($item[$field]) && stripos((string) iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), (string) iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
                 };
 
             case 'IN':
