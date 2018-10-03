@@ -124,7 +124,7 @@ class Date extends KendoHelper
         $this->widget->setChange(Kendo::js('function(e) {
             // date for hidden field
             var value = this.value();
-            $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(' . $this->_substringStart . ', ' . $this->_substringEnd . ').replace("T", " ") : "");
+            $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(' . $this->_substringStart . ', ' . $this->_substringEnd . ').replace("T", " ") : "").trigger("change");
             ' . $rangeCode . '
         }'));
 
