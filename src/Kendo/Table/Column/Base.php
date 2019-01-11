@@ -121,6 +121,7 @@ class Base
         if (!isset($this->_options['headerAttributes']['class'])) {
             $this->_options['headerAttributes']['class'] = $this->_options['class'];
         }
+
         if (!isset($this->_options['headerAttributes']['style'])) {
             $this->_options['headerAttributes']['style'] = $this->_options['style'];
         }

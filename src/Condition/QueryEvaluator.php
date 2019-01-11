@@ -141,30 +141,36 @@ class QueryEvaluator
             case 'CONTAINS':
                 $operator = ' LIKE';
                 $value = '%' . $value . '%';
+
                 break;
 
             case 'IN':
                 $operator = ' IN';
                 $value = array_map('trim', explode(',', trim($value, '()')));
+
                 break;
 
             case 'NOTIN':
                 $addNull = true;
                 $operator = ' NOT IN';
                 $value = array_map('trim', explode(',', trim($value, '()')));
+
                 break;
 
             case '=':
                 $operator = '';
+
                 break;
 
             case 'NOT':
                 $addNull = true;
                 $operator = ' !=';
+
                 break;
 
             default:
                 $operator = ' ' . $operator;
+
                 break;
         }
 
