@@ -122,8 +122,19 @@ class Date extends KendoHelper
         }
 
         $this->widget->setChange(Kendo::js('function(e) {
-            // date for hidden field
             var value = this.value();
+
+            // fix value if possible
+            if (!value) {
+                var m = this.element.val().match(/^([0-9]{1,2})(.)([0-9]{1,2})(.)?$/);
+
+                if (m) {
+                    value = kendo.parseDate(m[1] + m[2] + m[3] + m[2] + (new Date()).getFullYear());
+                    this.value(value);
+                }
+            }
+
+            // set value for the hidden field
             $("#' . $this->_id . '-hidden").val(value ? kendo.date.addDays(value, value.getTimezoneOffset() / -1440).toISOString().substring(' . $this->_substringStart . ', ' . $this->_substringEnd . ').replace("T", " ") : "");
             ' . $rangeCode . '
         }'));
