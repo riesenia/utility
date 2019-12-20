@@ -161,7 +161,7 @@ class TableSpec extends ObjectBehavior
 
     protected function _match_property($property)
     {
-        return preg_match('/"' . $property . '":"(.+?)(?<!\\\\)"/', $this->script()->getWrappedObject(), $m) ? stripslashes($m[1]) : false;
+        return \preg_match('/"' . $property . '":"(.+?)(?<!\\\\)"/', $this->script()->getWrappedObject(), $m) ? \stripslashes($m[1]) : false;
     }
 
     protected function _expected($property, $title, $class, $td, $condition = true)

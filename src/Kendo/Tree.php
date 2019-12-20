@@ -92,7 +92,7 @@ class Tree extends KendoHelper
 
             // initial
             if (typeof expand === "undefined") {
-                expand = ' . json_encode($path) . ';
+                expand = ' . \json_encode($path) . ';
             }
 
             if (expand.length) {

@@ -53,7 +53,7 @@ class Base
     public function __construct(array $options, string $tableId)
     {
         $this->_tableId = $tableId;
-        $this->_options = array_merge($this->_options, $options);
+        $this->_options = \array_merge($this->_options, $options);
     }
 
     /**
@@ -90,6 +90,6 @@ class Base
             $template = '# if (' . $this->_options['condition'] . ') { #' . $template . '# } #';
         }
 
-        return str_replace(['%class%', '%link%', '%title%', '%target%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['target'], $this->_options['icon']], $template);
+        return \str_replace(['%class%', '%link%', '%title%', '%target%', '%icon%'], [$this->_options['class'], $this->_options['link'], $this->_options['title'], $this->_options['target'], $this->_options['icon']], $template);
     }
 }

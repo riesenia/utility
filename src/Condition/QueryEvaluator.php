@@ -61,8 +61,8 @@ class QueryEvaluator
         $parenthesis = $this->_mapParenthesis($query);
 
         // remove redundant
-        if (isset($parenthesis[0]) && $parenthesis[0] == strlen($query) - 1) {
-            $query = substr($query, 1, -1);
+        if (isset($parenthesis[0]) && $parenthesis[0] == \strlen($query) - 1) {
+            $query = \substr($query, 1, -1);
             unset($parenthesis[0]);
         }
 
@@ -105,9 +105,9 @@ class QueryEvaluator
      */
     public function parseCondition(string $condition)
     {
-        $condition = array_map('trim', explode(' ', $condition, 3));
+        $condition = \array_map('trim', \explode(' ', $condition, 3));
 
-        if (count($condition) < 3) {
+        if (\count($condition) < 3) {
             throw new QueryEvaluatorException(['placeholder' => $condition[0]], QueryEvaluatorException::INVALID_CONDITION);
         }
 
@@ -117,7 +117,7 @@ class QueryEvaluator
             throw new QueryEvaluatorException(['placeholder' => $column], QueryEvaluatorException::UNKNOWN_PLACEHOLDER);
         }
 
-        if (!in_array($operator, $this->_config[$column]['operators'])) {
+        if (!\in_array($operator, $this->_config[$column]['operators'])) {
             throw new QueryEvaluatorException(['placeholder' => $column, 'operator' => $operator], QueryEvaluatorException::UNKNOWN_OPERATOR);
         }
 
@@ -146,14 +146,14 @@ class QueryEvaluator
 
             case 'IN':
                 $operator = ' IN';
-                $value = array_map('trim', explode(',', trim($value, '()')));
+                $value = \array_map('trim', \explode(',', \trim($value, '()')));
 
                 break;
 
             case 'NOTIN':
                 $addNull = true;
                 $operator = ' NOT IN';
-                $value = array_map('trim', explode(',', trim($value, '()')));
+                $value = \array_map('trim', \explode(',', \trim($value, '()')));
 
                 break;
 
@@ -174,7 +174,7 @@ class QueryEvaluator
                 break;
         }
 
-        if (isset($this->_config['_prefix']) && !strpos($field, '.')) {
+        if (isset($this->_config['_prefix']) && !\strpos($field, '.')) {
             $field = $this->_config['_prefix'] . '.' . $field;
         }
 
@@ -200,7 +200,7 @@ class QueryEvaluator
         $parenthesis = [];
         $lastParenthesis = [];
 
-        for ($i = 0; $i < strlen($query); ++$i) {
+        for ($i = 0; $i < \strlen($query); ++$i) {
             // opening
             if ($query[$i] == static::PARENTHESIS_OPEN) {
                 $parenthesis[$i] = -1;
@@ -208,18 +208,18 @@ class QueryEvaluator
             }
 
             if ($query[$i] == static::PARENTHESIS_CLOSE) {
-                if (!count($lastParenthesis)) {
+                if (!\count($lastParenthesis)) {
                     throw new QueryEvaluatorException(['position' => $i], QueryEvaluatorException::MISSING_OPENING_PARENTHESIS);
                 }
 
                 /** @var int $last */
-                $last = array_pop($lastParenthesis);
+                $last = \array_pop($lastParenthesis);
                 $parenthesis[$last] = $i;
             }
         }
 
-        if (count($lastParenthesis)) {
-            throw new QueryEvaluatorException(['position' => array_shift($lastParenthesis)], QueryEvaluatorException::MISSING_CLOSING_PARENTHESIS);
+        if (\count($lastParenthesis)) {
+            throw new QueryEvaluatorException(['position' => \array_shift($lastParenthesis)], QueryEvaluatorException::MISSING_CLOSING_PARENTHESIS);
         }
 
         return $parenthesis;
@@ -236,7 +236,7 @@ class QueryEvaluator
      */
     protected function _split(string $query, string $operator, array $parenthesis): array
     {
-        preg_match_all('/\b' . preg_quote($operator) . '\b/', $query, $matches, PREG_OFFSET_CAPTURE);
+        \preg_match_all('/\b' . \preg_quote($operator) . '\b/', $query, $matches, PREG_OFFSET_CAPTURE);
 
         if (empty($matches[0])) {
             return [];
@@ -256,14 +256,14 @@ class QueryEvaluator
             }
 
             if ($isRoot) {
-                $result[] = trim(substr($query, $start, $match - $start));
-                $start = $match + strlen($operator);
+                $result[] = \trim(\substr($query, $start, $match - $start));
+                $start = $match + \strlen($operator);
             }
         }
 
-        $result[] = trim(substr($query, $start));
+        $result[] = \trim(\substr($query, $start));
 
-        if (count($result) == 1) {
+        if (\count($result) == 1) {
             return [];
         }
 

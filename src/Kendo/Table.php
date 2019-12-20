@@ -146,10 +146,10 @@ class Table extends KendoHelper
         }
 
         // type can be a name of user defined class
-        if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Column\\Base')) {
-            $type = __NAMESPACE__ . '\\Table\\Column\\' . ucfirst($type);
+        if (!\class_exists($type) || !\is_subclass_of($type, __NAMESPACE__ . '\\Table\\Column\\Base')) {
+            $type = __NAMESPACE__ . '\\Table\\Column\\' . \ucfirst($type);
 
-            if (!class_exists($type)) {
+            if (!\class_exists($type)) {
                 throw new \BadMethodCallException('Invalid column class: ' . $type);
             }
         }
@@ -166,10 +166,10 @@ class Table extends KendoHelper
         }
 
         if ($addWidgetColumn) {
-            $prepend ? $this->widget->setColumns(array_merge([$column->getColumnOptions()], is_array($this->widget->getColumns()) ? $this->widget->getColumns() : [])) : $this->widget->addColumns(null, $column->getColumnOptions());
+            $prepend ? $this->widget->setColumns(\array_merge([$column->getColumnOptions()], \is_array($this->widget->getColumns()) ? $this->widget->getColumns() : [])) : $this->widget->addColumns(null, $column->getColumnOptions());
         }
 
-        $prepend ? array_unshift($this->_columns, $column) : array_push($this->_columns, $column);
+        $prepend ? \array_unshift($this->_columns, $column) : \array_push($this->_columns, $column);
 
         return $this;
     }
@@ -195,10 +195,10 @@ class Table extends KendoHelper
         }
 
         // type can be a name of user defined class
-        if (!class_exists($type) || !is_subclass_of($type, __NAMESPACE__ . '\\Table\\Action\\Base')) {
-            $type = __NAMESPACE__ . '\\Table\\Action\\' . ucfirst($type);
+        if (!\class_exists($type) || !\is_subclass_of($type, __NAMESPACE__ . '\\Table\\Action\\Base')) {
+            $type = __NAMESPACE__ . '\\Table\\Action\\' . \ucfirst($type);
 
-            if (!class_exists($type)) {
+            if (!\class_exists($type)) {
                 throw new \BadMethodCallException('Invalid action class: ' . $type);
             }
         }
@@ -299,13 +299,13 @@ class Table extends KendoHelper
     public function script(): string
     {
         // define actions
-        if (count($this->_actions)) {
-            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions, 'width' => count($this->_actions) * $this->_actionWidth]);
+        if (\count($this->_actions)) {
+            $this->addColumn(null, '&nbsp;', 'actions', ['actions' => $this->_actions, 'width' => \count($this->_actions) * $this->_actionWidth]);
         }
 
         // complete row template
-        $this->_rowTemplate = '# var grid = $("\\#' . $this->_id . '").data("kendoGrid"); #' . str_replace(['%class%', '%style%'], [implode(' ', $this->_rowClasses), implode(' ', $this->_rowStyles)], $this->_rowTemplate);
-        $this->widget->setRowTemplate($this->_rowTemplate . implode('', $this->_columns) . '</tr>');
+        $this->_rowTemplate = '# var grid = $("\\#' . $this->_id . '").data("kendoGrid"); #' . \str_replace(['%class%', '%style%'], [\implode(' ', $this->_rowClasses), \implode(' ', $this->_rowStyles)], $this->_rowTemplate);
+        $this->widget->setRowTemplate($this->_rowTemplate . \implode('', $this->_columns) . '</tr>');
 
         $script = $this->widget->__toString();
 
@@ -314,7 +314,7 @@ class Table extends KendoHelper
             $script .= '$(function() {
                 $("#' . $this->_id . '").data("' . $this->widget->name() . '").bind("dataBound", function(e) {
                     if (!e.sender.dataSource.view().length) {
-                        e.sender.tbody.append("<tr><td colspan=\"' . count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
+                        e.sender.tbody.append("<tr><td colspan=\"' . \count($this->_columns) . '\" align=\"center\">' . $this->_noResults . '</td></tr>");
 
                         // checkbox
                         if ($("#' . $this->_id . ' [name=tableCheckboxAll]").length) {

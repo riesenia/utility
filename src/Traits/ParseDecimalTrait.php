@@ -33,11 +33,11 @@ trait ParseDecimalTrait
         }
 
         if (isset($options['thousands_separator'])) {
-            $number = str_replace($options['thousands_separator'], '', $number);
+            $number = \str_replace($options['thousands_separator'], '', $number);
         }
 
-        $number = str_replace(',', '.', $number);
+        $number = \str_replace(',', '.', $number);
 
-        return (float) strval(preg_replace('/[^0-9.-]/', '', $number));
+        return (float) \strval(\preg_replace('/[^0-9.-]/', '', $number));
     }
 }

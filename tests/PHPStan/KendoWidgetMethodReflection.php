@@ -77,17 +77,17 @@ class KendoWidgetMethodReflection implements MethodReflection
     {
         $params = [];
 
-        if (preg_match('/add([A-Z][a-zA-Z0-9]*)/', $this->name)) {
+        if (\preg_match('/add([A-Z][a-zA-Z0-9]*)/', $this->name)) {
             $params[] = new DummyParameter('key', new MixedType(), false, null, false, null);
         }
 
-        if (preg_match('/(set|add)([A-Z][a-zA-Z0-9]*)/', $this->name)) {
+        if (\preg_match('/(set|add)([A-Z][a-zA-Z0-9]*)/', $this->name)) {
             $params[] = new DummyParameter('value', new MixedType(), false, null, false, null);
         }
 
         $return = new MixedType();
 
-        if (preg_match('/(set|add)([A-Z][a-zA-Z0-9]*)/', $this->name)) {
+        if (\preg_match('/(set|add)([A-Z][a-zA-Z0-9]*)/', $this->name)) {
             $return = new ObjectType($this->declaringClass->getName());
         }
 
@@ -129,6 +129,6 @@ class KendoWidgetMethodReflection implements MethodReflection
 
     public function hasSideEffects(): TrinaryLogic
     {
-        return preg_match('/(set|add)([A-Z][a-zA-Z0-9]*)/', $this->name) ? TrinaryLogic::createYes() : TrinaryLogic::createNo();
+        return \preg_match('/(set|add)([A-Z][a-zA-Z0-9]*)/', $this->name) ? TrinaryLogic::createYes() : TrinaryLogic::createNo();
     }
 }

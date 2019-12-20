@@ -84,7 +84,7 @@ class KendoMethodReflection implements MethodReflection
                 null,
                 [new DummyParameter('bindTo', new StringType(), true, null, false, null)],
                 false,
-                new ObjectType(get_class($obj))
+                new ObjectType(\get_class($obj))
             )
         ];
     }

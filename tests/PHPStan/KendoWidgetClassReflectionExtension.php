@@ -20,7 +20,7 @@ class KendoWidgetClassReflectionExtension implements MethodsClassReflectionExten
     public function hasMethod(ClassReflection $classReflection, string $methodName): bool
     {
         if ($classReflection->getName() === Base::class || $classReflection->isSubclassOf(Base::class)) {
-            return (bool) preg_match('/(set|add|get)([A-Z][a-zA-Z0-9]*)/', $methodName);
+            return (bool) \preg_match('/(set|add|get)([A-Z][a-zA-Z0-9]*)/', $methodName);
         }
 
         return false;

@@ -45,7 +45,7 @@ class Input extends Base
      */
     public function getColumnOptions(): array
     {
-        return array_diff_key($this->_options, ['input' => 1]);
+        return \array_diff_key($this->_options, ['input' => 1]);
     }
 
     /**
@@ -96,10 +96,10 @@ class Input extends Base
             }
 
             foreach ($this->_options['input'] as $key => $value) {
-                $options .= ' ' . $key . '="' . htmlspecialchars((string) $value) . '"';
+                $options .= ' ' . $key . '="' . \htmlspecialchars((string) $value) . '"';
             }
         }
 
-        return str_replace(['%type%', '%options%'], [$type, $options], parent::__toString());
+        return \str_replace(['%type%', '%options%'], [$type, $options], parent::__toString());
     }
 }

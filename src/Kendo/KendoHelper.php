@@ -160,7 +160,7 @@ abstract class KendoHelper
      */
     protected function _input(string $id): string
     {
-        return $this->_tag('input', false, array_merge($this->_htmlAttributes, ['id' => $id]));
+        return $this->_tag('input', false, \array_merge($this->_htmlAttributes, ['id' => $id]));
     }
 
     /**
@@ -172,7 +172,7 @@ abstract class KendoHelper
      */
     protected function _select(string $id): string
     {
-        return $this->_tag('select', '', array_merge($this->_htmlAttributes, ['id' => $id]));
+        return $this->_tag('select', '', \array_merge($this->_htmlAttributes, ['id' => $id]));
     }
 
     /**
@@ -185,7 +185,7 @@ abstract class KendoHelper
      */
     protected function _div(string $id, string $content = ''): string
     {
-        return $this->_tag('div', $content, array_merge($this->_htmlAttributes, ['id' => $id]));
+        return $this->_tag('div', $content, \array_merge($this->_htmlAttributes, ['id' => $id]));
     }
 
     /**
@@ -238,7 +238,7 @@ abstract class KendoHelper
 
         $return = $this->widget->{$method}(...$arguments);
 
-        if (gettype($return) == 'object' && get_class($return) == get_class($this->widget)) {
+        if (\gettype($return) == 'object' && \get_class($return) == \get_class($this->widget)) {
             return $this;
         }
 

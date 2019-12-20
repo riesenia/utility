@@ -114,7 +114,7 @@ class Base
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
 
         // style
-        $this->_style = str_replace('%field%', $this->_options['field'], $this->_style);
+        $this->_style = \str_replace('%field%', $this->_options['field'], $this->_style);
         $this->_options['style'] = isset($this->_options['style']) ? $this->_style . ' ' . $this->_options['style'] : $this->_style;
 
         // header style and class
@@ -128,7 +128,7 @@ class Base
 
         // template
         if (isset($this->_options['template'])) {
-            $this->_template = str_replace('%format%', $this->_options['template'], $this->_template);
+            $this->_template = \str_replace('%format%', $this->_options['template'], $this->_template);
         }
 
         // type
@@ -191,7 +191,7 @@ class Base
 
         // link
         if (isset($this->_options['link']) && $this->_options['link']) {
-            if (!is_array($this->_options['link'])) {
+            if (!\is_array($this->_options['link'])) {
                 $this->_options['link'] = ['href' => $this->_options['link']];
             }
 
@@ -215,6 +215,6 @@ class Base
         // print N/A for empty columns
         $format = '# if (' . $this->_notAvailableCondition . ') { #' . $format . '# } else { # ' . $this->_notAvailableText . ' # } #';
 
-        return str_replace(['%format%', '%field%', '%class%', '%style%'], [$format, $this->_options['field'], $this->_options['class'], $this->_options['style']], $this->_template);
+        return \str_replace(['%format%', '%field%', '%class%', '%style%'], [$format, $this->_options['field'], $this->_options['class'], $this->_options['style']], $this->_template);
     }
 }

@@ -28,12 +28,12 @@ class QueryEvaluatorCallable extends QueryEvaluator
     {
         $parsed = parent::parse($query);
 
-        if (is_callable($parsed)) {
+        if (\is_callable($parsed)) {
             return $parsed;
         }
 
-        $operator = key($parsed);
-        $conditions = current($parsed);
+        $operator = \key($parsed);
+        $conditions = \current($parsed);
 
         return function ($item) use ($operator, $conditions) {
             foreach ($conditions as $condition) {
@@ -65,21 +65,21 @@ class QueryEvaluatorCallable extends QueryEvaluator
         switch ($operator) {
             case 'CONTAINS':
                 return function ($item) use ($field, $value) {
-                    return isset($item[$field]) && stripos((string) iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), (string) iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
+                    return isset($item[$field]) && \stripos((string) \iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), (string) \iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
                 };
 
             case 'IN':
-                $value = array_map('trim', explode(',', trim($value, '()')));
+                $value = \array_map('trim', \explode(',', \trim($value, '()')));
 
                 return function ($item) use ($field, $value) {
-                    return isset($item[$field]) && in_array($item[$field], $value);
+                    return isset($item[$field]) && \in_array($item[$field], $value);
                 };
 
             case 'NOTIN':
-                $value = array_map('trim', explode(',', trim($value, '()')));
+                $value = \array_map('trim', \explode(',', \trim($value, '()')));
 
                 return function ($item) use ($field, $value) {
-                    return !isset($item[$field]) || !in_array($item[$field], $value);
+                    return !isset($item[$field]) || !\in_array($item[$field], $value);
                 };
 
             case '=':

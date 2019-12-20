@@ -75,6 +75,6 @@ class Actions extends Base
      */
     public function __toString(): string
     {
-        return '<td class="' . $this->_options['class'] . '" style="' . $this->_style . '">' . implode(' ', $this->_options['actions']) . '</td>';
+        return '<td class="' . $this->_options['class'] . '" style="' . $this->_style . '">' . \implode(' ', $this->_options['actions']) . '</td>';
     }
 }

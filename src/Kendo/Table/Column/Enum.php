@@ -29,7 +29,7 @@ class Enum extends Base
 
         if (isset($options['options'])) {
             foreach ($options['options'] as $key => $value) {
-                $this->_template .= '# if (%field%.toString() == ' . json_encode($key) . ') { # ' . htmlspecialchars($value) . ' # } #';
+                $this->_template .= '# if (%field%.toString() == ' . \json_encode($key) . ') { # ' . \htmlspecialchars($value) . ' # } #';
             }
             unset($options['options']);
         }

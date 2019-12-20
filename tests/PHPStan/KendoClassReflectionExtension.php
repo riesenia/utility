@@ -20,7 +20,7 @@ class KendoClassReflectionExtension implements MethodsClassReflectionExtension
     public function hasMethod(ClassReflection $classReflection, string $methodName): bool
     {
         if ($classReflection->getName() === Kendo::class) {
-            return (bool) preg_match('/create([A-Z][a-zA-Z0-9]*)/', $methodName);
+            return (bool) \preg_match('/create([A-Z][a-zA-Z0-9]*)/', $methodName);
         }
 
         return false;
