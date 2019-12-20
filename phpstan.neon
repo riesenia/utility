@@ -1,3 +1,9 @@
+parameters:
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#Unsafe usage of new static\(\)#'
+        - '#Method Riesenia\\Utility\\Kendo\\KendoHelper::alias\(\) has no return typehint specified\.#'
+
 services:
     -
         class: Riesenia\Utility\PHPStan\KendoClassReflectionExtension

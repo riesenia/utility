@@ -55,7 +55,7 @@ abstract class KendoHelper
     /**
      * Class aliases.
      *
-     * @var array
+     * @var array<string,string>
      */
     protected static $_aliases = [];
 
