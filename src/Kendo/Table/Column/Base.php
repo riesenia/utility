@@ -29,14 +29,14 @@ class Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%" style="%style%"><div>%format%</div></td>';
+    protected $_template = '<td class="%class%" style="%style%">%format%</td>';
 
     /**
      * Field format with %field% placeholder.
      *
      * @var string
      */
-    protected $_format = '#: %field% #';
+    protected $_format = '<div>#: %field% #</div>';
 
     /**
      * Predefined class.
