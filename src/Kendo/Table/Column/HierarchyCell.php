@@ -24,7 +24,7 @@ class HierarchyCell extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%" style="%style%"><div><a class="k-icon k-plus" href="\\#" tabindex="-1"></a></div></td>';
+    protected $_template = '<td class="%class%" style="%style%"><div><a class="k-icon k-i-expand" href="\\#" tabindex="-1"></a></div></td>';
 
     /**
      * Predefined class.

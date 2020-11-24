@@ -143,7 +143,7 @@ class TableSpec extends ObjectBehavior
     public function it_can_add_hierarchy_cell()
     {
         $this->setDetailInit('')->shouldReturn($this);
-        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="k-master-row" style=""><td class="k-hierarchy-cell" style=""><div><a class="k-icon k-plus" href="\\#" tabindex="-1"></a></div></td></tr>');
+        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="k-master-row" style=""><td class="k-hierarchy-cell" style=""><div><a class="k-icon k-i-expand" href="\\#" tabindex="-1"></a></div></td></tr>');
     }
 
     public function it_can_add_checkboxes()
