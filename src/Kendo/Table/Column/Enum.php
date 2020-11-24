@@ -25,7 +25,7 @@ class Enum extends Base
      */
     public function __construct(array $options, string $tableId)
     {
-        $this->_template = '<td class="%class%" style="%style%">';
+        $this->_template = '<td class="%class%" style="%style%"><div>';
 
         if (isset($options['options'])) {
             foreach ($options['options'] as $key => $value) {
@@ -34,7 +34,7 @@ class Enum extends Base
             unset($options['options']);
         }
 
-        $this->_template .= '</td>';
+        $this->_template .= '</div></td>';
 
         parent::__construct($options, $tableId);
     }

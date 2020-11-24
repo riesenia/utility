@@ -29,7 +29,7 @@ class Checkbox extends Input
      *
      * @var string
      */
-    protected $_template = '<td class="%class%" style="%style%"><input type="checkbox" data-row-uid="#: uid #" name="%field%Input" # if (%field%) { # checked="checked" # } # /></td>';
+    protected $_template = '<td class="%class%" style="%style%"><div><input type="checkbox" data-row-uid="#: uid #" name="%field%Input" # if (%field%) { # checked="checked" # } # /></div></td>';
 
     /**
      * Predefined class.

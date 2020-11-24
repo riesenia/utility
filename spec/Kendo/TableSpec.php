@@ -59,13 +59,13 @@ class TableSpec extends ObjectBehavior
     public function it_can_add_column_with_link()
     {
         $this->addColumn('name', 'Product name', null, ['link' => 'URL'])->shouldReturn($this);
-        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (name !== null && name !== "") { #<a href="URL">#: name #</a># } else { # N/A # } #</td></tr>');
+        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"><div># if (name !== null && name !== "") { #<a href="URL">#: name #</a># } else { # N/A # } #</div></td></tr>');
     }
 
     public function it_can_add_column_with_complex_link()
     {
         $this->addColumn('name', 'Product name', null, ['link' => ['href' => 'URL', 'target' => '_blank', 'title' => 'Link'], 'link_condition' => 'field'])->shouldReturn($this);
-        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"># if (name !== null && name !== "") { ## if (field) { #<a href="URL" target="_blank" title="Link">#: name #</a># } else { # #: name # # } ## } else { # N/A # } #</td></tr>');
+        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn" style="#: grid.columns[grid.element.find("th[data-field=name]").data("index")].hidden ? "display: none;" : "" #"><div># if (name !== null && name !== "") { ## if (field) { #<a href="URL" target="_blank" title="Link">#: name #</a># } else { # #: name # # } ## } else { # N/A # } #</div></td></tr>');
     }
 
     public function it_can_add_input_column()
@@ -143,13 +143,13 @@ class TableSpec extends ObjectBehavior
     public function it_can_add_hierarchy_cell()
     {
         $this->setDetailInit('')->shouldReturn($this);
-        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="k-master-row" style=""><td class="k-hierarchy-cell" style=""><a class="k-icon k-plus" href="\\#" tabindex="-1"></a></td></tr>');
+        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="k-master-row" style=""><td class="k-hierarchy-cell" style=""><div><a class="k-icon k-plus" href="\\#" tabindex="-1"></a></div></td></tr>');
     }
 
     public function it_can_add_checkboxes()
     {
         $this->addCheckboxes()->shouldReturn($this);
-        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableCheckbox tableCheckbox--main" style=""><input type="checkbox" value="#: id #" name="tableCheckbox" /></td></tr>');
+        expect($this->_match_property('rowTemplate'))->toBe('# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="tableColumn tableCheckbox tableCheckbox--main" style=""><div><input type="checkbox" value="#: id #" name="tableCheckbox" /></div></td></tr>');
     }
 
     public function it_can_add_action()
@@ -172,7 +172,7 @@ class TableSpec extends ObjectBehavior
 
         return [
             [['field' => $property, 'title' => $title, 'class' => $class, 'style' => '#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #', 'headerAttributes' => ['class' => $class, 'style' => '#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #']]],
-            '# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="' . $class . '" style="#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #">' . $td . '</td></tr>'
+            '# var grid = $("\#id").data("kendoGrid"); #<tr data-uid="#: uid #" class="" style=""><td class="' . $class . '" style="#: grid.columns[grid.element.find("th[data-field=' . $property . ']").data("index")].hidden ? "display: none;" : "" #"><div>' . $td . '</div></td></tr>'
         ];
     }
 }

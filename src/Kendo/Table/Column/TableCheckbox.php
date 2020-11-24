@@ -22,7 +22,7 @@ class TableCheckbox extends Base
      *
      * @var string
      */
-    protected $_template = '<td class="%class%" style="%style%"><input type="checkbox" value="#: %field% #" name="tableCheckbox" /></td>';
+    protected $_template = '<td class="%class%" style="%style%"><div><input type="checkbox" value="#: %field% #" name="tableCheckbox" /></div></td>';
 
     /**
      * Predefined class.
