@@ -17,25 +17,14 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class Number extends Base
 {
-    /**
-     * Type used for model type property.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_type = 'number';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableNumber';
 
     /**
-     * Construct the column.
-     *
-     * @param array  $options
-     * @param string $tableId
+     * {@inheritDoc}
      */
     public function __construct(array $options, string $tableId)
     {

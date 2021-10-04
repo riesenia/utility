@@ -27,7 +27,7 @@ class Base
     /**
      * Options.
      *
-     * @var array
+     * @var array<string,mixed>
      */
     protected $_options = [
         'class' => '',
@@ -47,8 +47,8 @@ class Base
     /**
      * Construct action.
      *
-     * @param array  $options
-     * @param string $tableId
+     * @param array<string,mixed> $options
+     * @param string              $tableId
      */
     public function __construct(array $options, string $tableId)
     {

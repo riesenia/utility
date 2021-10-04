@@ -17,32 +17,17 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class TableCheckbox extends Base
 {
-    /**
-     * Column template with %field% placeholder.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_template = '<td class="%class%" style="%style%"><div><input type="checkbox" value="#: %field% #" name="tableCheckbox" /></div></td>';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableCheckbox tableCheckbox--main';
 
-    /**
-     * Predefined style.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_style = '';
 
     /**
-     * Construct the column.
-     *
-     * @param array  $options
-     * @param string $tableId
+     * {@inheritDoc}
      */
     public function __construct(array $options, string $tableId)
     {
@@ -60,9 +45,7 @@ class TableCheckbox extends Base
     }
 
     /**
-     * Return rendered javascript.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function script(): string
     {

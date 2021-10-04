@@ -20,13 +20,11 @@ use Riesenia\Kendo\Kendo;
 class Window extends KendoHelper
 {
     /**
-     * Construct the window.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->widget = Kendo::createWindow('#' . $id)
             ->setWidth(700)
@@ -36,9 +34,7 @@ class Window extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -46,9 +42,7 @@ class Window extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

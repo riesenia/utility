@@ -48,7 +48,7 @@ abstract class KendoHelper
     /**
      * HTML attributes.
      *
-     * @var array
+     * @var array<string,string>
      */
     protected $_htmlAttributes = [];
 
@@ -64,10 +64,7 @@ abstract class KendoHelper
      *
      * @param string $id
      */
-    public function __construct(string $id)
-    {
-        $this->_id = $id;
-    }
+    abstract public function __construct(string $id);
 
     /**
      * Return new instance.
@@ -86,6 +83,8 @@ abstract class KendoHelper
      *
      * @param string $alias
      * @param string $class
+     *
+     * @return void
      */
     public static function alias(string $alias, string $class)
     {
@@ -109,8 +108,8 @@ abstract class KendoHelper
     /**
      * Add transport (passed to datasource).
      *
-     * @param string $type
-     * @param array  $options
+     * @param string              $type
+     * @param array<string,mixed> $options
      *
      * @return $this
      */
@@ -124,8 +123,8 @@ abstract class KendoHelper
     /**
      * Add field (passed to model).
      *
-     * @param string $key
-     * @param array  $options
+     * @param string              $key
+     * @param array<string,mixed> $options
      *
      * @return $this
      */
@@ -193,7 +192,7 @@ abstract class KendoHelper
      *
      * @param string      $name
      * @param bool|string $content
-     * @param array       $attributes
+     * @param mixed[]     $attributes
      *
      * @return string
      */
@@ -225,8 +224,8 @@ abstract class KendoHelper
     /**
      * Handle dynamic method calls - forward them to the widget.
      *
-     * @param string $method
-     * @param array  $arguments
+     * @param string  $method
+     * @param mixed[] $arguments
      *
      * @return mixed
      */

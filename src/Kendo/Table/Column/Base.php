@@ -55,14 +55,14 @@ class Base
     /**
      * Options.
      *
-     * @var array
+     * @var array<string,mixed>
      */
     protected $_options = [];
 
     /**
      * Model options.
      *
-     * @var array
+     * @var array<string,mixed>
      */
     protected $_modelOptions = [];
 
@@ -90,8 +90,8 @@ class Base
     /**
      * Construct the column.
      *
-     * @param array  $options
-     * @param string $tableId
+     * @param array<string,mixed> $options
+     * @param string              $tableId
      */
     public function __construct(array $options, string $tableId)
     {
@@ -140,7 +140,7 @@ class Base
     /**
      * Get options for model field definition.
      *
-     * @return array
+     * @return array<string,mixed>
      */
     public function getModelOptions(): array
     {
@@ -150,7 +150,7 @@ class Base
     /**
      * Get options for grid column definition.
      *
-     * @return array
+     * @return array<string,mixed>
      */
     public function getColumnOptions(): array
     {
@@ -180,11 +180,6 @@ class Base
         return $script;
     }
 
-    /**
-     * Return rendered column.
-     *
-     * @return string
-     */
     public function __toString(): string
     {
         $format = $this->_format;

@@ -20,13 +20,11 @@ use Riesenia\Kendo\Kendo;
 class Tree extends KendoHelper
 {
     /**
-     * Construct the tree.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->model = Kendo::createModel()
             ->setId('id');
@@ -81,7 +79,7 @@ class Tree extends KendoHelper
     /**
      * Expand tree through provided path.
      *
-     * @param array $path from highest node to the last
+     * @param int[] $path from highest node to the last
      *
      * @return $this
      */
@@ -114,9 +112,7 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -124,9 +120,7 @@ class Tree extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

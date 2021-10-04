@@ -20,13 +20,11 @@ use Riesenia\Kendo\Kendo;
 class ListView extends KendoHelper
 {
     /**
-     * Construct the list view.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->model = Kendo::createModel()
             ->setId('id');
@@ -56,9 +54,7 @@ class ListView extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -66,9 +62,7 @@ class ListView extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

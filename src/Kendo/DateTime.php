@@ -27,13 +27,11 @@ class DateTime extends Date
     protected $_substringEnd = 19;
 
     /**
-     * Construct the picker.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->widget = Kendo::createDateTimePicker('#' . $id);
     }

@@ -48,13 +48,11 @@ class Date extends KendoHelper
     protected $_substringEnd = 10;
 
     /**
-     * Construct the picker.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->widget = Kendo::createDatePicker('#' . $id);
 
@@ -90,9 +88,7 @@ class Date extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -103,9 +99,7 @@ class Date extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

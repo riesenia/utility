@@ -20,13 +20,11 @@ use Riesenia\Kendo\Kendo;
 class Chart extends KendoHelper
 {
     /**
-     * Construct the chart.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->model = Kendo::createModel()
             ->setId('id');
@@ -40,9 +38,7 @@ class Chart extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -50,9 +46,7 @@ class Chart extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

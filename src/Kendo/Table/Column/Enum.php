@@ -18,10 +18,7 @@ namespace Riesenia\Utility\Kendo\Table\Column;
 class Enum extends Base
 {
     /**
-     * Construct the column.
-     *
-     * @param array  $options
-     * @param string $tableId
+     * {@inheritDoc}
      */
     public function __construct(array $options, string $tableId)
     {

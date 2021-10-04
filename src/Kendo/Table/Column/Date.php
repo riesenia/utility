@@ -17,24 +17,12 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class Date extends Base
 {
-    /**
-     * Type used for model type property.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_type = 'date';
 
-    /**
-     * Field format with %field% placeholder.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_format = '#: kendo.toString(%field%, "d") #';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableDate';
 }

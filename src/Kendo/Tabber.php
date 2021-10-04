@@ -27,13 +27,11 @@ class Tabber extends KendoHelper
     protected $_ulContent = '';
 
     /**
-     * Construct the tabber.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->widget = Kendo::createTabStrip('#' . $id);
     }
@@ -57,9 +55,7 @@ class Tabber extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -67,9 +63,7 @@ class Tabber extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

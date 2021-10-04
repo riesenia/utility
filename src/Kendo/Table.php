@@ -29,28 +29,28 @@ class Table extends KendoHelper
     /**
      * Row classes.
      *
-     * @var array
+     * @var mixed[]
      */
     protected $_rowClasses = [];
 
     /**
      * Row styles.
      *
-     * @var array
+     * @var mixed[]
      */
     protected $_rowStyles = [];
 
     /**
      * Table columns.
      *
-     * @var array
+     * @var \Riesenia\Utility\Kendo\Table\Column\Base[]
      */
     protected $_columns = [];
 
     /**
      * Actions.
      *
-     * @var array
+     * @var \Riesenia\Utility\Kendo\Table\Action\Base[]
      */
     protected $_actions = [];
 
@@ -69,13 +69,11 @@ class Table extends KendoHelper
     protected $_actionWidth = 45;
 
     /**
-     * Construct the table.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->model = Kendo::createModel()
             ->setId('id');
@@ -110,7 +108,7 @@ class Table extends KendoHelper
     /**
      * Add checkboxes.
      *
-     * @param array $options
+     * @param array<string,mixed> $options
      *
      * @return $this
      */
@@ -124,12 +122,12 @@ class Table extends KendoHelper
     /**
      * Add table column.
      *
-     * @param string|null $field
-     * @param string      $title
-     * @param string|null $type
-     * @param array       $options
-     * @param bool        $prepend
-     * @param bool        $addWidgetColumn
+     * @param string|null         $field
+     * @param string              $title
+     * @param string|null         $type
+     * @param array<string,mixed> $options
+     * @param bool                $prepend
+     * @param bool                $addWidgetColumn
      *
      * @return $this
      */
@@ -177,8 +175,8 @@ class Table extends KendoHelper
     /**
      * Add table action.
      *
-     * @param string|null $type
-     * @param array       $options
+     * @param string|null         $type
+     * @param array<string,mixed> $options
      *
      * @return $this
      */
@@ -282,9 +280,7 @@ class Table extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -292,9 +288,7 @@ class Table extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

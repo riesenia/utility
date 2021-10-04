@@ -39,9 +39,7 @@ class Input extends Base
     protected $_notAvailableCondition = 'true';
 
     /**
-     * Get options for grid column definition.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getColumnOptions(): array
     {
@@ -49,9 +47,7 @@ class Input extends Base
     }
 
     /**
-     * Return rendered javascript.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function script(): string
     {
@@ -80,9 +76,7 @@ class Input extends Base
     }
 
     /**
-     * Return rendered column.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function __toString(): string
     {

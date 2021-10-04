@@ -17,11 +17,7 @@ namespace Riesenia\Utility\Kendo\Table\Action;
  */
 class Delete extends Base
 {
-    /**
-     * Options.
-     *
-     * @var array
-     */
+    /** @var array<string,mixed> */
     protected $_options = [
         'class' => 'k-grid-delete',
         'link' => '\#',
@@ -31,9 +27,7 @@ class Delete extends Base
     ];
 
     /**
-     * Command (for column definition).
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
     public function command()
     {

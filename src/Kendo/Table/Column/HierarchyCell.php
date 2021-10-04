@@ -19,24 +19,12 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class HierarchyCell extends Base
 {
-    /**
-     * Column template with %field% placeholder.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_template = '<td class="%class%" style="%style%"><div><a class="k-icon k-i-expand" href="\\#" tabindex="-1"></a></div></td>';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'k-hierarchy-cell';
 
-    /**
-     * Predefined style.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_style = '';
 }

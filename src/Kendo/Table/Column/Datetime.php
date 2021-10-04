@@ -17,17 +17,9 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class Datetime extends Date
 {
-    /**
-     * Field format with %field% placeholder.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_format = '#: kendo.toString(%field%, "g") #';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableDate tableDatetime';
 }

@@ -20,9 +20,9 @@ trait ParseDecimalTrait
     /**
      * Decimal parser.
      *
-     * @param mixed $number
-     * @param array $options
-     * @param bool  $allowNull
+     * @param mixed               $number
+     * @param array<string,mixed> $options
+     * @param bool                $allowNull
      *
      * @return float|null
      */

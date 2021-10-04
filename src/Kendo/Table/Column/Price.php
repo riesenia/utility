@@ -17,17 +17,9 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class Price extends Number
 {
-    /**
-     * Field format with %field% placeholder.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_format = '#: kendo.toString(%field%, "c2") #';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableNumber tablePrice';
 }

@@ -17,25 +17,14 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class Actions extends Base
 {
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableActions';
 
-    /**
-     * Predefined style.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_style = '';
 
     /**
-     * Construct the column.
-     *
-     * @param array  $options
-     * @param string $tableId
+     * {@inheritDoc}
      */
     public function __construct(array $options, string $tableId)
     {
@@ -52,9 +41,7 @@ class Actions extends Base
     }
 
     /**
-     * Return rendered javascript.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function script(): string
     {
@@ -69,9 +56,7 @@ class Actions extends Base
     }
 
     /**
-     * Return rendered column.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function __toString(): string
     {

@@ -23,14 +23,14 @@ class QueryEvaluatorException extends \RuntimeException
     /**
      * Array of attributes that are passed in from the constructor.
      *
-     * @var array
+     * @var mixed[]
      */
     protected $_attributes = [];
 
     /**
      * Constructor.
      *
-     * @param array|string    $message
+     * @param mixed[]|string  $message
      * @param int             $code
      * @param \Throwable|null $previous
      */
@@ -47,7 +47,7 @@ class QueryEvaluatorException extends \RuntimeException
     /**
      * Get the passed in attributes.
      *
-     * @return array
+     * @return mixed[]
      */
     public function getAttributes()
     {

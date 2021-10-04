@@ -17,31 +17,17 @@ namespace Riesenia\Utility\Kendo\Table\Column;
  */
 class Checkbox extends Input
 {
-    /**
-     * Type used for model type property.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_type = 'boolean';
 
-    /**
-     * Column template with %field% placeholder.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_template = '<td class="%class%" style="%style%"><div><input type="checkbox" data-row-uid="#: uid #" name="%field%Input" # if (%field%) { # checked="checked" # } # /></div></td>';
 
-    /**
-     * Predefined class.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $_class = 'tableColumn tableCheckbox';
 
     /**
-     * Value setter.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     protected function _setValue(): string
     {

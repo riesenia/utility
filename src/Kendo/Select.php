@@ -20,13 +20,11 @@ use Riesenia\Kendo\Kendo;
 class Select extends KendoHelper
 {
     /**
-     * Construct the select.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->dataSource = Kendo::createDataSource()
             ->setSchema(['data' => 'results', 'total' => 'count'])
@@ -42,9 +40,7 @@ class Select extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -52,9 +48,7 @@ class Select extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

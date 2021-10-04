@@ -20,13 +20,11 @@ use Riesenia\Kendo\Kendo;
 class Upload extends KendoHelper
 {
     /**
-     * Construct the uploader.
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function __construct(string $id)
     {
-        parent::__construct($id);
+        $this->_id = $id;
 
         $this->widget = Kendo::createUpload('#' . $id);
 
@@ -34,9 +32,7 @@ class Upload extends KendoHelper
     }
 
     /**
-     * Return HTML.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function html(): string
     {
@@ -46,9 +42,7 @@ class Upload extends KendoHelper
     }
 
     /**
-     * Return JavaScript.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function script(): string
     {

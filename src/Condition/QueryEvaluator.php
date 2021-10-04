@@ -34,16 +34,16 @@ class QueryEvaluator
     /**
      * Config for this class.
      *
-     * @var array
+     * @var array<string,mixed>
      */
     protected $_config = [];
 
     /**
      * Setup.
      *
-     * @param array $config
+     * @param array<string,mixed> $config
      */
-    public function __construct(array $config)
+    final public function __construct(array $config)
     {
         $this->_config = $config;
     }
@@ -53,7 +53,7 @@ class QueryEvaluator
      *
      * @param string $query
      *
-     * @return array
+     * @return mixed
      */
     public function parse(string $query)
     {
@@ -101,7 +101,7 @@ class QueryEvaluator
      *
      * @param string $condition
      *
-     * @return array
+     * @return mixed
      */
     public function parseCondition(string $condition)
     {
@@ -131,7 +131,7 @@ class QueryEvaluator
      * @param string $operator
      * @param string $value
      *
-     * @return array
+     * @return mixed
      */
     protected function _parseCondition(string $field, string $operator, string $value)
     {
