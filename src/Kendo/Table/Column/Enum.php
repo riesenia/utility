@@ -29,7 +29,7 @@ class Enum extends Base
                 $this->_template .= '# if (%field% !== null && %field%.toString() == ' . \json_encode($key) . ') { # ' . \htmlspecialchars($value) . ' # } #';
             }
 
-            $this->_template .= '# if (%field% === null) { # ' . \htmlspecialchars($options['null'] ?? 'N/A') . ' # } #';
+            $this->_template .= '# if (%field% === null) { # ' . \htmlspecialchars($this->_notAvailableText) . ' # } #';
             unset($options['options']);
         }
 
