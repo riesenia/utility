@@ -144,6 +144,12 @@ class QueryEvaluator
 
                 break;
 
+            case 'NOTCONTAINS':
+                $operator = ' NOT LIKE';
+                $value = '%' . $value . '%';
+
+                break;
+
             case 'IN':
                 $operator = ' IN';
                 $value = \array_map('trim', \explode(',', \trim($value, '()')));
