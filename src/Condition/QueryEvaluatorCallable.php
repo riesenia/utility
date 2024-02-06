@@ -68,6 +68,11 @@ class QueryEvaluatorCallable extends QueryEvaluator
                     return isset($item[$field]) && \stripos((string) \iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), (string) \iconv('UTF-8', 'ASCII//TRANSLIT', $value)) !== false;
                 };
 
+            case 'NOTCONTAINS':
+                return function ($item) use ($field, $value) {
+                    return !isset($item[$field]) || \stripos((string) \iconv('UTF-8', 'ASCII//TRANSLIT', $item[$field]), (string) \iconv('UTF-8', 'ASCII//TRANSLIT', $value)) === false;
+                };
+
             case 'IN':
                 $value = \array_map('trim', \explode(',', \trim($value, '()')));
 
