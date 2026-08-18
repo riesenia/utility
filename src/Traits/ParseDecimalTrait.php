@@ -32,6 +32,8 @@ trait ParseDecimalTrait
             return null;
         }
 
+        $number = \is_int($number) || \is_float($number) ? \strval($number) : $number;
+
         if (isset($options['thousands_separator'])) {
             $number = \str_replace($options['thousands_separator'], '', $number);
         }
