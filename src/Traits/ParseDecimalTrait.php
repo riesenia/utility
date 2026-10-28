@@ -28,11 +28,13 @@ trait ParseDecimalTrait
      */
     protected function _parseDecimal($number, array $options = [], bool $allowNull = false): ?float
     {
-        if ($allowNull && $number === null) {
-            return null;
+        if ($number === null) {
+            // PHP 8 does not accept null in str_replace()
+            return $allowNull ? null : 0.0;
         }
 
-        $number = \is_int($number) || \is_float($number) ? \strval($number) : $number;
+        // PHP 8 does not convert bools and objects to string in str_replace() under strict types
+        $number = \is_scalar($number) || (\is_object($number) && \method_exists($number, '__toString')) ? \strval($number) : $number;
 
         if (isset($options['thousands_separator'])) {
             $number = \str_replace($options['thousands_separator'], '', $number);
