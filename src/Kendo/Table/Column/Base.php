@@ -114,7 +114,8 @@ class Base
         $this->_options['class'] = isset($this->_options['class']) ? $this->_class . ' ' . $this->_options['class'] : $this->_class;
 
         // style
-        $this->_style = \str_replace('%field%', $this->_options['field'], $this->_style);
+        // field is null for columns without data (checkboxes, actions) - PHP 8 does not accept null in str_replace()
+        $this->_style = \str_replace('%field%', (string) $this->_options['field'], $this->_style);
         $this->_options['style'] = isset($this->_options['style']) ? $this->_style . ' ' . $this->_options['style'] : $this->_style;
 
         // header style and class
