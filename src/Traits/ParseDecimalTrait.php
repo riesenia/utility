@@ -29,7 +29,6 @@ trait ParseDecimalTrait
     protected function _parseDecimal($number, array $options = [], bool $allowNull = false): ?float
     {
         if ($number === null) {
-            // PHP 8 does not accept null in str_replace()
             return $allowNull ? null : 0.0;
         }
 
